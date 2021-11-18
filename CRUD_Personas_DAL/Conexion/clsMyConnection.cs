@@ -62,8 +62,7 @@ namespace _07_CRUD_Personas_DAL.Conexion
             SqlConnection connection = new SqlConnection();
 
             try
-            {
-                            
+            { 
                 connection.ConnectionString = $"server={server};database={dataBase};uid={user};pwd={pass};";
                 connection.Open();
             }
