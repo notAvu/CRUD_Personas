@@ -49,11 +49,11 @@ namespace Entities_UWP
         public string Nombre { get => nombre; set => nombre = value; }
         public string Apellido { get => apellido; set => apellido = value; }
         public int Id { get => id; set => id = value; }
-        DateTime FechaNacimiento { get => fechaNacimiento; set => fechaNacimiento = value; }
-        string Telefono { get => telefono; set => telefono = value; }
-        string Direccion { get => direccion; set => direccion = value; }
-        int IdDepartamento { get => idDepartamento; set => idDepartamento = value; }
-        string Foto { get => foto; set => foto = value; }
+        public DateTime FechaNacimiento { get => fechaNacimiento; set => fechaNacimiento = value; }
+        public string Telefono { get => telefono; set => telefono = value; }
+        public string Direccion { get => direccion; set => direccion = value; }
+        public int IdDepartamento { get => idDepartamento; set => idDepartamento = value; }
+        public string Foto { get => foto; set => foto = value; }
         #endregion
     }
 }
