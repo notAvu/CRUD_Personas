@@ -9,18 +9,23 @@ namespace CRUD_Personas_DAL.Listado
 {
     class clsListadoPersonas
     {
+        #region propiedades privadas;
         List<clsPersona> listadoCompleto;
-        clsMyConnection conexion= new clsMyConnection();
-
+        clsMyConnection conexion;
+        #endregion
+        #region propiedades publicas
         public List<clsPersona> ListadoCompleto { get => listadoCompleto; set => listadoCompleto = value; }
-
+        #endregion
+        #region metodos
         private void executeConnection() {
+            conexion = new clsMyConnection();
             SqlConnection sqlConnection= conexion.getConnection();
             SqlCommand comando = new SqlCommand();
             SqlDataReader reader;
             comando.CommandText = "SELECT * FROM Personas";
-            comando.Connection = sqlConnection;
-            
+            comando.Connection = sqlConnection;    
         }
+
+        #endregion
     }
 }
