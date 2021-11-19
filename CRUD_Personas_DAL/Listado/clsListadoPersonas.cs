@@ -7,8 +7,12 @@ using System.Text;
 
 namespace CRUD_Personas_DAL.Listado
 {
-    class clsListadoPersonas
+    public class clsListadoPersonas
     {
+        #region constantes (sentencias)
+        private const string UpdatePersona = "UPDATE Personas SET nombrePersona = @nombre, apellidosPersona = @apellido, fechaNacimiento = @fechaNac, telefono = @telefono, direccion = @idreccion, foto = @foto, IDDepartamento = @iddepartamento";
+        private const string InsertPersona = "INSERT INTO Personas VALUES (@Nombre, @Apellido, @fechaNacimiento, @telefono, @direccion, @foto, @idDepartamento)";
+        #endregion
         #region atributos privados
         List<clsPersona> listadoCompleto;
         List<clsPersona> listadoFiltrado;
@@ -16,6 +20,14 @@ namespace CRUD_Personas_DAL.Listado
         #endregion
         #region propiedades publicas
         public List<clsPersona> ListadoCompleto { get => listadoCompleto; set => listadoCompleto = value; }
+        public List<clsPersona> ListadoFiltrado { get => listadoFiltrado; set => listadoFiltrado = value; }
+        #endregion
+        #region costructor
+        public clsListadoPersonas() {
+            ListadoCompleto = new List<clsPersona>();
+            ListadoFiltrado = new List<clsPersona>();
+            connector = new clsMyConnection();
+        }
         #endregion
         #region rellenarListados
         /// <summary>
@@ -53,40 +65,6 @@ namespace CRUD_Personas_DAL.Listado
             reader.Close();
             connector.closeConnection(ref sqlConnection);
         }
-        #endregion
-        #region agregarPersona
-        /// <summary>
-        /// registra la persona recibida por parametro en la bbdd
-        /// </summary>
-        /// <param name="persona"></param>
-        public void agergarPersona(clsPersona persona)
-        {
-            SqlConnection sqlConnection = connector.getConnection();
-            SqlCommand comando = getComandoConValores(persona);
-            comando.Connection = sqlConnection;
-            comando.ExecuteNonQuery();
-            connector.closeConnection(ref sqlConnection);
-        }
-        /// <summary>
-        /// Metodo auxiliar para generar el comando de insertar persona en la bbdd 
-        /// </summary>
-        /// <param name="persona"></param>
-        /// <returns></returns>
-        private static SqlCommand getComandoConValores(clsPersona persona)
-        {
-            string sentenciaSql = "INSERT INTO Personas VALUES (@Nombre, @Apellido, @fechaNacimiento, @telefono, @direccion, @foto, @idDepartamento)";
-            SqlCommand comando = new SqlCommand();
-            comando.Parameters.AddWithValue("@Nombre", persona.Nombre);
-            comando.Parameters.AddWithValue("@Apellido", persona.Apellido);
-            comando.Parameters.AddWithValue("@fechaNacimiento", persona.FechaNacimiento);
-            comando.Parameters.AddWithValue("@telefono", persona.Telefono);
-            comando.Parameters.AddWithValue("@direccion", persona.Direccion);
-            comando.Parameters.AddWithValue("@foto", persona.Foto);
-            comando.Parameters.AddWithValue("@idDepartamento", persona.IdDepartamento);
-            comando.CommandText = sentenciaSql;
-            return comando;
-        }
-        #endregion
         /// <summary>
         /// Metodo auxiliar para leer una persona de la base de datos
         /// </summary>
@@ -103,8 +81,75 @@ namespace CRUD_Personas_DAL.Listado
             string fotoUrl = (string)reader["foto"];
             int idDepartamento = (int)reader["IDDepartamento"];
             return new clsPersona(id, nombre, apellido, dateTime, telefono, direccion, fotoUrl, idDepartamento);
-            
+
         }
+        #endregion
+        #region agregarPersona
+        /// <summary>
+        /// registra la persona recibida por parametro en la bbdd
+        /// </summary>
+        /// <param name="persona"></param>
+        public void AgergarPersonaDAL(clsPersona persona)
+        {
+            SqlConnection sqlConnection = connector.getConnection();
+            SqlCommand comando = generarComandoPersona(persona, InsertPersona);
+            comando.Connection = sqlConnection;
+            comando.ExecuteNonQuery();
+            connector.closeConnection(ref sqlConnection);
+        }
+        /// <summary>
+        /// Metodo auxiliar para generar el comando de insertar persona en la bbdd 
+        /// </summary>
+        /// <param name="persona"></param>
+        /// <returns></returns>
+
+        private static SqlCommand generarComandoPersona(clsPersona persona, string comandoTipo)
+        {
+            SqlCommand comando = new SqlCommand();
+            string sentenciaSql=comandoTipo;
+            comando.Parameters.AddWithValue("@Nombre", persona.Nombre);
+            comando.Parameters.AddWithValue("@Apellido", persona.Apellido);
+            comando.Parameters.AddWithValue("@fechaNacimiento", persona.FechaNacimiento);
+            comando.Parameters.AddWithValue("@telefono", persona.Telefono);
+            comando.Parameters.AddWithValue("@direccion", persona.Direccion);
+            comando.Parameters.AddWithValue("@foto", persona.Foto);
+            comando.Parameters.AddWithValue("@idDepartamento", persona.IdDepartamento);
+            comando.CommandText=sentenciaSql;
+            return comando;
+        }
+        #endregion
+        #region editarPersona
+        public void EditarPersona(clsPersona persona)
+        {
+            SqlConnection sqlConnection = connector.getConnection();
+            SqlCommand comando = generarComandoPersona(persona, UpdatePersona);
+            comando.Connection = sqlConnection;
+            
+            comando.ExecuteNonQuery();
+            connector.closeConnection(ref sqlConnection);
+        }
+        #endregion
+        #region eliminarPersona
+        /// <summary>
+        /// Elimina de la base de datos la persona con el id seleccionado
+        /// </summary>
+        /// <param name="id"></param>
+        public void EliminarPersona(int id)
+        {
+            SqlConnection sqlConnection = connector.getConnection();
+            SqlCommand comando = new SqlCommand();
+            comando.Parameters.AddWithValue("@id", id);
+            comando.CommandText = "DELETE FROM Personas WHERE IDPersona=@id";
+            comando.Connection = sqlConnection;
+            comando.ExecuteNonQuery();
+            connector.closeConnection(ref sqlConnection);
+        }
+        #endregion
     }
-    
+    //[TestClass]
+    //public class TestListado 
+    //{
+
+    //}
+
 }
