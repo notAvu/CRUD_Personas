@@ -23,7 +23,7 @@ namespace Entities_UWP
             this.nombre = nombre;
             this.apellido = apellido;
         }
-        public clsPersona(string nombre, string apellido, DateTime fecha, string telefono, string direccion, string foto)
+        public clsPersona(string nombre, string apellido, DateTime fecha, string telefono, string direccion, string foto, int idDepar)
         {
             this.nombre = nombre;
             this.apellido = apellido;
@@ -31,6 +31,18 @@ namespace Entities_UWP
             this.telefono = telefono;
             this.direccion = direccion;
             this.foto = foto;
+            idDepartamento = idDepar;
+        }
+        public clsPersona(int idPersona, string nombre, string apellido, DateTime fecha, string telefono, string direccion, string foto, int idDepar) 
+        {
+            this.id = idPersona;
+            this.nombre = nombre;
+            this.apellido = apellido;
+            this.fechaNacimiento = fecha;
+            this.telefono = telefono;
+            this.direccion = direccion;
+            this.foto = foto;
+            idDepartamento = idDepar;
         }
         #endregion
         #region atributos publicos
