@@ -29,7 +29,7 @@ namespace CRUD_Personas_DAL.Listado
             connector = new clsMyConnection();
         }
         #endregion
-        #region rellenarListados
+        #region lectura
         /// <summary>
         /// Rellena el listado completo de personas
         /// </summary>
@@ -83,6 +83,25 @@ namespace CRUD_Personas_DAL.Listado
             return new clsPersona(id, nombre, apellido, dateTime, telefono, direccion, fotoUrl, idDepartamento);
 
         }
+        public clsPersona leerPersonaPorID(int id) 
+        {
+            clsPersona persona=null;
+            SqlConnection sqlConnection = connector.getConnection();
+            SqlCommand comando = new SqlCommand();
+            comando.CommandText = $"SELECT * FROM Personas WHERE IDPersona={id}";
+            comando.Connection = sqlConnection;
+            SqlDataReader reader = comando.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    persona=(leerPersona(reader));
+                }
+            }
+            reader.Close();
+            connector.closeConnection(ref sqlConnection);
+            return persona;
+        }
         #endregion
         #region agregarPersona
         /// <summary>
@@ -97,12 +116,12 @@ namespace CRUD_Personas_DAL.Listado
             comando.ExecuteNonQuery();
             connector.closeConnection(ref sqlConnection);
         }
+
         /// <summary>
         /// Metodo auxiliar para generar el comando de insertar persona en la bbdd 
         /// </summary>
         /// <param name="persona"></param>
         /// <returns></returns>
-
         private static SqlCommand generarComandoPersona(clsPersona persona, string comandoTipo)
         {
             SqlCommand comando = new SqlCommand();
@@ -146,10 +165,5 @@ namespace CRUD_Personas_DAL.Listado
         }
         #endregion
     }
-    //[TestClass]
-    //public class TestListado 
-    //{
-
-    //}
 
 }

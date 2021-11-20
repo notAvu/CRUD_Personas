@@ -5,10 +5,15 @@
     xmlns:local="using:CRUD_Personas_UWP"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:CRUD_Personas_UWP.ViewModels"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-
-    </Grid>
+    <Page.DataContext>
+        <vm:MainPageVM/>
+    </Page.DataContext>
+    <StackPanel>
+        <TextBlock x:Name="nombreDB" Text="{Binding NombrePersona}"/>
+        <TextBlock x:Name="apellidoDB" Text="{Binding ApellidoPersona}"/>
+    </StackPanel>
 </Page>

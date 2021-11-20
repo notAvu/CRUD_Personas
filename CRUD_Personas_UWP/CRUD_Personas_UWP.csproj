@@ -119,6 +119,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\MainPageVM.cs" />
     <Compile Include="ViewModels\Utils\clsVMBase.cs" />
     <Compile Include="ViewModels\Utils\DelegateCommand.cs" />
     <Compile Include="Views\MainPage.xaml.cs">
@@ -160,6 +161,10 @@
     <ProjectReference Include="..\CRUD_Personas_BL\CRUD_Personas_BL.csproj">
       <Project>{86f0e501-4f1a-43cc-8da8-57f90bf6b8e8}</Project>
       <Name>CRUD_Personas_BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CRUD_Personas_DAL\CRUD_Personas_DAL.csproj">
+      <Project>{3EB70A78-0E22-45FD-A628-D95AD41CAF5C}</Project>
+      <Name>CRUD_Personas_DAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\CRUD_Personas_Entidades\CRUD_Personas_Entidades.csproj">
       <Project>{b6ccad53-17ad-4e56-b7f1-b1dd7446552e}</Project>
