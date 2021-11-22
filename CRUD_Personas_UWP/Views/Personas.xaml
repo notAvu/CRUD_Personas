@@ -5,7 +5,7 @@
     xmlns:local="using:CRUD_Personas_UWP.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:vm="using:_18_CRUD_Personas_UWP_UI.ViewModels"
+    xmlns:vm="using:CRUD_Personas_UWP.ViewModels"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -17,16 +17,19 @@
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <GridView>
-            <GridView.ItemTemplate>
+        <ListView ItemsSource="{Binding ListadoPersonas, Mode=TwoWay}">
+            <ListView.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <Image Width="20" Height="20" Source=""/>
-                        <TextBlock Text="Nombre persona"/>
+                    <StackPanel Orientation="Horizontal" Margin="20,10">
+                        <Image Width="70" Height="70" Source="{Binding Foto}" />
+                        <TextBlock VerticalAlignment="Center" Margin="10" FontSize="20">
+                            <Run Text="{Binding Nombre}"/>
+                            <Run Text="{Binding Apellido}"/>
+                        </TextBlock>
                     </StackPanel>
                 </DataTemplate>
-            </GridView.ItemTemplate>
-        </GridView>
+            </ListView.ItemTemplate>
+        </ListView>
         <RelativePanel Grid.Column="1">
             <TextBox x:Name="NombreTbx" MinWidth="200" PlaceholderText="Nombre" Margin="20"/>
             <TextBox x:Name="ApellidoTbx" MinWidth="200" PlaceholderText="Apellido" RelativePanel.Below="NombreTbx"  Margin="20"/>

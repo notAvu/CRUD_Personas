@@ -9,7 +9,7 @@ namespace CRUD_Personas_DAL.Listado
 {
     public class clsListadoPersonas
     {
-        #region constantes (sentencias)
+        #region constantes (sentencias genericas)
         private const string UpdatePersona = "UPDATE Personas SET nombrePersona = @nombre, apellidosPersona = @apellido, fechaNacimiento = @fechaNac, telefono = @telefono, direccion = @idreccion, foto = @foto, IDDepartamento = @iddepartamento";
         private const string InsertPersona = "INSERT INTO Personas VALUES (@Nombre, @Apellido, @fechaNacimiento, @telefono, @direccion, @foto, @idDepartamento)";
         #endregion
@@ -24,9 +24,11 @@ namespace CRUD_Personas_DAL.Listado
         #endregion
         #region costructor
         public clsListadoPersonas() {
+            
             ListadoCompleto = new List<clsPersona>();
             ListadoFiltrado = new List<clsPersona>();
             connector = new clsMyConnection();
+            RellenarListado();
         }
         #endregion
         #region lectura

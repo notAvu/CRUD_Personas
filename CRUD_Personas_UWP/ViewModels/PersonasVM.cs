@@ -13,10 +13,11 @@ namespace CRUD_Personas_UWP.ViewModels
         List<clsPersona> listadoPersonas;
         clsPersona personaSeleccionada;
 
-        public PersonasVM(List<clsPersona> listadoPersonas)
+        public PersonasVM()
         {
             this.listadoPersonas = new clsListadoPersonas().ListadoCompleto;
-            personaSeleccionada = listadoPersonas[0];
         }
+        public List<clsPersona> ListadoPersonas { get => listadoPersonas; set => listadoPersonas = value; }
+        public clsPersona PersonaSeleccionada { get => personaSeleccionada; set => personaSeleccionada = value; }
     }
 }
