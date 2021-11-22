@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CRUD_Personas_UWP.ViewModels;
+using Entities_UWP;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,9 +24,17 @@ namespace CRUD_Personas_UWP.Views
     /// </summary>
     public sealed partial class Personas : Page
     {
+        PersonasVM viewModel ;
         public Personas()
         {
             this.InitializeComponent();
+            viewModel = (PersonasVM)DataContext;
+        }
+
+        private void ListView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            
+            viewModel.PersonaSeleccionada = sender as clsPersona;
         }
     }
 }
