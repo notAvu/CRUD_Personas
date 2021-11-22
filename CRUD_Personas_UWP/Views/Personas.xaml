@@ -17,19 +17,26 @@
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <ListView ItemsSource="{Binding ListadoPersonas}" SelectedItem="{Binding PersonaSeleccionada, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsItemClickEnabled="True" ItemClick="ListView_ItemClick">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal" Margin="20,10">
-                        <Image Width="70" Height="70" Source="{Binding Foto}"/>
-                        <TextBlock VerticalAlignment="Center" Margin="10" FontSize="20">
+        <StackPanel>
+            
+            <ScrollViewer>
+                <ListView ItemsSource="{Binding ListadoPersonas}" SelectedItem="{Binding PersonaSeleccionada, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsItemClickEnabled="True" ItemClick="ListView_ItemClick">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" Margin="20,10">
+                                <Image Width="70" Height="70" Source="{Binding Foto}"/>
+                                <TextBlock VerticalAlignment="Center" Margin="10" FontSize="15">
                             <Run Text="{Binding Nombre}"/>
                             <Run Text="{Binding Apellido}"/>
-                        </TextBlock>
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                                </TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollViewer>
+            <AppBarButton Label="Agregar empleado" Icon="AddFriend" HorizontalAlignment="Right"/>
+        </StackPanel>
+        
         <RelativePanel Grid.Column="1">
             <TextBox x:Name="NombreTbx" MinWidth="200" PlaceholderText="Nombre" Margin="20" Text="{Binding PersonaSeleccionada.Nombre}"/>
             <TextBox x:Name="ApellidoTbx" MinWidth="200" PlaceholderText="Apellido" RelativePanel.Below="NombreTbx"  Margin="20" Text="{Binding PersonaSeleccionada.Apellido}"/>
@@ -37,7 +44,7 @@
             <TextBox x:Name="TlfnTbx" MinWidth="200" PlaceholderText="Teléfono" RelativePanel.Below="ApellidoTbx"  Margin="20" Text="{Binding PersonaSeleccionada.Telefono}"/>
             <TextBox x:Name="DireccionTbx" MinWidth="200" PlaceholderText="Dirección" RelativePanel.Below="TlfnTbx"  Margin="20" Text="{Binding PersonaSeleccionada.Direccion}"/>
             <Image x:Name="fotoImg" Source="{Binding PersonaSeleccionada.Foto}" RelativePanel.RightOf="FechaNacimientoDp" RelativePanel.AlignTopWithPanel="True" MaxWidth="200" Margin="60" MinWidth="30" MinHeight="30"/>
-            <Button x:Name="alterBtn" Content="Confirmar" RelativePanel.Below="FechaNacimientoDp" RelativePanel.AlignLeftWith="fotoImg"/>
+            <Button x:Name="alterBtn" Content="Confirmar" RelativePanel.Below="FechaNacimientoDp" RelativePanel.AlignLeftWith="fotoImg"/><!--Asociar command al click del boton o metodo?-->
         </RelativePanel>
     </Grid>
 </Page>
