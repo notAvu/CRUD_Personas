@@ -12,8 +12,16 @@
     <Page.DataContext>
         <vm:MainPageVM/>
     </Page.DataContext>
-    <StackPanel>
-        <TextBlock x:Name="nombreDB" Text="{Binding NombrePersona}"/>
-        <TextBlock x:Name="apellidoDB" Text="{Binding ApellidoPersona}"/>
-    </StackPanel>
+    <RelativePanel>
+        <NavigationView x:Name="NavView" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignTopWithPanel="True">
+            <NavigationView.MenuItems>
+                <NavigationViewItem x:Name="PersonasNvi" Icon="AddFriend" Content="Personas"/>
+                <NavigationViewItem x:Name="DepartamentosNVi" Icon="Bookmarks" Content="Departamentos"/>
+            </NavigationView.MenuItems>
+        </NavigationView>
+        <Frame>
+        </Frame>
+    </RelativePanel>
+    
+    
 </Page>
