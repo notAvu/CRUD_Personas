@@ -20,7 +20,7 @@
         <StackPanel>
             
             <ScrollViewer>
-                <ListView x:Name="listadoPersonas" ItemsSource="{Binding ListadoPersonas, Mode=TwoWay}" SelectedItem="{Binding PersonaSeleccionada, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsItemClickEnabled="True" ItemClick="ListView_ItemClick">
+                <ListView x:Name="listadoPersonas" ItemsSource="{Binding ListadoPersonas, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding PersonaSeleccionada, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsItemClickEnabled="True" ItemClick="ListView_ItemClick">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" Margin="20,10">

@@ -23,7 +23,14 @@ namespace CRUD_Personas_UWP.ViewModels
         #region constructor
         public PersonasVM()
         {
-            this.listadoPersonas =listadoDAL.ListadoCompleto;
+            try
+            {
+                this.listadoPersonas = listadoDAL.ListadoCompleto;
+            }
+            catch 
+            { 
+                //TODO
+            }
             personaSeleccionada = listadoPersonas[0];
         }
         #endregion
@@ -56,7 +63,14 @@ namespace CRUD_Personas_UWP.ViewModels
         #region comandoAlterar
         public void ComandoAlterar_Execute()
         {
-            listadoDAL.EditarPersona(personaSeleccionada);
+            try
+            {
+                listadoDAL.EditarPersona(personaSeleccionada);
+            }
+            catch
+            {
+                //TODO Cambiar mensaje de error
+            }
             NotifyPropertyChanged("PersonaSeleccionada");
         }
 
@@ -79,7 +93,10 @@ namespace CRUD_Personas_UWP.ViewModels
         #endregion
         public void CrearPersona(string nombre, string apellido, string telefono, string direccion, DateTime fechaNacimiento, string foto, int idDepartamento)
         {
-            listadoDAL.AgergarPersonaDAL(personaSeleccionada= new clsPersona(nombre, apellido, fechaNacimiento, telefono, direccion, foto, idDepartamento));
+            try 
+            {
+                listadoDAL.AgergarPersonaDAL(personaSeleccionada = new clsPersona(nombre, apellido, fechaNacimiento, telefono, direccion, foto, idDepartamento)); 
+            } catch { /*TODO*/ }            
         }
     }
 }
