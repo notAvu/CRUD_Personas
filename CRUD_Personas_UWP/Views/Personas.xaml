@@ -20,7 +20,7 @@
         <StackPanel>
             
             <ScrollViewer>
-                <ListView ItemsSource="{Binding ListadoPersonas}" SelectedItem="{Binding PersonaSeleccionada, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsItemClickEnabled="True" ItemClick="ListView_ItemClick">
+                <ListView x:Name="listadoPersonas" ItemsSource="{Binding ListadoPersonas, Mode=TwoWay}" SelectedItem="{Binding PersonaSeleccionada, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsItemClickEnabled="True" ItemClick="ListView_ItemClick">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" Margin="20,10">
@@ -34,7 +34,10 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </ScrollViewer>
-            <AppBarButton Label="Agregar empleado" Icon="AddFriend" HorizontalAlignment="Right"/>
+            <StackPanel Orientation="Horizontal">
+                <AppBarButton Label="Agregar empleado" Icon="AddFriend" Command="{Binding ComandoAgregar}"/>
+                <AppBarButton Label="Borrar Persona" Icon="Delete" Command="{Binding ComandoBorrar}"/>
+            </StackPanel>
         </StackPanel>
         
         <RelativePanel Grid.Column="1">
@@ -44,7 +47,8 @@
             <TextBox x:Name="TlfnTbx" MinWidth="200" PlaceholderText="Teléfono" RelativePanel.Below="ApellidoTbx"  Margin="20" Text="{Binding PersonaSeleccionada.Telefono}"/>
             <TextBox x:Name="DireccionTbx" MinWidth="200" PlaceholderText="Dirección" RelativePanel.Below="TlfnTbx"  Margin="20" Text="{Binding PersonaSeleccionada.Direccion}"/>
             <Image x:Name="fotoImg" Source="{Binding PersonaSeleccionada.Foto}" RelativePanel.RightOf="FechaNacimientoDp" RelativePanel.AlignTopWithPanel="True" MaxWidth="200" Margin="60" MinWidth="30" MinHeight="30"/>
-            <Button x:Name="alterBtn" Content="Confirmar" RelativePanel.Below="FechaNacimientoDp" RelativePanel.AlignLeftWith="fotoImg"/><!--Asociar command al click del boton o metodo?-->
+            <Button x:Name="alterBtn" Content="Confirmar" RelativePanel.Below="FechaNacimientoDp" RelativePanel.AlignLeftWith="fotoImg" Command="{Binding ComandoAlterar}"/>
+            <TextBlock x:Name="errorMsg" Text="*Rellene los campos en rojo" Visibility="Visible" RelativePanel.Below="FechaNacimientoDp" Margin="20" Foreground="Red"/>
         </RelativePanel>
     </Grid>
 </Page>

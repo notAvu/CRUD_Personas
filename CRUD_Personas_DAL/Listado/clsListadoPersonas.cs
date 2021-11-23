@@ -10,7 +10,7 @@ namespace CRUD_Personas_DAL.Listado
     public class clsListadoPersonas
     {
         #region constantes (sentencias genericas)
-        private const string UpdatePersona = "UPDATE Personas SET nombrePersona = @nombre, apellidosPersona = @apellido, fechaNacimiento = @fechaNac, telefono = @telefono, direccion = @idreccion, foto = @foto, IDDepartamento = @iddepartamento";
+        private const string UpdatePersona = "UPDATE Personas SET nombrePersona = @nombre, apellidosPersona = @apellido, fechaNacimiento = @fechaNac, telefono = @telefono, direccion = @idreccion, foto = @foto, IDDepartamento = @iddepartamento WHERE IDPersona=@id";
         private const string InsertPersona = "INSERT INTO Personas VALUES (@Nombre, @Apellido, @fechaNacimiento, @telefono, @direccion, @foto, @idDepartamento)";
         #endregion
         #region atributos privados
@@ -128,6 +128,7 @@ namespace CRUD_Personas_DAL.Listado
         {
             SqlCommand comando = new SqlCommand();
             string sentenciaSql=comandoTipo;
+            comando.Parameters.AddWithValue("@id", persona.Id);
             comando.Parameters.AddWithValue("@Nombre", persona.Nombre);
             comando.Parameters.AddWithValue("@Apellido", persona.Apellido);
             comando.Parameters.AddWithValue("@fechaNacimiento", persona.FechaNacimiento);

@@ -30,10 +30,13 @@ namespace CRUD_Personas_UWP.Views
             this.InitializeComponent();
             viewModel = (PersonasVM)DataContext;
         }
-
+        /// <summary>
+        /// Metodo asociado al click de un elemento de la lista de personas en la vista
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ListView_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            
+        {        
             viewModel.PersonaSeleccionada = sender as clsPersona;
         }
     }
