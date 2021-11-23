@@ -1,5 +1,4 @@
 ﻿using CRUD_Personas_UWP.ViewModels;
-using Entities_UWP;
 using System;
 using System.Collections.Generic;
 using System.IO;

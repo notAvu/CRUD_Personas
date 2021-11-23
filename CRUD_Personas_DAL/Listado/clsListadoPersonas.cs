@@ -1,6 +1,5 @@
 ﻿using _07_CRUD_Personas_DAL.Conexion;
 using CRUD_Personas_Entidades;
-using Entities_UWP;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
