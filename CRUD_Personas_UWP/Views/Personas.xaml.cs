@@ -24,7 +24,7 @@ namespace CRUD_Personas_UWP.Views
     /// </summary>
     public sealed partial class Personas : Page
     {
-        PersonasVM viewModel ;
+        PersonasVM viewModel;
         public Personas()
         {
             this.InitializeComponent();
@@ -38,6 +38,29 @@ namespace CRUD_Personas_UWP.Views
         private void ListView_ItemClick(object sender, ItemClickEventArgs e)
         {        
             viewModel.PersonaSeleccionada = sender as clsPersona;
+        }
+
+        private void AppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            NombreTbx.Text = "";
+            ApellidoTbx.Text = "";
+            TlfnTbx.Text = "";
+            DireccionTbx.Text = "";
+            fotoImg.Visibility = Visibility.Collapsed;
+            alterBtn.Visibility = Visibility.Collapsed;
+            agregarBtn.Visibility = Visibility.Visible;
+        }
+
+        private void agregarBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if(!string.IsNullOrEmpty(NombreTbx.Text)&& !string.IsNullOrEmpty(ApellidoTbx.Text)&& FechaNacimientoDp.Date<DateTime.Now) {
+                agregarBtn.Visibility = Visibility.Collapsed;
+                alterBtn.Visibility = Visibility.Visible;
+                fotoImg.Visibility = Visibility.Visible;
+                
+                viewModel.CrearPersona(NombreTbx.Text, ApellidoTbx.Text, TlfnTbx.Text, DireccionTbx.Text, new DateTime(FechaNacimientoDp.Date.Year, FechaNacimientoDp.Date.Month,FechaNacimientoDp.Date.Day), "", 1);//TODO Reemplazar foto y idDepartamento
+                viewModel.PersonaSeleccionada;
+            }
         }
     }
 }

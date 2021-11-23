@@ -53,7 +53,7 @@ namespace CRUD_Personas_UWP.ViewModels
 
         private void ComandoAgregar_Execute()
         {
-            listadoDAL.AgergarPersonaDAL(new clsPersona("", ""));
+            
         }
         #endregion
         #region comandoAlterar
@@ -80,5 +80,9 @@ namespace CRUD_Personas_UWP.ViewModels
         }
         #endregion
         #endregion
+        public void CrearPersona(string nombre, string apellido, string telefono, string direccion, DateTime fechaNacimiento, string foto, int idDepartamento)
+        {
+            listadoDAL.AgergarPersonaDAL(personaSeleccionada= new clsPersona(nombre, apellido, fechaNacimiento, telefono, direccion, foto, idDepartamento));
+        }
     }
 }
