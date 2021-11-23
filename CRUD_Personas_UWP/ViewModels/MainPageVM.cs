@@ -1,5 +1,6 @@
-﻿using CRUD_Personas_DAL.Listado;
-using Entities_UWP;
+﻿using CRUD_Personas_DAL.Gestora;
+using CRUD_Personas_DAL.Listado;
+using CRUD_Personas_Entidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace CRUD_Personas_UWP.ViewModels
     {
         string nombrePersona;
         string apellidoPersona;
-        clsPersona persona = new clsListadoPersonas().leerPersonaPorID(4);
+        clsPersona persona = new clsGestoraPersonas().leerPersonaPorID(8);
         public MainPageVM() 
         {
             nombrePersona = persona.Nombre;

@@ -1,4 +1,5 @@
 ﻿using _18_CRUD_Personas_UWP_UI.ViewModels.Utilidades;
+using CRUD_Personas_DAL.Gestora;
 using CRUD_Personas_DAL.Listado;
 using CRUD_Personas_Entidades;
 using System;
@@ -15,6 +16,7 @@ namespace CRUD_Personas_UWP.ViewModels
         List<clsPersona> listadoPersonas;
         clsPersona personaSeleccionada;
         clsListadoPersonas listadoDAL = new clsListadoPersonas();
+        clsGestoraPersonas gestoraDAL = new clsGestoraPersonas();
         DelegateCommand comandoAgregar;
         DelegateCommand comandoAlterar;
         DelegateCommand comandoBorrar;
@@ -65,7 +67,7 @@ namespace CRUD_Personas_UWP.ViewModels
         {
             try
             {
-                listadoDAL.EditarPersona(personaSeleccionada);
+                gestoraDAL.EditarPersona(personaSeleccionada);
             }
             catch
             {
@@ -81,7 +83,7 @@ namespace CRUD_Personas_UWP.ViewModels
         #region comandoBorrar
         public void ComandoBorrar_Execute()
         {
-            listadoDAL.EliminarPersona(personaSeleccionada.Id);
+            gestoraDAL.EliminarPersona(personaSeleccionada.Id);
             ListadoPersonas.Remove(personaSeleccionada);
         }
         public bool ComandoBorrar_CanExecute()
@@ -94,7 +96,7 @@ namespace CRUD_Personas_UWP.ViewModels
         {
             try
             {
-                listadoDAL.AgergarPersonaDAL(personaSeleccionada = new clsPersona(nombre, apellido, fechaNacimiento, telefono, direccion, foto, idDepartamento));
+                gestoraDAL.AgergarPersonaDAL(personaSeleccionada = new clsPersona(nombre, apellido, fechaNacimiento, telefono, direccion, foto, idDepartamento));
             }
             catch { }
         }

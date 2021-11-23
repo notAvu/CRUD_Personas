@@ -1,4 +1,5 @@
-﻿using CRUD_Personas_UWP.ViewModels;
+﻿using CRUD_Personas_Entidades;
+using CRUD_Personas_UWP.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;

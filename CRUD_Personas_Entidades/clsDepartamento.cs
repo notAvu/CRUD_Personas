@@ -6,9 +6,9 @@ namespace CRUD_Personas_Entidades
 {
     public class clsDepartamento
     {
-        int Id { get; set; }
-        string Nombre { get; set; }
-        public clsDepartamento(string nombre, int id)
+        public int Id { get; set; }
+        public string Nombre { get; set; }
+        public clsDepartamento(int id, string nombre)
         {
             this.Id = id;
             this.Nombre = nombre;
