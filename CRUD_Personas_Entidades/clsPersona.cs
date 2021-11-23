@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Entities_UWP
+namespace CRUD_Personas_Entidades
 {
     public class clsPersona
     {
