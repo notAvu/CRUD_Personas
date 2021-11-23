@@ -42,7 +42,6 @@ namespace CRUD_Personas_UWP.ViewModels
         public DelegateCommand ComandoBorrar { get { return comandoBorrar = new DelegateCommand(ComandoBorrar_Execute, ComandoBorrar_CanExecute); } }
         public DelegateCommand ComandoAgregar { get { return comandoBorrar = new DelegateCommand(ComandoAgregar_Execute, ComandoAgregar_CanExecute); } }
 
-
         #endregion
         #region commands
         #region
