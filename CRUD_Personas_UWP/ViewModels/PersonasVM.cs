@@ -40,8 +40,7 @@ namespace CRUD_Personas_UWP.ViewModels
 
         public DelegateCommand ComandoAlterar { get { return comandoAlterar=new DelegateCommand(ComandoAlterar_Execute, ComandoAlterar_CanExecute); } }
         public DelegateCommand ComandoBorrar { get { return comandoBorrar = new DelegateCommand(ComandoBorrar_Execute, ComandoBorrar_CanExecute); } }
-        public DelegateCommand ComandoAgregar { get { return comandoBorrar = new DelegateCommand(ComandoAgregar_Execute, ComandoAgregar_CanExecute); } }
-
+        public DelegateCommand ComandoAgregar { get { return comandoBorrar = new DelegateCommand(ComandoAgregar_Execute, ComandoAgregar_CanExecute); } }//TODO IMPLEMENTAR COMANDO REAL
         #endregion
         #region commands
         #region
@@ -49,7 +48,6 @@ namespace CRUD_Personas_UWP.ViewModels
         {
             return true;
         }
-
         private void ComandoAgregar_Execute()
         {
             

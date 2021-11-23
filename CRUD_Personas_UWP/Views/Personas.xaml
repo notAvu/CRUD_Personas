@@ -43,9 +43,12 @@
         <RelativePanel Grid.Column="1">
             <TextBox x:Name="NombreTbx" MinWidth="200" PlaceholderText="Nombre" Margin="20" Text="{Binding PersonaSeleccionada.Nombre}"/>
             <TextBox x:Name="ApellidoTbx" MinWidth="200" PlaceholderText="Apellido" RelativePanel.Below="NombreTbx"  Margin="20" Text="{Binding PersonaSeleccionada.Apellido}"/>
-            <DatePicker x:Name="FechaNacimientoDp" RelativePanel.Below="DireccionTbx" DayFormat="{}{day.integer}"  MonthFormat="{}{month.full}" YearFormat="{}{year.full}"  Margin="20" SelectedDate="{Binding PersonaSeleccionada.FechaNacimiento}"/>
             <TextBox x:Name="TlfnTbx" MinWidth="200" PlaceholderText="Teléfono" RelativePanel.Below="ApellidoTbx"  Margin="20" Text="{Binding PersonaSeleccionada.Telefono}"/>
             <TextBox x:Name="DireccionTbx" MinWidth="200" PlaceholderText="Dirección" RelativePanel.Below="TlfnTbx"  Margin="20" Text="{Binding PersonaSeleccionada.Direccion}"/>
+            <ComboBox x:Name="departamentosCbx" RelativePanel.Below="DireccionTbx" Margin="20" ItemsSource="{Binding ListadoPersonas}">
+                
+            </ComboBox>
+            <DatePicker x:Name="FechaNacimientoDp" RelativePanel.Below="departamentosCbx" DayFormat="{}{day.integer}"  MonthFormat="{}{month.full}" YearFormat="{}{year.full}"  Margin="20" SelectedDate="{Binding PersonaSeleccionada.FechaNacimiento.Date}"/>
             <Image x:Name="fotoImg" Source="{Binding PersonaSeleccionada.Foto}" RelativePanel.RightOf="FechaNacimientoDp" RelativePanel.AlignTopWithPanel="True" MaxWidth="200" Margin="60" MinWidth="30" MinHeight="30"/>
             <Button x:Name="alterBtn" Content="Confirmar" RelativePanel.Below="FechaNacimientoDp" RelativePanel.AlignLeftWith="fotoImg" Command="{Binding ComandoAlterar}" Visibility="Visible"/>
             <Button x:Name="agregarBtn" Content="Agregar" RelativePanel.Below="FechaNacimientoDp" RelativePanel.AlignLeftWith="fotoImg" Command="{Binding ComandoAgregar}" Click="agregarBtn_Click" Visibility="Collapsed"/>

@@ -95,9 +95,9 @@ namespace CRUD_Personas_DAL.Listado
             SqlDataReader reader = comando.ExecuteReader();
             if (reader.HasRows)
             {
-                while (reader.Read())
+                if (reader.Read())
                 {
-                    persona=(leerPersona(reader));
+                    persona=leerPersona(reader);
                 }
             }
             reader.Close();
@@ -105,6 +105,7 @@ namespace CRUD_Personas_DAL.Listado
             return persona;
         }
         #endregion
+        //Estas funcionalidades deberían ir en la gestora
         #region agregarPersona
         /// <summary>
         /// registra la persona recibida por parametro en la bbdd

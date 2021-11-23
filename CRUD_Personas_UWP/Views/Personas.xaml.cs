@@ -57,7 +57,6 @@ namespace CRUD_Personas_UWP.Views
                 agregarBtn.Visibility = Visibility.Collapsed;
                 alterBtn.Visibility = Visibility.Visible;
                 fotoImg.Visibility = Visibility.Visible;
-                
                 viewModel.CrearPersona(NombreTbx.Text, ApellidoTbx.Text, TlfnTbx.Text, DireccionTbx.Text, new DateTime(FechaNacimientoDp.Date.Year, FechaNacimientoDp.Date.Month,FechaNacimientoDp.Date.Day), "", 1);//TODO Reemplazar foto y idDepartamento
                 viewModel.PersonaSeleccionada=viewModel.ListadoPersonas[0];
             }

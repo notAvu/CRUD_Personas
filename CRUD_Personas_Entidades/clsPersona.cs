@@ -22,6 +22,11 @@ namespace Entities_UWP
         {
             this.nombre = nombre;
             this.apellido = apellido;
+            this.fechaNacimiento = new DateTime(1950, 01, 01);
+            this.telefono = "";
+            this.direccion = "";
+            this.foto = "";
+            idDepartamento = 1;
         }
         public clsPersona(string nombre, string apellido, DateTime fecha, string telefono, string direccion, string foto, int idDepar)
         {
