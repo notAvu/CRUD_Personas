@@ -49,6 +49,8 @@ namespace CRUD_Personas_UWP.Views
             fotoImg.Visibility = Visibility.Collapsed;
             alterBtn.Visibility = Visibility.Collapsed;
             agregarBtn.Visibility = Visibility.Visible;
+            alterBtn.IsEnabled = false;
+            agregarBtn.IsEnabled = true;
         }
 
         private void agregarBtn_Click(object sender, RoutedEventArgs e)
@@ -57,6 +59,8 @@ namespace CRUD_Personas_UWP.Views
                 agregarBtn.Visibility = Visibility.Collapsed;
                 alterBtn.Visibility = Visibility.Visible;
                 fotoImg.Visibility = Visibility.Visible;
+                alterBtn.IsEnabled = true;
+                agregarBtn.IsEnabled = false;
             }
         }
     }

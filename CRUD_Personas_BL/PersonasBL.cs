@@ -15,6 +15,7 @@ namespace CRUD_Personas_BL
         public PersonasBL()
         {
             cls = new clsListadoPersonas();
+            gestoraPersonas = new clsGestoraPersonas();
         }
 
         public List<clsPersona> ListadoCompleto()

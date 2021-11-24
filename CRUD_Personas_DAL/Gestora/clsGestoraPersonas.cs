@@ -10,7 +10,7 @@ namespace CRUD_Personas_DAL.Gestora
     public class clsGestoraPersonas
     {
         #region constantes (sentencias genericas)
-        private const string UpdatePersonaCompleta = "UPDATE Personas SET nombrePersona = @nombre, apellidosPersona = @apellido, fechaNacimiento = @fechaNac, telefono = @telefono, direccion = @idreccion, foto = @foto, IDDepartamento = @iddepartamento WHERE IDPersona=@id";
+        private const string UpdatePersonaCompleta = "UPDATE Personas SET nombrePersona = @Nombre, apellidosPersona = @Apellido, fechaNacimiento = @fechaNacimiento, telefono = @telefono, direccion = @direccion, foto = @foto, IDDepartamento = @idDepartamento WHERE IDPersona=@id";
         private const string InsertPersonaCompleta = "INSERT INTO Personas VALUES (@Nombre, @Apellido, @fechaNacimiento, @telefono, @direccion, @foto, @idDepartamento)";
         #endregion
         #region propiedades privadas
@@ -102,7 +102,6 @@ namespace CRUD_Personas_DAL.Gestora
             SqlConnection sqlConnection = connector.getConnection();
             SqlCommand comando = generarComandoPersona(persona, UpdatePersonaCompleta);
             comando.Connection = sqlConnection;
-
             comando.ExecuteNonQuery();
             connector.closeConnection(ref sqlConnection);
         }

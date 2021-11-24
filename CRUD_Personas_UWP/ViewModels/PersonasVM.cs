@@ -65,8 +65,10 @@ namespace CRUD_Personas_UWP.ViewModels
             try
             {
                 gestoraPersonas.AgregarPersona(personaSeleccionada);
+                ListadoPersonas = new clsListadoPersonas().ListadoCompleto;
+                NotifyPropertyChanged("ListadoPersonas");
             }
-            catch 
+            catch
             {
                 //message
             }
@@ -75,13 +77,15 @@ namespace CRUD_Personas_UWP.ViewModels
         #region comandoAlterar
         public void ComandoAlterar_Execute()
         {
-            try
-            {
-                gestoraPersonas.EditarPersona(personaSeleccionada);
-            }
-            catch
-            {
-            }
+            //try
+            //{
+            gestoraPersonas.EditarPersona(personaSeleccionada);
+            ListadoPersonas = new clsListadoPersonas().ListadoCompleto;
+            NotifyPropertyChanged("ListadoPersonas");
+            //}
+            //catch
+            //{
+            //}
             NotifyPropertyChanged("PersonaSeleccionada");
         }
 
@@ -94,7 +98,7 @@ namespace CRUD_Personas_UWP.ViewModels
         public void ComandoBorrar_Execute()
         {
             gestoraPersonas.EliminarPersona(personaSeleccionada);
-            ListadoPersonas.Remove(personaSeleccionada);
+            ListadoPersonas = new clsListadoPersonas().ListadoCompleto;
             NotifyPropertyChanged("ListadoPersonas");
         }
         public bool ComandoBorrar_CanExecute()
@@ -103,7 +107,7 @@ namespace CRUD_Personas_UWP.ViewModels
         }
         #endregion
         #endregion
-        public clsDepartamento DepartamentoPersonaSeleccionada() 
+        public clsDepartamento DepartamentoPersonaSeleccionada()
         {
             return gestoraDepartamentos.DepartamentoPorId(PersonaSeleccionada.IdDepartamento);
         }
