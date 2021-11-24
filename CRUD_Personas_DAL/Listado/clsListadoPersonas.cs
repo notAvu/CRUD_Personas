@@ -38,7 +38,7 @@ namespace CRUD_Personas_DAL.Listado
         /// Rellena el listadoFiltrado en funcion del departamento 
         /// </summary>
         /// <param name="idDep"></param>
-        private void FiltrarPorDepartamento(int idDep)
+        public void FiltrarPorDepartamento(int idDep)
         {
             LlenarListaElegida(listadoFiltrado, $"SELECT * FROM Personas WHERE IDDepartamento={idDep}");
         }

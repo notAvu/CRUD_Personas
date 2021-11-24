@@ -7,7 +7,7 @@ using System.Text;
 
 namespace CRUD_Personas_DAL.Gestora
 {
-    class clsGestoraDepartamentos
+    public class clsGestoraDepartamentos
     {
 
         #region propiedades privadas
@@ -23,7 +23,6 @@ namespace CRUD_Personas_DAL.Gestora
             this.connector = new clsMyConnection();
         }
         #endregion
-
         #region leerDepartamento
         /// <summary>
         /// Busca en la base de datos el departamento con el id recibido 

@@ -1,4 +1,5 @@
 ﻿using _18_CRUD_Personas_UWP_UI.ViewModels.Utilidades;
+using CRUD_Personas_BL;
 using CRUD_Personas_DAL.Gestora;
 using CRUD_Personas_DAL.Listado;
 using CRUD_Personas_Entidades;
@@ -15,8 +16,9 @@ namespace CRUD_Personas_UWP.ViewModels
         #region propiedades privadas
         List<clsPersona> listadoPersonas;
         clsPersona personaSeleccionada;
-        clsListadoPersonas listadoDAL = new clsListadoPersonas();
-        clsGestoraPersonas gestoraDAL = new clsGestoraPersonas();
+        PersonasBL gestoraPersonas = new PersonasBL();
+        DepartamentosBL gestoraDepartamentos = new DepartamentosBL();
+        List<clsDepartamento> listadoDepartamentos;
         DelegateCommand comandoAgregar;
         DelegateCommand comandoAlterar;
         DelegateCommand comandoBorrar;
@@ -27,7 +29,8 @@ namespace CRUD_Personas_UWP.ViewModels
         {
             try
             {
-                this.listadoPersonas = listadoDAL.ListadoCompleto;
+                listadoPersonas = gestoraPersonas.ListadoCompleto();
+                this.listadoDepartamentos = new clsListadoDepartamentos().ListadoCompleto;
             }
             catch
             { }
@@ -46,20 +49,27 @@ namespace CRUD_Personas_UWP.ViewModels
                 comandoBorrar.RaiseCanExecuteChanged();
             }
         }
-
         public DelegateCommand ComandoAlterar { get { return comandoAlterar = new DelegateCommand(ComandoAlterar_Execute, ComandoAlterar_CanExecute); } }
         public DelegateCommand ComandoBorrar { get { return comandoBorrar = new DelegateCommand(ComandoBorrar_Execute, ComandoBorrar_CanExecute); } }
-        public DelegateCommand ComandoAgregar { get { return comandoBorrar = new DelegateCommand(ComandoAgregar_Execute, ComandoAgregar_CanExecute); } }//TODO IMPLEMENTAR COMANDO REAL
+        public DelegateCommand ComandoAgregar { get { return comandoBorrar = new DelegateCommand(ComandoAgregar_Execute, ComandoAgregar_CanExecute); } }
+        public List<clsDepartamento> ListadoDepartamentos { get => listadoDepartamentos; set => listadoDepartamentos = value; }
         #endregion
         #region commands
-        #region
+        #region comandoAgregar
         private bool ComandoAgregar_CanExecute()
         {
-            return true;
+            return !string.IsNullOrEmpty(personaSeleccionada.Nombre) && !string.IsNullOrEmpty(personaSeleccionada.Apellido) && personaSeleccionada.FechaNacimiento < DateTime.Today; ;
         }
         private void ComandoAgregar_Execute()
         {
-
+            try
+            {
+                gestoraPersonas.AgregarPersona(personaSeleccionada);
+            }
+            catch 
+            {
+                //message
+            }
         }
         #endregion
         #region comandoAlterar
@@ -67,7 +77,7 @@ namespace CRUD_Personas_UWP.ViewModels
         {
             try
             {
-                gestoraDAL.EditarPersona(personaSeleccionada);
+                gestoraPersonas.EditarPersona(personaSeleccionada);
             }
             catch
             {
@@ -83,8 +93,9 @@ namespace CRUD_Personas_UWP.ViewModels
         #region comandoBorrar
         public void ComandoBorrar_Execute()
         {
-            gestoraDAL.EliminarPersona(personaSeleccionada.Id);
+            gestoraPersonas.EliminarPersona(personaSeleccionada);
             ListadoPersonas.Remove(personaSeleccionada);
+            NotifyPropertyChanged("ListadoPersonas");
         }
         public bool ComandoBorrar_CanExecute()
         {
@@ -92,13 +103,9 @@ namespace CRUD_Personas_UWP.ViewModels
         }
         #endregion
         #endregion
-        public void CrearPersona(string nombre, string apellido, string telefono, string direccion, DateTime fechaNacimiento, string foto, int idDepartamento)
+        public clsDepartamento DepartamentoPersonaSeleccionada() 
         {
-            try
-            {
-                gestoraDAL.AgergarPersonaDAL(personaSeleccionada = new clsPersona(nombre, apellido, fechaNacimiento, telefono, direccion, foto, idDepartamento));
-            }
-            catch { }
+            return gestoraDepartamentos.DepartamentoPorId(PersonaSeleccionada.IdDepartamento);
         }
     }
 }

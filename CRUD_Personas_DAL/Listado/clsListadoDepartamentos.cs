@@ -7,7 +7,7 @@ using System.Text;
 
 namespace CRUD_Personas_DAL.Listado
 {
-    class clsListadoDepartamentos
+    public class clsListadoDepartamentos
     {
         #region atributos privados
         List<clsDepartamento> listadoCompleto;
