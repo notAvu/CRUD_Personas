@@ -29,6 +29,7 @@ namespace CRUD_Personas_UWP.Views
         {
             this.InitializeComponent();
             viewModel = (PersonasVM)DataContext;
+            //viewModel.PersonaSeleccionada = viewModel.ListadoPersonas[0];
         }
         /// <summary>
         /// Metodo asociado al click de un elemento de la lista de personas en la vista
@@ -55,12 +56,17 @@ namespace CRUD_Personas_UWP.Views
 
         private void agregarBtn_Click(object sender, RoutedEventArgs e)
         {
-            if(!string.IsNullOrEmpty(NombreTbx.Text)&& !string.IsNullOrEmpty(ApellidoTbx.Text)&& FechaNacimientoDp.Date<DateTime.Now) {
+            if (!string.IsNullOrEmpty(NombreTbx.Text) && !string.IsNullOrEmpty(ApellidoTbx.Text) && FechaNacimientoDp.Date < DateTime.Now)
+            {
                 agregarBtn.Visibility = Visibility.Collapsed;
                 alterBtn.Visibility = Visibility.Visible;
                 fotoImg.Visibility = Visibility.Visible;
                 alterBtn.IsEnabled = true;
                 agregarBtn.IsEnabled = false;
+            }
+            else 
+            {
+                //mostrar mensaje de error en la vista xaml
             }
         }
     }

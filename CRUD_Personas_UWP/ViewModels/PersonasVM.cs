@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Popups;
 
 namespace CRUD_Personas_UWP.ViewModels
 {
@@ -31,14 +32,14 @@ namespace CRUD_Personas_UWP.ViewModels
             {
                 listadoPersonas = gestoraPersonas.ListadoCompleto();
                 this.listadoDepartamentos = new clsListadoDepartamentos().ListadoCompleto;
+                personaSeleccionada = listadoPersonas[0];
             }
             catch
             { }
-            personaSeleccionada = listadoPersonas[0];
         }
         #endregion
         #region propiedades publicas
-        public List<clsPersona> ListadoPersonas { get => listadoPersonas; set { listadoPersonas = value;/* NotifyPropertyChanged("ListadoPersonas");*/ } }
+        public List<clsPersona> ListadoPersonas { get => listadoPersonas; set { listadoPersonas = value; NotifyPropertyChanged("ListadoPersonas"); } }
         public clsPersona PersonaSeleccionada
         {
             get => personaSeleccionada;
@@ -46,13 +47,13 @@ namespace CRUD_Personas_UWP.ViewModels
             {
                 personaSeleccionada = value;
                 NotifyPropertyChanged("PersonaSeleccionada");
-                comandoAlterar.RaiseCanExecuteChanged();
+                //comandoAlterar.RaiseCanExecuteChanged(); añadir esto hace que la aplicacion explote
                 comandoBorrar.RaiseCanExecuteChanged();
             }
         }
         public DelegateCommand ComandoAlterar { get { return comandoAlterar = new DelegateCommand(ComandoAlterar_Execute, ComandoAlterar_CanExecute); } }
         public DelegateCommand ComandoBorrar { get { return comandoBorrar = new DelegateCommand(ComandoBorrar_Execute, ComandoBorrar_CanExecute); } }
-        public DelegateCommand ComandoAgregar { get { return comandoBorrar = new DelegateCommand(ComandoAgregar_Execute, ComandoAgregar_CanExecute); } }
+        public DelegateCommand ComandoAgregar { get { return comandoAgregar = new DelegateCommand(ComandoAgregar_Execute, ComandoAgregar_CanExecute); } }
         public List<clsDepartamento> ListadoDepartamentos { get => listadoDepartamentos; set => listadoDepartamentos = value; }
         #endregion
         #region commands
@@ -71,22 +72,27 @@ namespace CRUD_Personas_UWP.ViewModels
             }
             catch
             {
-                //message
+                var messageDialog = new MessageDialog("No ha sido posible conectar a la BBDD por favor intententelo de nuevo mas tarde");
+                messageDialog.ShowAsync();
+                //Revisar, que tipo de excepciones he de controlar (si es generico, declarar el mensaje atributo de la clase)
             }
         }
         #endregion
         #region comandoAlterar
         public void ComandoAlterar_Execute()
         {
-            //try
-            //{
-            gestoraPersonas.EditarPersona(personaSeleccionada);
-            ListadoPersonas = new clsListadoPersonas().ListadoCompleto;
-            NotifyPropertyChanged("ListadoPersonas");
-            //}
-            //catch
-            //{
-            //}
+            try
+            {
+                gestoraPersonas.EditarPersona(personaSeleccionada);
+                ListadoPersonas = new clsListadoPersonas().ListadoCompleto;
+                NotifyPropertyChanged("ListadoPersonas");
+            }
+            catch
+            {
+                var messageDialog = new MessageDialog("No ha sido posible conectar a la BBDD por favor intententelo de nuevo mas tarde");//Revisar, que tipo de excepciones he de controlar
+                messageDialog.ShowAsync();
+            }
+
             NotifyPropertyChanged("PersonaSeleccionada");
         }
 
@@ -98,9 +104,17 @@ namespace CRUD_Personas_UWP.ViewModels
         #region comandoBorrar
         public void ComandoBorrar_Execute()
         {
+            try 
+            {
             gestoraPersonas.EliminarPersona(personaSeleccionada);
             ListadoPersonas = new clsListadoPersonas().ListadoCompleto;
             NotifyPropertyChanged("ListadoPersonas");
+            }
+            catch
+            {
+                var messageDialog = new MessageDialog("No ha sido posible conectar a la BBDD por favor intententelo de nuevo mas tarde");//Revisar, que tipo de excepciones he de controlar
+                messageDialog.ShowAsync();
+            }
         }
         public bool ComandoBorrar_CanExecute()
         {
@@ -110,7 +124,17 @@ namespace CRUD_Personas_UWP.ViewModels
         #endregion
         public clsDepartamento DepartamentoPersonaSeleccionada()
         {
-            return gestoraDepartamentos.DepartamentoPorId(PersonaSeleccionada.IdDepartamento);
+            clsDepartamento departamento = null;
+            try 
+            {
+                departamento =gestoraDepartamentos.DepartamentoPorId(PersonaSeleccionada.IdDepartamento);
+            }
+            catch
+            {
+                var messageDialog = new MessageDialog("No ha sido posible conectar a la BBDD por favor intententelo de nuevo mas tarde");//Revisar, que tipo de excepciones he de controlar
+                messageDialog.ShowAsync();
+            }
+            return departamento;
         }
     }
 }

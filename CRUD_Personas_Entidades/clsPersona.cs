@@ -13,7 +13,7 @@ namespace CRUD_Personas_Entidades
         private int idDepartamento;
         private string direccion;
         private string telefono;
-        private DateTime fechaNacimiento;
+        private DateTimeOffset fechaNacimiento;
         //foto -> opciones: array de bytes o url (Array de bytes conlleva conversion de tipo de datos)
         private string foto;
         #endregion
@@ -54,7 +54,7 @@ namespace CRUD_Personas_Entidades
         public string Nombre { get => nombre; set => nombre = value; }
         public string Apellido { get => apellido; set => apellido = value; }
         public int Id { get => id; set => id = value; }
-        public DateTime FechaNacimiento { get => fechaNacimiento; set => fechaNacimiento = value; }
+        public DateTimeOffset FechaNacimiento { get => fechaNacimiento; set => fechaNacimiento = value; }
         public string Telefono { get => telefono; set => telefono = value; }
         public string Direccion { get => direccion; set => direccion = value; }
         public int IdDepartamento { get => idDepartamento; set => idDepartamento = value; }

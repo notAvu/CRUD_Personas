@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CRUD_Personas_Entidades;
+using CRUD_Personas_UWP.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,9 +24,36 @@ namespace CRUD_Personas_UWP.Views
     /// </summary>
     public sealed partial class Departamentos : Page
     {
+        DepartamentosVM viewModel;
         public Departamentos()
         {
             this.InitializeComponent();
+            viewModel = (DepartamentosVM)DataContext;
+        }
+
+        private void AppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            alterBtn.Visibility = Visibility.Collapsed;
+            agregarBtn.Visibility = Visibility.Visible;
+            NombreTbx.Text = "";
+            alterBtn.IsEnabled = false;
+            agregarBtn.IsEnabled = true;
+        }
+
+        private void agregarBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(NombreTbx.Text))
+            {
+                agregarBtn.Visibility = Visibility.Collapsed;
+                alterBtn.Visibility = Visibility.Visible;
+                alterBtn.IsEnabled = true;
+                agregarBtn.IsEnabled = false;
+            }
+        }
+
+        private void listadoDptos_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            viewModel.DptoSeleccionado = (clsDepartamento)sender;
         }
     }
 }
