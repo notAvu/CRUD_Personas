@@ -38,7 +38,7 @@ namespace CRUD_Personas_UWP.ViewModels
         }
         #endregion
         #region propiedades publicas
-        public List<clsPersona> ListadoPersonas { get => listadoPersonas; set { listadoPersonas = value; NotifyPropertyChanged("ListadoPersonas"); } }
+        public List<clsPersona> ListadoPersonas { get => listadoPersonas; set { listadoPersonas = value;/* NotifyPropertyChanged("ListadoPersonas");*/ } }
         public clsPersona PersonaSeleccionada
         {
             get => personaSeleccionada;
@@ -46,6 +46,7 @@ namespace CRUD_Personas_UWP.ViewModels
             {
                 personaSeleccionada = value;
                 NotifyPropertyChanged("PersonaSeleccionada");
+                comandoAlterar.RaiseCanExecuteChanged();
                 comandoBorrar.RaiseCanExecuteChanged();
             }
         }

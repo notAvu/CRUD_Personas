@@ -67,7 +67,7 @@ namespace CRUD_Personas_DAL.Gestora
         /// registra el departamento recibido por parametro en la bbdd
         /// </summary>
         /// <param name="departamento"></param>
-        public void AgergarPersonaDAL(clsDepartamento departamento)
+        public void AgregarDepartamentoDAL(clsDepartamento departamento)
         {
             SqlConnection sqlConnection = connector.getConnection();
             SqlCommand comando = generarComandoDepartamento(departamento, InsertDepartamentoSentencia);
@@ -92,7 +92,7 @@ namespace CRUD_Personas_DAL.Gestora
         }
         #endregion
         #region editar Departamento
-        public void EditarPersona(clsDepartamento departamento)
+        public void EditarDepartamento(clsDepartamento departamento)
         {
             SqlConnection sqlConnection = connector.getConnection();
             SqlCommand comando = generarComandoDepartamento(departamento, UpdateDepartamentoSentencia);

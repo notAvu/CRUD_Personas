@@ -24,5 +24,17 @@ namespace CRUD_Personas_BL
         {
             return gestora.leerDepartamentoPorID(id);
         }
+        public void AgregarDepartamento(clsDepartamento dpto) 
+        {
+            gestora.AgregarDepartamentoDAL(dpto);
+        }
+        public void EditarDepartamento(clsDepartamento departamento)
+        {
+            gestora.EditarDepartamento(departamento);
+        }
+        public void EliminarDepartamento(clsDepartamento dpto) 
+        {
+            gestora.EliminarDepartamento(dpto.Id);
+        }
     }
 }
