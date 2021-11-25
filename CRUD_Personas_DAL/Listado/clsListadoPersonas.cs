@@ -19,8 +19,8 @@ namespace CRUD_Personas_DAL.Listado
         public List<clsPersona> ListadoFiltrado { get => listadoFiltrado; set => listadoFiltrado = value; }
         #endregion
         #region costructor
-        public clsListadoPersonas() {
-            
+        public clsListadoPersonas()
+        {
             ListadoCompleto = new List<clsPersona>();
             ListadoFiltrado = new List<clsPersona>();
             connector = new clsMyConnection();
@@ -31,7 +31,8 @@ namespace CRUD_Personas_DAL.Listado
         /// <summary>
         /// Rellena el listado completo de personas
         /// </summary>
-        private void RellenarListado() {
+        private void RellenarListado()
+        {
             LlenarListaElegida(listadoCompleto, "SELECT * FROM Personas");
         }
         /// <summary>
@@ -79,7 +80,6 @@ namespace CRUD_Personas_DAL.Listado
             string fotoUrl = (string)reader["foto"];
             int idDepartamento = (int)reader["IDDepartamento"];
             return new clsPersona(id, nombre, apellido, dateTime, telefono, direccion, fotoUrl, idDepartamento);
-
         }
         #endregion
     }

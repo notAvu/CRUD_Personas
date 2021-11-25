@@ -64,9 +64,19 @@ namespace CRUD_Personas_UWP.Views
                 alterBtn.IsEnabled = true;
                 agregarBtn.IsEnabled = false;
             }
-            else 
+            else
             {
-                //mostrar mensaje de error en la vista xaml
+                errorMsg.Visibility = Visibility.Visible;
+                CheckEmpty(NombreTbx);
+                CheckEmpty(ApellidoTbx);
+            }
+        }
+
+        private void CheckEmpty(TextBox textBox) 
+        {
+            if (string.IsNullOrEmpty(textBox.Text)) 
+            {
+                textBox.BorderBrush= new SolidColorBrush(Windows.UI.Colors.Red);
             }
         }
     }

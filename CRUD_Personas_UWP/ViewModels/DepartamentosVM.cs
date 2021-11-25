@@ -39,8 +39,17 @@ namespace CRUD_Personas_UWP.ViewModels
         }
         public List<clsDepartamento> ListadoDepartamentos { get => listadoDepartamentos; set => listadoDepartamentos = value; }
 
-        public DelegateCommand ComandoAgeragarDpto { get { return comandoAgregarDpto = new DelegateCommand(ComandoAgregarDpto_Execute, ComandoAgregarDpto_CanExecute); } }
+        /// <summary>
+        /// Comando para agregar un departamento a la base de datos
+        /// </summary>
+        public DelegateCommand ComandoAgregarDpto { get { return comandoAgregarDpto = new DelegateCommand(ComandoAgregarDpto_Execute, ComandoAgregarDpto_CanExecute); } }
+        /// <summary>
+        /// Comando para editar los datos de un departamento en la base de datos
+        /// </summary>
         public DelegateCommand ComandoAlterarDpto { get { return comandoAlterarDpto = new DelegateCommand(ComandoAlterarDpto_Execute, ComandoAlterarDpto_CanExecute); } }
+        /// <summary>
+        /// Comando para borrar un departamento de la base de datos
+        /// </summary>
         public DelegateCommand ComandoBorrarDpto { get { return comandoBorrarDpto = new DelegateCommand(ComandoBorrarDpto_Execute, ComandoBorrarDpto_CanExecute); } }
         #endregion
         #region parametros comandoAgregarDpto

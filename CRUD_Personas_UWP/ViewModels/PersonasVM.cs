@@ -23,7 +23,6 @@ namespace CRUD_Personas_UWP.ViewModels
         DelegateCommand comandoAgregar;
         DelegateCommand comandoAlterar;
         DelegateCommand comandoBorrar;
-        //Comando editar
         #endregion
         #region constructor
         public PersonasVM()
@@ -35,7 +34,10 @@ namespace CRUD_Personas_UWP.ViewModels
                 personaSeleccionada = listadoPersonas[0];
             }
             catch
-            { }
+            {
+                var messageDialog = new MessageDialog("No ha sido posible conectar a la BBDD por favor intententelo de nuevo mas tarde");
+                messageDialog.ShowAsync();
+            }
         }
         #endregion
         #region propiedades publicas
@@ -47,12 +49,20 @@ namespace CRUD_Personas_UWP.ViewModels
             {
                 personaSeleccionada = value;
                 NotifyPropertyChanged("PersonaSeleccionada");
-                //comandoAlterar.RaiseCanExecuteChanged(); añadir esto hace que la aplicacion explote
                 comandoBorrar.RaiseCanExecuteChanged();
             }
         }
+        /// <summary>
+        /// Comando para editar los datos de una persona en la base de datos 
+        /// </summary>
         public DelegateCommand ComandoAlterar { get { return comandoAlterar = new DelegateCommand(ComandoAlterar_Execute, ComandoAlterar_CanExecute); } }
+        /// <summary>
+        /// Comando para eliminar a una persona de la base de datos 
+        /// </summary>
         public DelegateCommand ComandoBorrar { get { return comandoBorrar = new DelegateCommand(ComandoBorrar_Execute, ComandoBorrar_CanExecute); } }
+        /// <summary>
+        /// Comando para agregar una persona a la base de datos 
+        /// </summary>
         public DelegateCommand ComandoAgregar { get { return comandoAgregar = new DelegateCommand(ComandoAgregar_Execute, ComandoAgregar_CanExecute); } }
         public List<clsDepartamento> ListadoDepartamentos { get => listadoDepartamentos; set => listadoDepartamentos = value; }
         #endregion
@@ -104,11 +114,11 @@ namespace CRUD_Personas_UWP.ViewModels
         #region comandoBorrar
         public void ComandoBorrar_Execute()
         {
-            try 
+            try
             {
-            gestoraPersonas.EliminarPersona(personaSeleccionada);
-            ListadoPersonas = new clsListadoPersonas().ListadoCompleto;
-            NotifyPropertyChanged("ListadoPersonas");
+                gestoraPersonas.EliminarPersona(personaSeleccionada);
+                ListadoPersonas = new clsListadoPersonas().ListadoCompleto;
+                NotifyPropertyChanged("ListadoPersonas");
             }
             catch
             {
@@ -122,12 +132,17 @@ namespace CRUD_Personas_UWP.ViewModels
         }
         #endregion
         #endregion
+        #region departamentoPersonaSeleccionada
+        /// <summary>
+        /// Metodo que devuelve los datos del departamento que corresponde a la persona seleccionada
+        /// </summary>
+        /// <returns></returns>
         public clsDepartamento DepartamentoPersonaSeleccionada()
         {
             clsDepartamento departamento = null;
-            try 
+            try
             {
-                departamento =gestoraDepartamentos.DepartamentoPorId(PersonaSeleccionada.IdDepartamento);
+                departamento = gestoraDepartamentos.DepartamentoPorId(PersonaSeleccionada.IdDepartamento);
             }
             catch
             {
@@ -136,5 +151,6 @@ namespace CRUD_Personas_UWP.ViewModels
             }
             return departamento;
         }
+        #endregion
     }
 }
