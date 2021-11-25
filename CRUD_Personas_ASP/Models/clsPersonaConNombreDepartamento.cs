@@ -11,12 +11,15 @@ namespace CRUD_Personas_ASP.Models
     {
         clsPersona persona;
         string nombreDepartamento;
-        PersonasBL gestoraPersonas;
-        DepartamentosBL gestoraDepartamentos;
-        public clsPersonaConNombreDepartamento()
+        public clsPersonaConNombreDepartamento(clsPersona persona)
         {
-            gestoraPersonas = new PersonasBL();
+            DepartamentosBL gestoraDepartamentos;
             gestoraDepartamentos = new DepartamentosBL();
+            this.persona = persona;
+            nombreDepartamento = gestoraDepartamentos.DepartamentoPorId(persona.IdDepartamento).Nombre;
         }
+
+        public string NombreDepartamento { get => nombreDepartamento; set => nombreDepartamento = value; }
+        public clsPersona Persona { get => persona; set => persona = value; }
     }
 }

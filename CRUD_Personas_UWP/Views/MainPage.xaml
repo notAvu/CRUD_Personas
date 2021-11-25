@@ -20,7 +20,7 @@
         <NavigationView x:Name="NavView" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignTopWithPanel="True" PaneDisplayMode="Top">
             <NavigationView.MenuItems>
                 <NavigationViewItem x:Name="PersonasNvi" Icon="AddFriend" Content="Personas" Tapped="PersonasNvi_Tapped"/>
-                <NavigationViewItem x:Name="DepartamentosNVi" Icon="Bookmarks" Content="Departamentos" Tapped="DepartamentosNVi_Tapped"/>
+                <NavigationViewItem x:Name="DepartamentosNvi" Icon="Bookmarks" Content="Departamentos" Tapped="DepartamentosNvi_Tapped"/>
             </NavigationView.MenuItems>
         </NavigationView>
         <Frame x:Name="contentFme" Grid.Row="1">
