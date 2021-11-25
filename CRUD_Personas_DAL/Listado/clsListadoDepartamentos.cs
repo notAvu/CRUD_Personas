@@ -52,12 +52,35 @@ namespace CRUD_Personas_DAL.Listado
         /// </summary>
         /// <param name="reader"></param>
         /// <returns></returns>
-        private static clsDepartamento leerDepartamento(SqlDataReader reader)
+        private clsDepartamento leerDepartamento(SqlDataReader reader)
         {
             string nombre = (string)reader["nombreDepartamento"];
             int idDepartamento = (int)reader["IDDepartamento"];
             return new clsDepartamento(idDepartamento, nombre);
 
+        }
+        /// <summary>
+        /// Lee los nombres de todos los Departamentos y los devuelve en un List de String
+        /// </summary>
+        /// <returns></returns>
+        public List<string> ListadoNombres() 
+        {
+            List<string> nombres= new List<string>();
+            SqlConnection sqlConnection = connector.getConnection();
+            SqlCommand comando = new SqlCommand();
+            comando.CommandText = "SELECT Nombre FROM Departamentos";
+            comando.Connection = sqlConnection;
+            SqlDataReader reader = comando.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    nombres.Add(leerDepartamento(reader).Nombre);
+                }
+            }
+            reader.Close();
+            connector.closeConnection(ref sqlConnection);
+            return nombres;
         }
         #endregion
     }

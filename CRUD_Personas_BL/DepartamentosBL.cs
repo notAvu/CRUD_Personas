@@ -9,18 +9,22 @@ namespace CRUD_Personas_BL
 {
     public class DepartamentosBL
     {
-        clsListadoDepartamentos cls;
+        clsListadoDepartamentos listado;
         clsGestoraDepartamentos gestora;
         public DepartamentosBL()
         {
-            cls = new clsListadoDepartamentos();
+            listado = new clsListadoDepartamentos();
         }
         /// <summary>
         /// Llama al listado de la capa DAL y devuelve su contenido como un List de clsDepartamento
         /// </summary>
         public List<clsDepartamento> ListadoCompleto() 
         {
-            return cls.ListadoCompleto;
+            return listado.ListadoCompleto;
+        }
+        public List<string> ListadoNombres() 
+        {
+            return listado.ListadoNombres();
         }
         /// <summary>
         /// Busca en la base de datos el nombre de un departamento segun el id que recibe por parametro

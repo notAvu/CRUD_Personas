@@ -7,19 +7,22 @@ using System.Threading.Tasks;
 
 namespace CRUD_Personas_ASP.Models
 {
-    public class clsPersonaConNombreDepartamento
+    public class clsPersonaConNombreDepartamento:clsPersona
     {
-        clsPersona persona;
         string nombreDepartamento;
-        public clsPersonaConNombreDepartamento(clsPersona persona)
+        public clsPersonaConNombreDepartamento(int idPersona, string nombre, string apellido, DateTime fecha, string telefono, string direccion, string foto, int idDepar):base(idPersona, nombre, apellido,fecha, telefono, direccion, foto, idDepar)
         {
             DepartamentosBL gestoraDepartamentos;
             gestoraDepartamentos = new DepartamentosBL();
-            this.persona = persona;
-            nombreDepartamento = gestoraDepartamentos.DepartamentoPorId(persona.IdDepartamento).Nombre;
+            nombreDepartamento = gestoraDepartamentos.DepartamentoPorId(this.IdDepartamento).Nombre;
+        }
+        public clsPersonaConNombreDepartamento(string nombre, string apellido, DateTime fecha, string telefono, string direccion, string foto, int idDepar) : base(nombre, apellido, fecha, telefono, direccion, foto, idDepar)
+        {
+            DepartamentosBL gestoraDepartamentos;
+            gestoraDepartamentos = new DepartamentosBL();
+            nombreDepartamento = gestoraDepartamentos.DepartamentoPorId(this.IdDepartamento).Nombre;
         }
 
         public string NombreDepartamento { get => nombreDepartamento; set => nombreDepartamento = value; }
-        public clsPersona Persona { get => persona; set => persona = value; }
     }
 }
