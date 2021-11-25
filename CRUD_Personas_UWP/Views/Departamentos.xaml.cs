@@ -53,7 +53,7 @@ namespace CRUD_Personas_UWP.Views
 
         private void listadoDptos_ItemClick(object sender, ItemClickEventArgs e)
         {
-            viewModel.DptoSeleccionado = (clsDepartamento)sender;
+            viewModel.DptoSeleccionado = sender as clsDepartamento;
         }
     }
 }

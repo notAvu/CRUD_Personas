@@ -26,5 +26,15 @@ namespace CRUD_Personas_UWP
         {
             this.InitializeComponent();
         }
+
+        private void PersonasNvi_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            contentFme.Navigate(typeof(Views.Personas));
+        }
+
+        private void DepartamentosNVi_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            contentFme.Navigate(typeof(Views.Departamentos));
+        }
     }
 }
