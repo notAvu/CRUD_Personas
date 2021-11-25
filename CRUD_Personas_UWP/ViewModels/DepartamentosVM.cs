@@ -33,7 +33,7 @@ namespace CRUD_Personas_UWP.ViewModels
             {
                 dptoSeleccionado = value;
                 NotifyPropertyChanged("PersonaSeleccionada");
-                comandoAlterarDpto.RaiseCanExecuteChanged();
+                //comandoAlterarDpto.RaiseCanExecuteChanged();
                 comandoBorrarDpto.RaiseCanExecuteChanged();
             }
         }

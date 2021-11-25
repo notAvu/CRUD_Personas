@@ -13,17 +13,17 @@
         <vm:MainPageVM/>
     </Page.DataContext>
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <NavigationView x:Name="NavView" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignTopWithPanel="True">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <NavigationView x:Name="NavView" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignTopWithPanel="True" PaneDisplayMode="Top">
             <NavigationView.MenuItems>
                 <NavigationViewItem x:Name="PersonasNvi" Icon="AddFriend" Content="Personas" Tapped="PersonasNvi_Tapped"/>
                 <NavigationViewItem x:Name="DepartamentosNVi" Icon="Bookmarks" Content="Departamentos" Tapped="DepartamentosNVi_Tapped"/>
             </NavigationView.MenuItems>
         </NavigationView>
-        <Frame x:Name="contentFme" Grid.Column="1">
+        <Frame x:Name="contentFme" Grid.Row="1">
         </Frame>
     </Grid>
 </Page>
