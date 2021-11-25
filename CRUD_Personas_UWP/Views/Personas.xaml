@@ -21,7 +21,6 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-
         <StackPanel Orientation="Horizontal">
             <AppBarButton Label="Agregar empleado" Icon="AddFriend" Click="AppBarButton_Click"/>
             <AppBarButton Label="Despedir" Icon="Delete" Command="{Binding ComandoBorrar}"/>
@@ -50,7 +49,8 @@
                 <TextBox x:Name="ApellidoTbx" Header="Apellido" MinWidth="200" PlaceholderText="Apellido" RelativePanel.Below="NombreTbx"  Margin="20" Text="{Binding PersonaSeleccionada.Apellido, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 <TextBox x:Name="TlfnTbx" Header="Numero de telefono" MinWidth="200" PlaceholderText="Teléfono" RelativePanel.Below="ApellidoTbx"  Margin="20" Text="{Binding PersonaSeleccionada.Telefono, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 <TextBox x:Name="DireccionTbx" Header="Direccion" MinWidth="200" PlaceholderText="Dirección" RelativePanel.Below="TlfnTbx"  Margin="20" Text="{Binding PersonaSeleccionada.Direccion, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                <ComboBox x:Name="departamentosCbx" Header="Departamento" RelativePanel.Below="DireccionTbx" Margin="20" ItemsSource="{Binding ListadoDepartamentos}" SelectedValue="{Binding PersonaSeleccionada.IdDepartamento, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Id" >
+                <ComboBox x:Name="departamentosCbx" Header="Departamento" RelativePanel.Below="DireccionTbx" Margin="20"
+                ItemsSource="{Binding ListadoDepartamentos}" SelectedValue="{Binding PersonaSeleccionada.IdDepartamento, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Id" >
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Nombre}"/> 
