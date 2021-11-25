@@ -9,10 +9,10 @@ namespace CRUD_Personas_ASP.Models
     public class clsPersonasConNombreDepartamento
     {
         clsPersona persona;
-        clsPersona dep;
+        string nombreDepartamento;
         public clsPersonasConNombreDepartamento()
         {
-            
+
         }
     }
 }
