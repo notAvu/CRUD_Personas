@@ -7,14 +7,14 @@
 <h1>ListaPersonas</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Index">Create New</a>
 </p>
 <table class="table">
     <thead>
         <tr>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.NombreDepartamento)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.Nombre)
             </th>
@@ -34,7 +34,7 @@
                 @Html.DisplayNameFor(model => model.Direccion)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IdDepartamento)
+                @Html.DisplayNameFor(model => model.NombreDepartamento)
             </th>
             @*<th>
                 @Html.DisplayNameFor(model => model.Foto)
@@ -45,9 +45,6 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.NombreDepartamento)
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Nombre)
             </td>
@@ -67,8 +64,11 @@
                 @Html.DisplayFor(modelItem => item.Direccion)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdDepartamento)
+                @Html.DisplayFor(modelItem => item.NombreDepartamento)
             </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.IdDepartamento)
+            </td>*@
             @*<td>
                 @Html.DisplayFor(modelItem => item.Foto)
             </td>*@

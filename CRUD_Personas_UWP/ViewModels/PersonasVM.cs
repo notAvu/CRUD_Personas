@@ -48,8 +48,6 @@ namespace CRUD_Personas_UWP.ViewModels
             set
             {
                 personaSeleccionada = value;
-                //comandoBorrar.RaiseCanExecuteChanged();
-                //comandoAgregar.RaiseCanExecuteChanged();
                 NotifyPropertyChanged("PersonaSeleccionada");
             }
         }
@@ -135,26 +133,6 @@ namespace CRUD_Personas_UWP.ViewModels
             return personaSeleccionada != null;
         }
         #endregion
-        #endregion
-        #region departamentoPersonaSeleccionada
-        ///// <summary>
-        ///// Metodo que devuelve los datos del departamento que corresponde a la persona seleccionada
-        ///// </summary>
-        ///// <returns></returns>
-        //public clsDepartamento DepartamentoPersonaSeleccionada()
-        //{
-        //    clsDepartamento departamento = null;
-        //    try
-        //    {
-        //        departamento = gestoraDepartamentos.DepartamentoPorId(PersonaSeleccionada.IdDepartamento);
-        //    }
-        //    catch
-        //    {
-        //        var messageDialog = new MessageDialog("No ha sido posible conectar a la BBDD por favor intententelo de nuevo mas tarde");//Revisar, que tipo de excepciones he de controlar
-        //        messageDialog.ShowAsync();
-        //    }
-        //    return departamento;
-        //}
         #endregion
     }
 }

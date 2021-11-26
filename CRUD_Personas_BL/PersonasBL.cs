@@ -9,12 +9,12 @@ namespace CRUD_Personas_BL
 {
     public class PersonasBL
     {
-        clsListadoPersonas cls;
+        clsListadoPersonas listado;
         clsGestoraPersonas gestoraPersonas;
 
         public PersonasBL()
         {
-            cls = new clsListadoPersonas();
+            listado = new clsListadoPersonas();
             gestoraPersonas = new clsGestoraPersonas();
         }
         /// <summary>
@@ -23,7 +23,7 @@ namespace CRUD_Personas_BL
         /// <returns></returns>
         public List<clsPersona> ListadoCompleto()
         {
-            return cls.ListadoCompleto;
+            return listado.ListadoCompleto;
         }
         /// <summary>
         /// Llama a la DAL para devolver un listado de las personas que tienen asignado un departamento especificado por parametro
@@ -32,8 +32,8 @@ namespace CRUD_Personas_BL
         /// <returns></returns>
         public List<clsPersona> ListadoFiltradoPorDepartamento(int idDepartamento)
         {
-            cls.FiltrarPorDepartamento(idDepartamento);
-            return cls.ListadoFiltrado;
+            listado.FiltrarPorDepartamento(idDepartamento);
+            return listado.ListadoFiltrado;
         }
         /// <summary>
         /// LLama al metodo AgregarPersona de la DAL para introducir la persona recibida en la base de datos 
