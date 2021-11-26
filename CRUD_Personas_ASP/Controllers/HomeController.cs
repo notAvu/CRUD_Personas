@@ -20,7 +20,7 @@ namespace CRUD_Personas_ASP.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return View("../Personas/ListaPersonas");
         }
 
         public IActionResult Privacy()

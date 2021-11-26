@@ -22,6 +22,20 @@ namespace CRUD_Personas_ASP.Models
             gestoraDepartamentos = new DepartamentosBL();
             nombreDepartamento = gestoraDepartamentos.DepartamentoPorId(this.IdDepartamento).Nombre;
         }
+        //public clsPersonaConNombreDepartamento(clsPersona per) 
+        //{
+        //    this.Id = per.Id;
+        //    this.Nombre = per.Nombre;
+        //    this.Apellido = per.Apellido;
+        //    this.FechaNacimiento = per.FechaNacimiento;
+        //    this.Telefono = per.Telefono;
+        //    this.Direccion = per.Direccion;
+        //    this.Foto = per.Foto;
+        //    this.IdDepartamento = per.IdDepartamento;
+        //    DepartamentosBL gestoraDepartamentos;
+        //    gestoraDepartamentos = new DepartamentosBL();
+        //    nombreDepartamento = gestoraDepartamentos.DepartamentoPorId(IdDepartamento).Nombre;
+        //}
 
         public string NombreDepartamento { get => nombreDepartamento; set => nombreDepartamento = value; }
     }
