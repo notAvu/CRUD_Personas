@@ -13,7 +13,7 @@ namespace CRUD_Personas_ASP.ViewModels
 
         public ListadoVM()
         {
-            personasConDepartamento=new PersonasBL().ListadoCompleto();
+            //personasConDepartamento=new PersonasBL().ListadoCompleto();
         }
     }
 }

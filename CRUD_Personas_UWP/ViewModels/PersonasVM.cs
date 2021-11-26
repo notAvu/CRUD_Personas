@@ -36,7 +36,7 @@ namespace CRUD_Personas_UWP.ViewModels
             catch
             {
                 var messageDialog = new MessageDialog("No ha sido posible conectar a la BBDD por favor intententelo de nuevo mas tarde");
-                messageDialog.ShowAsync();
+                _ = messageDialog.ShowAsync();
             }
         }
         #endregion
@@ -48,8 +48,9 @@ namespace CRUD_Personas_UWP.ViewModels
             set
             {
                 personaSeleccionada = value;
+                //comandoBorrar.RaiseCanExecuteChanged();
+                //comandoAgregar.RaiseCanExecuteChanged();
                 NotifyPropertyChanged("PersonaSeleccionada");
-                comandoBorrar.RaiseCanExecuteChanged();
             }
         }
         /// <summary>
@@ -70,7 +71,7 @@ namespace CRUD_Personas_UWP.ViewModels
         #region comandoAgregar
         private bool ComandoAgregar_CanExecute()
         {
-            return !string.IsNullOrEmpty(personaSeleccionada.Nombre) && !string.IsNullOrEmpty(personaSeleccionada.Apellido) && personaSeleccionada.FechaNacimiento < DateTime.Today; ;
+            return !string.IsNullOrEmpty(personaSeleccionada.Nombre) && !string.IsNullOrEmpty(personaSeleccionada.Apellido) && !string.IsNullOrEmpty(personaSeleccionada.Foto) && personaSeleccionada.FechaNacimiento < DateTime.Today; ;
         }
         private void ComandoAgregar_Execute()
         {
@@ -78,12 +79,13 @@ namespace CRUD_Personas_UWP.ViewModels
             {
                 gestoraPersonas.AgregarPersona(personaSeleccionada);
                 ListadoPersonas = new clsListadoPersonas().ListadoCompleto;
+                PersonaSeleccionada = ListadoPersonas[0];
                 NotifyPropertyChanged("ListadoPersonas");
             }
             catch
             {
                 var messageDialog = new MessageDialog("No ha sido posible conectar a la BBDD por favor intententelo de nuevo mas tarde");
-                messageDialog.ShowAsync();
+                _ = messageDialog.ShowAsync();
                 //Revisar, que tipo de excepciones he de controlar (si es generico, declarar el mensaje atributo de la clase)
             }
         }
@@ -95,12 +97,13 @@ namespace CRUD_Personas_UWP.ViewModels
             {
                 gestoraPersonas.EditarPersona(personaSeleccionada);
                 ListadoPersonas = new clsListadoPersonas().ListadoCompleto;
+                PersonaSeleccionada = ListadoPersonas[0];
                 NotifyPropertyChanged("ListadoPersonas");
             }
             catch
             {
                 var messageDialog = new MessageDialog("No ha sido posible conectar a la BBDD por favor intententelo de nuevo mas tarde");//Revisar, que tipo de excepciones he de controlar
-                messageDialog.ShowAsync();
+                _ = messageDialog.ShowAsync();
             }
 
             NotifyPropertyChanged("PersonaSeleccionada");
@@ -108,7 +111,7 @@ namespace CRUD_Personas_UWP.ViewModels
 
         public bool ComandoAlterar_CanExecute()
         {
-            return !string.IsNullOrEmpty(personaSeleccionada.Nombre) && !string.IsNullOrEmpty(personaSeleccionada.Apellido) && personaSeleccionada.FechaNacimiento < DateTime.Today;
+            return !string.IsNullOrEmpty(personaSeleccionada.Nombre) && !string.IsNullOrEmpty(personaSeleccionada.Apellido) && !string.IsNullOrEmpty(personaSeleccionada.Foto) &&  personaSeleccionada.FechaNacimiento < DateTime.Today;
         }
         #endregion
         #region comandoBorrar
@@ -118,12 +121,13 @@ namespace CRUD_Personas_UWP.ViewModels
             {
                 gestoraPersonas.EliminarPersona(personaSeleccionada);
                 ListadoPersonas = new clsListadoPersonas().ListadoCompleto;
+                PersonaSeleccionada = ListadoPersonas[0];
                 NotifyPropertyChanged("ListadoPersonas");
             }
             catch
             {
                 var messageDialog = new MessageDialog("No ha sido posible conectar a la BBDD por favor intententelo de nuevo mas tarde");//Revisar, que tipo de excepciones he de controlar
-                messageDialog.ShowAsync();
+                _ = messageDialog.ShowAsync();
             }
         }
         public bool ComandoBorrar_CanExecute()

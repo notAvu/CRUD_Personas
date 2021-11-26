@@ -37,17 +37,13 @@ namespace CRUD_Personas_UWP.Views
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ListView_ItemClick(object sender, ItemClickEventArgs e)
-        {        
+        {
             viewModel.PersonaSeleccionada = sender as clsPersona;
         }
 
         private void AppBarButton_Click(object sender, RoutedEventArgs e)
         {
-            NombreTbx.Text = "";
-            ApellidoTbx.Text = "";
-            TlfnTbx.Text = "";
-            DireccionTbx.Text = "";
-            fotoImg.Visibility = Visibility.Collapsed;
+            viewModel.PersonaSeleccionada = new clsPersona();
             alterBtn.Visibility = Visibility.Collapsed;
             agregarBtn.Visibility = Visibility.Visible;
             alterBtn.IsEnabled = false;
@@ -56,27 +52,31 @@ namespace CRUD_Personas_UWP.Views
 
         private void agregarBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(NombreTbx.Text) && !string.IsNullOrEmpty(ApellidoTbx.Text) && FechaNacimientoDp.Date < DateTime.Now)
+            if (!string.IsNullOrEmpty(NombreTbx.Text) && !string.IsNullOrEmpty(ApellidoTbx.Text) && !string.IsNullOrEmpty(ImgUrlTbx.Text) && FechaNacimientoDp.Date < DateTime.Now)
             {
                 agregarBtn.Visibility = Visibility.Collapsed;
                 alterBtn.Visibility = Visibility.Visible;
                 fotoImg.Visibility = Visibility.Visible;
                 alterBtn.IsEnabled = true;
                 agregarBtn.IsEnabled = false;
+
+                errorMsg.Visibility = Visibility.Collapsed;
+            }
+            CheckEmpty(NombreTbx);
+            CheckEmpty(ApellidoTbx);
+            CheckEmpty(ImgUrlTbx);
+        }
+
+        private void CheckEmpty(TextBox textBox)
+        {
+            if (string.IsNullOrEmpty(textBox.Text))
+            {
+                textBox.BorderBrush = new SolidColorBrush(Windows.UI.Colors.Red);
+                errorMsg.Visibility = Visibility.Visible;
             }
             else
             {
-                errorMsg.Visibility = Visibility.Visible;
-                CheckEmpty(NombreTbx);
-                CheckEmpty(ApellidoTbx);
-            }
-        }
-
-        private void CheckEmpty(TextBox textBox) 
-        {
-            if (string.IsNullOrEmpty(textBox.Text)) 
-            {
-                textBox.BorderBrush= new SolidColorBrush(Windows.UI.Colors.Red);
+                textBox.BorderBrush = new SolidColorBrush(Windows.UI.Colors.Gray);
             }
         }
     }

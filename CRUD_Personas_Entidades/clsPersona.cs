@@ -18,14 +18,14 @@ namespace CRUD_Personas_Entidades
         private string foto;
         #endregion
         #region constructor
-        public clsPersona(string nombre, string apellido)
+        public clsPersona()
         {
-            this.nombre = nombre;
-            this.apellido = apellido;
+            this.nombre = "";
+            this.apellido = "";
             this.fechaNacimiento = new DateTime(1950, 01, 01);
             this.telefono = "";
             this.direccion = "";
-            this.foto = "";
+            this.foto = "https://www.tenforums.com/geek/gars/images/2/types/thumb_15951118880user.png";
             idDepartamento = 1;
         }
         public clsPersona(string nombre, string apellido, DateTime fecha, string telefono, string direccion, string foto, int idDepar)

@@ -1,5 +1,6 @@
 ﻿using _18_CRUD_Personas_UWP_UI.ViewModels.Utilidades;
 using CRUD_Personas_BL;
+using CRUD_Personas_DAL.Listado;
 using CRUD_Personas_Entidades;
 using System;
 using System.Collections.Generic;
@@ -60,6 +61,8 @@ namespace CRUD_Personas_UWP.ViewModels
         private void ComandoAgregarDpto_Execute()
         {
             gestoraDepartamentos.AgregarDepartamento(dptoSeleccionado);
+            ListadoDepartamentos = new clsListadoDepartamentos().ListadoCompleto;
+            NotifyPropertyChanged("ListadoDepartamentos");
         }
         #endregion
         #region parametros comandoBorrarDpto

@@ -30,6 +30,10 @@ namespace CRUD_Personas_UWP.Views
             this.InitializeComponent();
             viewModel = (DepartamentosVM)DataContext;
         }
+        private void listadoDptos_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            viewModel.DptoSeleccionado = sender as clsDepartamento;
+        }
 
         private void AppBarButton_Click(object sender, RoutedEventArgs e)
         {
@@ -49,11 +53,6 @@ namespace CRUD_Personas_UWP.Views
                 alterBtn.IsEnabled = true;
                 agregarBtn.IsEnabled = false;
             }
-        }
-
-        private void listadoDptos_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            viewModel.DptoSeleccionado = sender as clsDepartamento;
         }
     }
 }
