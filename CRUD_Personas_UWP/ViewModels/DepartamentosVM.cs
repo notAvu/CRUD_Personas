@@ -35,7 +35,7 @@ namespace CRUD_Personas_UWP.ViewModels
                 dptoSeleccionado = value;
                 NotifyPropertyChanged("PersonaSeleccionada");
                 //comandoAlterarDpto.RaiseCanExecuteChanged();
-                comandoBorrarDpto.RaiseCanExecuteChanged();
+                //comandoBorrarDpto.RaiseCanExecuteChanged();
             }
         }
         public List<clsDepartamento> ListadoDepartamentos { get => listadoDepartamentos; set => listadoDepartamentos = value; }
@@ -60,7 +60,7 @@ namespace CRUD_Personas_UWP.ViewModels
         }
         private void ComandoAgregarDpto_Execute()
         {
-            gestoraDepartamentos.AgregarDepartamento(dptoSeleccionado);
+            gestoraDepartamentos.AgregarDepartamento(DptoSeleccionado);
             ListadoDepartamentos = new clsListadoDepartamentos().ListadoCompleto;
             NotifyPropertyChanged("ListadoDepartamentos");
         }
@@ -73,7 +73,7 @@ namespace CRUD_Personas_UWP.ViewModels
 
         private void ComandoBorrarDpto_Execute()
         {
-            gestoraDepartamentos.EliminarDepartamento(dptoSeleccionado);
+            gestoraDepartamentos.EliminarDepartamento(DptoSeleccionado);
         }
         #endregion
         #region parametros comandoAlterarDpto
@@ -84,7 +84,7 @@ namespace CRUD_Personas_UWP.ViewModels
 
         private void ComandoAlterarDpto_Execute()
         {
-            gestoraDepartamentos.EditarDepartamento(dptoSeleccionado);
+            gestoraDepartamentos.EditarDepartamento(DptoSeleccionado);
         }
         #endregion 
     }

@@ -1,4 +1,6 @@
 ﻿using CRUD_Personas_ASP.Models;
+using CRUD_Personas_BL;
+using CRUD_Personas_Entidades;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -20,7 +22,14 @@ namespace CRUD_Personas_ASP.Controllers
 
         public IActionResult Index()
         {
-            return View("../Personas/ListaPersonas");
+            PersonasBL gestoraPersonas = new PersonasBL();
+            List<clsPersona> listadoBase = gestoraPersonas.ListadoCompleto();
+            List<clsPersonaConNombreDepartamento> personasDepartamentos = new();
+            foreach (clsPersona personaAux in listadoBase)
+            {
+                personasDepartamentos.Add(new clsPersonaConNombreDepartamento(personaAux.Id, personaAux.Nombre, personaAux.Apellido, personaAux.FechaNacimiento, personaAux.Telefono, personaAux.Direccion, personaAux.Foto, personaAux.IdDepartamento));
+            }
+            return View("../Personas/ListaPersonas", personasDepartamentos);
         }
 
         public IActionResult Privacy()

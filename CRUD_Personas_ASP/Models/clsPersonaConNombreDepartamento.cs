@@ -10,13 +10,13 @@ namespace CRUD_Personas_ASP.Models
     public class clsPersonaConNombreDepartamento:clsPersona
     {
         string nombreDepartamento;
-        public clsPersonaConNombreDepartamento(int idPersona, string nombre, string apellido, DateTime fecha, string telefono, string direccion, string foto, int idDepar):base(idPersona, nombre, apellido,fecha, telefono, direccion, foto, idDepar)
+        public clsPersonaConNombreDepartamento(int idPersona, string nombre, string apellido, DateTimeOffset fecha, string telefono, string direccion, string foto, int idDepar):base(idPersona, nombre, apellido,fecha, telefono, direccion, foto, idDepar)
         {
             DepartamentosBL gestoraDepartamentos;
             gestoraDepartamentos = new DepartamentosBL();
             nombreDepartamento = gestoraDepartamentos.DepartamentoPorId(this.IdDepartamento).Nombre;
         }
-        public clsPersonaConNombreDepartamento(string nombre, string apellido, DateTime fecha, string telefono, string direccion, string foto, int idDepar) : base(nombre, apellido, fecha, telefono, direccion, foto, idDepar)
+        public clsPersonaConNombreDepartamento(string nombre, string apellido, DateTimeOffset fecha, string telefono, string direccion, string foto, int idDepar) : base(nombre, apellido, fecha, telefono, direccion, foto, idDepar)
         {
             DepartamentosBL gestoraDepartamentos;
             gestoraDepartamentos = new DepartamentosBL();

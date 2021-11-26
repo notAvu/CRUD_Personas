@@ -28,7 +28,7 @@ namespace CRUD_Personas_Entidades
             this.foto = "https://www.tenforums.com/geek/gars/images/2/types/thumb_15951118880user.png";
             idDepartamento = 1;
         }
-        public clsPersona(string nombre, string apellido, DateTime fecha, string telefono, string direccion, string foto, int idDepar)
+        public clsPersona(string nombre, string apellido, DateTimeOffset fecha, string telefono, string direccion, string foto, int idDepar)
         {
             this.nombre = nombre;
             this.apellido = apellido;
@@ -38,7 +38,7 @@ namespace CRUD_Personas_Entidades
             this.foto = foto;
             idDepartamento = idDepar;
         }
-        public clsPersona(int idPersona, string nombre, string apellido, DateTime fecha, string telefono, string direccion, string foto, int idDepar) 
+        public clsPersona(int idPersona, string nombre, string apellido, DateTimeOffset fecha, string telefono, string direccion, string foto, int idDepar) 
         {
             this.id = idPersona;
             this.nombre = nombre;

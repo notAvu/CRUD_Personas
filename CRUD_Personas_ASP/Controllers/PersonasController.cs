@@ -1,4 +1,5 @@
 ﻿using CRUD_Personas_ASP.Models;
+using CRUD_Personas_BL;
 using CRUD_Personas_Entidades;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,11 +15,12 @@ namespace CRUD_Personas_ASP.Controllers
         // GET: PersonasController
         public ActionResult Index()
         {
-            CRUD_Personas_BL.PersonasBL gestoraPersonas = new CRUD_Personas_BL.PersonasBL();
-            List<clsPersonaConNombreDepartamento> personasDepartamentos=new List<clsPersonaConNombreDepartamento>();
-            foreach (clsPersona personaAux in gestoraPersonas.ListadoCompleto()) 
+            PersonasBL gestoraPersonas = new PersonasBL();
+            List<clsPersona> listadoBase= gestoraPersonas.ListadoCompleto();
+            List<clsPersonaConNombreDepartamento> personasDepartamentos = new();
+            foreach (clsPersona personaAux in listadoBase)
             {
-                personasDepartamentos.Add(new clsPersonaConNombreDepartamento(personaAux));
+                personasDepartamentos.Add(new clsPersonaConNombreDepartamento(personaAux.Id, personaAux.Nombre, personaAux.Apellido, personaAux.FechaNacimiento, personaAux.Telefono, personaAux.Direccion, personaAux.Foto, personaAux.IdDepartamento));
             }
             return View(personasDepartamentos);
         }

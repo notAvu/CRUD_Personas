@@ -29,6 +29,7 @@ namespace CRUD_Personas_UWP.Views
         {
             this.InitializeComponent();
             viewModel = (DepartamentosVM)DataContext;
+            viewModel.DptoSeleccionado = viewModel.ListadoDepartamentos[0];
         }
         private void listadoDptos_ItemClick(object sender, ItemClickEventArgs e)
         {
