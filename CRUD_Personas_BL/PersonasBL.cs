@@ -17,6 +17,10 @@ namespace CRUD_Personas_BL
             listado = new clsListadoPersonas();
             gestoraPersonas = new clsGestoraPersonas();
         }
+        public clsPersona LeerPpersonaPorId(int id) 
+        {
+            return gestoraPersonas.leerPersonaPorID(id);
+        }
         /// <summary>
         /// LLama a la DAL para devolver el listado completo de personas contenido en la bbdd
         /// </summary>

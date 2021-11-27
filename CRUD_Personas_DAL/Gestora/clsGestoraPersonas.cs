@@ -28,7 +28,8 @@ namespace CRUD_Personas_DAL.Gestora
             clsPersona persona = null;
             SqlConnection sqlConnection = connector.getConnection();
             SqlCommand comando = new SqlCommand();
-            comando.CommandText = $"SELECT * FROM Personas WHERE IDPersona={id}";
+            comando.Parameters.AddWithValue("@id",id);
+            comando.CommandText = "SELECT * FROM Personas WHERE IDPersona=@id";
             comando.Connection = sqlConnection;
             SqlDataReader reader = comando.ExecuteReader();
             if (reader.HasRows)

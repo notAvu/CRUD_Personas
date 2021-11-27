@@ -12,10 +12,11 @@ namespace CRUD_Personas_ASP.Controllers
 {
     public class PersonasController : Controller
     {
+        PersonasBL gestoraPersonas;
         // GET: PersonasController
         public ActionResult Index()
         {
-            PersonasBL gestoraPersonas = new PersonasBL();
+            gestoraPersonas = new PersonasBL();
             List<clsPersona> listadoBase= gestoraPersonas.ListadoCompleto();
             List<clsPersonaConNombreDepartamento> personasDepartamentos = new();
             foreach (clsPersona personaAux in listadoBase)
@@ -28,7 +29,10 @@ namespace CRUD_Personas_ASP.Controllers
         // GET: PersonasController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            clsPersona personaSeleccionada = gestoraPersonas.LeerPpersonaPorId(id);
+            clsPersonaConNombreDepartamento personaConDptos = new clsPersonaConNombreDepartamento(personaSeleccionada.Id, personaSeleccionada.Nombre, personaSeleccionada.Apellido, personaSeleccionada.FechaNacimiento, personaSeleccionada.Telefono, personaSeleccionada.Direccion, personaSeleccionada.Foto, personaSeleccionada.IdDepartamento);
+
+            return View(personaConDptos);
         }
 
         // GET: PersonasController/Create
