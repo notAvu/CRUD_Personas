@@ -25,7 +25,7 @@
                     <AppBarButton Label="Agregar departamento" Icon="AddFriend" Click="AppBarButton_Click"/>
                     <AppBarButton Label="Borrar departamento" Icon="Delete" Command="{Binding ComandoBorrarDpto}"/>
                 </StackPanel>
-                <ListView x:Name="listadoDptos" ItemsSource="{Binding ListadoDepartamentos}" SelectedValue="{Binding DptoSeleccionado.Id, Mode=TwoWay}" SelectedValuePath="Id" IsItemClickEnabled="True" ItemClick="listadoDptos_ItemClick">
+                <ListView x:Name="listadoDptos" ItemsSource="{Binding ListadoDepartamentos}" SelectedItem="{Binding DptoSeleccionado}" IsItemClickEnabled="True" ItemClick="listadoDptos_ItemClick">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" Margin="20,10">

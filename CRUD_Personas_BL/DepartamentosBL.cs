@@ -14,6 +14,7 @@ namespace CRUD_Personas_BL
         public DepartamentosBL()
         {
             listado = new clsListadoDepartamentos();
+            gestora = new clsGestoraDepartamentos();
         }
         /// <summary>
         /// Llama al listado de la capa DAL y devuelve su contenido como un List de clsDepartamento

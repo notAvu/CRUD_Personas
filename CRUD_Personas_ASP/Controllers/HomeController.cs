@@ -29,7 +29,7 @@ namespace CRUD_Personas_ASP.Controllers
             {
                 personasDepartamentos.Add(new clsPersonaConNombreDepartamento(personaAux.Id, personaAux.Nombre, personaAux.Apellido, personaAux.FechaNacimiento, personaAux.Telefono, personaAux.Direccion, personaAux.Foto, personaAux.IdDepartamento));
             }
-            return View("../Personas/ListaPersonas", personasDepartamentos);
+            return View("../Personas/ListadoPersonas", personasDepartamentos);
         }
 
         public IActionResult Privacy()

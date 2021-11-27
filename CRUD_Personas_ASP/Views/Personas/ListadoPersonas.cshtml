@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<CRUD_Personas_ASP.Models.clsPersonaConNombreDepartamento>
 
 @{
-    ViewData["Title"] = "ListaPersonas";
+    ViewData["Title"] = "ListadoPersonas";
 }
 
-<h1>ListaPersonas</h1>
+<h1>ListadoPersonas</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -12,9 +12,9 @@
 <table class="table">
     <thead>
         <tr>
-            @*<th>
+            <th>
                 @Html.DisplayNameFor(model => model.NombreDepartamento)
-            </th>*@
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Nombre)
             </th>
@@ -34,17 +34,20 @@
                 @Html.DisplayNameFor(model => model.Direccion)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NombreDepartamento)
+                @Html.DisplayNameFor(model => model.IdDepartamento)
             </th>
-            @*<th>
+            <th>
                 @Html.DisplayNameFor(model => model.Foto)
-            </th>*@
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreDepartamento)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Nombre)
             </td>
@@ -64,18 +67,15 @@
                 @Html.DisplayFor(modelItem => item.Direccion)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.NombreDepartamento)
-            </td>
-            @*<td>
                 @Html.DisplayFor(modelItem => item.IdDepartamento)
-            </td>*@
-            @*<td>
-                @Html.DisplayFor(modelItem => item.Foto)
-            </td>*@
+            </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                @Html.DisplayFor(modelItem => item.Foto)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
             </td>
         </tr>
 }

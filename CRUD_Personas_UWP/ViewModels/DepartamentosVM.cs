@@ -13,7 +13,7 @@ namespace CRUD_Personas_UWP.ViewModels
     public class DepartamentosVM : clsVMBase
     {
         #region propiedades privadas
-        DepartamentosBL gestoraDepartamentos = new DepartamentosBL();
+        DepartamentosBL gestoraDepartamentos;
         List<clsDepartamento> listadoDepartamentos;
         clsDepartamento dptoSeleccionado;
         DelegateCommand comandoAgregarDpto;
@@ -25,6 +25,7 @@ namespace CRUD_Personas_UWP.ViewModels
         {
             this.gestoraDepartamentos = new DepartamentosBL();
             this.listadoDepartamentos = gestoraDepartamentos.ListadoCompleto();
+            dptoSeleccionado = listadoDepartamentos[0];
         }
         #endregion
         #region propiedades publicas
@@ -34,8 +35,6 @@ namespace CRUD_Personas_UWP.ViewModels
             {
                 dptoSeleccionado = value;
                 NotifyPropertyChanged("PersonaSeleccionada");
-                //comandoAlterarDpto.RaiseCanExecuteChanged();
-                //comandoBorrarDpto.RaiseCanExecuteChanged();
             }
         }
         public List<clsDepartamento> ListadoDepartamentos { get => listadoDepartamentos; set => listadoDepartamentos = value; }
@@ -61,7 +60,8 @@ namespace CRUD_Personas_UWP.ViewModels
         private void ComandoAgregarDpto_Execute()
         {
             gestoraDepartamentos.AgregarDepartamento(DptoSeleccionado);
-            ListadoDepartamentos = new clsListadoDepartamentos().ListadoCompleto;
+            ListadoDepartamentos = gestoraDepartamentos.ListadoCompleto();
+            dptoSeleccionado = ListadoDepartamentos[0];
             NotifyPropertyChanged("ListadoDepartamentos");
         }
         #endregion
@@ -74,6 +74,9 @@ namespace CRUD_Personas_UWP.ViewModels
         private void ComandoBorrarDpto_Execute()
         {
             gestoraDepartamentos.EliminarDepartamento(DptoSeleccionado);
+            ListadoDepartamentos = gestoraDepartamentos.ListadoCompleto();
+            DptoSeleccionado = ListadoDepartamentos[0];
+            NotifyPropertyChanged("ListadoDepartamentos");
         }
         #endregion
         #region parametros comandoAlterarDpto
@@ -85,6 +88,9 @@ namespace CRUD_Personas_UWP.ViewModels
         private void ComandoAlterarDpto_Execute()
         {
             gestoraDepartamentos.EditarDepartamento(DptoSeleccionado);
+            ListadoDepartamentos = gestoraDepartamentos.ListadoCompleto();
+            DptoSeleccionado = ListadoDepartamentos[0];
+            NotifyPropertyChanged("ListadoDepartamentos");
         }
         #endregion 
     }

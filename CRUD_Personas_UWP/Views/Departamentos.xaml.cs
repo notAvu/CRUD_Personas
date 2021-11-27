@@ -29,7 +29,7 @@ namespace CRUD_Personas_UWP.Views
         {
             this.InitializeComponent();
             viewModel = (DepartamentosVM)DataContext;
-            viewModel.DptoSeleccionado = viewModel.ListadoDepartamentos[0];
+            //viewModel.DptoSeleccionado = viewModel.ListadoDepartamentos[0];
         }
         private void listadoDptos_ItemClick(object sender, ItemClickEventArgs e)
         {
@@ -38,9 +38,9 @@ namespace CRUD_Personas_UWP.Views
 
         private void AppBarButton_Click(object sender, RoutedEventArgs e)
         {
+            viewModel.DptoSeleccionado = new clsDepartamento();
             alterBtn.Visibility = Visibility.Collapsed;
             agregarBtn.Visibility = Visibility.Visible;
-            NombreTbx.Text = "";
             alterBtn.IsEnabled = false;
             agregarBtn.IsEnabled = true;
         }

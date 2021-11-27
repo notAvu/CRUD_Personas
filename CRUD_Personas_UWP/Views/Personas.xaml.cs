@@ -59,7 +59,6 @@ namespace CRUD_Personas_UWP.Views
                 fotoImg.Visibility = Visibility.Visible;
                 alterBtn.IsEnabled = true;
                 agregarBtn.IsEnabled = false;
-
                 errorMsg.Visibility = Visibility.Collapsed;
             }
             CheckEmpty(NombreTbx);
