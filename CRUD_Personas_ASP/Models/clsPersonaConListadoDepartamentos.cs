@@ -16,6 +16,12 @@ namespace CRUD_Personas_ASP.Models
         public List<clsDepartamento> Departamentos { get => departamentos; set => departamentos = value; }
         #endregion
         #region constructores
+        public clsPersonaConListadoDepartamentos():base() {
+            DepartamentosBL gestoraDepartamentos;
+            gestoraDepartamentos = new DepartamentosBL();
+            Departamentos = gestoraDepartamentos.ListadoCompleto();
+        }
+
         public clsPersonaConListadoDepartamentos(int idPersona, string nombre, string apellido, DateTimeOffset fecha, string telefono, string direccion, string foto, int idDepar) : base(idPersona, nombre, apellido, fecha, telefono, direccion, foto, idDepar)
         {
             DepartamentosBL gestoraDepartamentos;

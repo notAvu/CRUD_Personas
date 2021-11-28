@@ -39,7 +39,8 @@ namespace CRUD_Personas_ASP.Controllers
         // GET: PersonasController/Create
         public ActionResult Create()
         {
-            return View("CreatePersona");
+            clsPersonaConListadoDepartamentos p = new clsPersonaConListadoDepartamentos();
+            return View("CreatePersona",p);
         }
 
         // POST: PersonasController/Create
@@ -49,7 +50,11 @@ namespace CRUD_Personas_ASP.Controllers
         {
             try
             {
-                clsPersona p = new clsPersona();
+                clsPersona p = new clsPersona(collection["Nombre"], collection["Apellido"], DateTimeOffset.Parse(collection["FechaNacimiento"]), collection["Telefono"], collection["Direccion"],
+                    collection["Foto"], int.Parse(collection["IdDepartamento"]));
+                gestoraPersonas = new PersonasBL();
+                gestoraPersonas.AgregarPersona(p);
+
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -76,7 +81,8 @@ namespace CRUD_Personas_ASP.Controllers
             gestoraPersonas = new PersonasBL();
             try
             {
-                clsPersona personaEditada = gestoraPersonas.LeerPpersonaPorId(id);
+                clsPersona personaEditada = new clsPersona(int.Parse(collection["Id"]),collection["Nombre"], collection["Apellido"], DateTimeOffset.Parse(collection["FechaNacimiento"]), 
+                    collection["Telefono"], collection["Direccion"], collection["Foto"], int.Parse(collection["IdDepartamento"]));
                 gestoraPersonas.EditarPersona(personaEditada);
                 return RedirectToAction(nameof(Index));
             }
