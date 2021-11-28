@@ -46,7 +46,7 @@ namespace CRUD_Personas_ASP
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Personas}/{action=Index}/{id?}");
             });
         }
     }
