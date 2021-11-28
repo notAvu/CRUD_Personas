@@ -46,14 +46,14 @@
             <select asp-for="IdDepartamento" >
             @foreach (clsDepartamento dpto in Model.Departamentos) 
             {
-                <option value="dpto.Id", label="dpto.Nombre"/>
+                <option value="@dpto.Id", label="@dpto.Nombre"/>
             }
             </select>
-            <div class="form-group">
+            @*<div class="form-group">
                 <label asp-for="IdDepartamento" class="control-label"></label>
                 <input asp-for="IdDepartamento" class="form-control" type="number"/>
                 <span asp-validation-for="IdDepartamento" class="text-danger"></span>
-            </div>
+            </div>*@
             <div class="form-group">
                 <label asp-for="Foto" class="control-label"></label>
                 <input asp-for="Foto" class="form-control" />

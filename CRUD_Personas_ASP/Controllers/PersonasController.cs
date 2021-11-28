@@ -88,7 +88,7 @@ namespace CRUD_Personas_ASP.Controllers
             }
             catch
             {
-                return View();
+                return View("EditPersona");
             }
         }
 
