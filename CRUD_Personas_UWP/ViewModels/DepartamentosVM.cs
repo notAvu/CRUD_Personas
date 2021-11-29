@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Popups;
 
 namespace CRUD_Personas_UWP.ViewModels
 {
@@ -23,9 +24,17 @@ namespace CRUD_Personas_UWP.ViewModels
         #region constructor
         public DepartamentosVM()
         {
-            this.gestoraDepartamentos = new DepartamentosBL();
-            this.listadoDepartamentos = gestoraDepartamentos.ListadoCompleto();
-            dptoSeleccionado = listadoDepartamentos[0];
+            try
+            {
+                this.gestoraDepartamentos = new DepartamentosBL();
+                this.listadoDepartamentos = gestoraDepartamentos.ListadoCompleto();
+                dptoSeleccionado = listadoDepartamentos[0];
+            }
+            catch
+            {
+                var messageDialog = new MessageDialog("No ha sido posible conectar a la BBDD por favor intententelo de nuevo mas tarde");
+                _ = messageDialog.ShowAsync();
+            }
         }
         #endregion
         #region propiedades publicas
@@ -34,7 +43,7 @@ namespace CRUD_Personas_UWP.ViewModels
             get => dptoSeleccionado; set
             {
                 dptoSeleccionado = value;
-                NotifyPropertyChanged("PersonaSeleccionada");
+                NotifyPropertyChanged("DptoSeleccionado");
             }
         }
         public List<clsDepartamento> ListadoDepartamentos { get => listadoDepartamentos; set => listadoDepartamentos = value; }
@@ -59,10 +68,18 @@ namespace CRUD_Personas_UWP.ViewModels
         }
         private void ComandoAgregarDpto_Execute()
         {
-            gestoraDepartamentos.AgregarDepartamento(DptoSeleccionado);
-            ListadoDepartamentos = gestoraDepartamentos.ListadoCompleto();
-            dptoSeleccionado = ListadoDepartamentos[0];
-            NotifyPropertyChanged("ListadoDepartamentos");
+            try
+            {
+                gestoraDepartamentos.AgregarDepartamento(DptoSeleccionado);
+                ListadoDepartamentos = gestoraDepartamentos.ListadoCompleto();
+                DptoSeleccionado = ListadoDepartamentos[0];
+                NotifyPropertyChanged("ListadoDepartamentos");
+            }
+            catch
+            {
+                var messageDialog = new MessageDialog("No ha sido posible conectar a la BBDD por favor intententelo de nuevo mas tarde");
+                _ = messageDialog.ShowAsync();
+            }
         }
         #endregion
         #region parametros comandoBorrarDpto
@@ -73,10 +90,18 @@ namespace CRUD_Personas_UWP.ViewModels
 
         private void ComandoBorrarDpto_Execute()
         {
-            gestoraDepartamentos.EliminarDepartamento(DptoSeleccionado);
-            ListadoDepartamentos = gestoraDepartamentos.ListadoCompleto();
-            DptoSeleccionado = ListadoDepartamentos[0];
-            NotifyPropertyChanged("ListadoDepartamentos");
+            try
+            {
+                gestoraDepartamentos.EliminarDepartamento(DptoSeleccionado);
+                ListadoDepartamentos = gestoraDepartamentos.ListadoCompleto();
+                DptoSeleccionado = ListadoDepartamentos[0];
+                NotifyPropertyChanged("ListadoDepartamentos");
+            }
+            catch
+            {
+                var messageDialog = new MessageDialog("No ha sido posible conectar a la BBDD por favor intententelo de nuevo mas tarde");
+                _ = messageDialog.ShowAsync();
+            }
         }
         #endregion
         #region parametros comandoAlterarDpto
@@ -87,10 +112,18 @@ namespace CRUD_Personas_UWP.ViewModels
 
         private void ComandoAlterarDpto_Execute()
         {
-            gestoraDepartamentos.EditarDepartamento(DptoSeleccionado);
-            ListadoDepartamentos = gestoraDepartamentos.ListadoCompleto();
-            DptoSeleccionado = ListadoDepartamentos[0];
-            NotifyPropertyChanged("ListadoDepartamentos");
+            try
+            {
+                gestoraDepartamentos.EditarDepartamento(DptoSeleccionado);
+                ListadoDepartamentos = gestoraDepartamentos.ListadoCompleto();
+                DptoSeleccionado = ListadoDepartamentos[0];
+                NotifyPropertyChanged("ListadoDepartamentos");
+            }
+            catch
+            {
+                var messageDialog = new MessageDialog("No ha sido posible conectar a la BBDD por favor intententelo de nuevo mas tarde");
+                _ = messageDialog.ShowAsync();
+            }
         }
         #endregion 
     }

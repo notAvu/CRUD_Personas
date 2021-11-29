@@ -84,7 +84,6 @@ namespace CRUD_Personas_UWP.ViewModels
             {
                 var messageDialog = new MessageDialog("No ha sido posible conectar a la BBDD por favor intententelo de nuevo mas tarde");
                 _ = messageDialog.ShowAsync();
-                //Revisar, que tipo de excepciones he de controlar (si es generico, declarar el mensaje atributo de la clase)
             }
         }
         #endregion
