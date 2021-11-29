@@ -16,14 +16,21 @@ namespace CRUD_Personas_ASP.Controllers
         // GET: PersonasController
         public ActionResult Index()
         {
-            gestoraPersonas = new PersonasBL();
-            List<clsPersona> listadoBase= gestoraPersonas.ListadoCompleto();
-            List<clsPersonaConNombreDepartamento> personasDepartamentos = new();
-            foreach (clsPersona personaAux in listadoBase)
+            gestoraPersonas = /*new PersonasBL();*/ null;
+            try
             {
-                personasDepartamentos.Add(new clsPersonaConNombreDepartamento(personaAux.Id, personaAux.Nombre, personaAux.Apellido, personaAux.FechaNacimiento, personaAux.Telefono, personaAux.Direccion, personaAux.Foto, personaAux.IdDepartamento));
+                List<clsPersona> listadoBase = gestoraPersonas.ListadoCompleto();
+                List<clsPersonaConNombreDepartamento> personasDepartamentos = new(); 
+                foreach (clsPersona personaAux in listadoBase)
+                {
+                    personasDepartamentos.Add(new clsPersonaConNombreDepartamento(personaAux.Id, personaAux.Nombre, personaAux.Apellido, personaAux.FechaNacimiento, personaAux.Telefono, personaAux.Direccion, personaAux.Foto, personaAux.IdDepartamento));
+                }
+                return View("ListadoPersonas", personasDepartamentos);
             }
-            return View("ListadoPersonas",personasDepartamentos);
+            catch 
+            {
+                return View("ErrorView");
+            }
         }
 
         // GET: PersonasController/Details/5
@@ -69,7 +76,8 @@ namespace CRUD_Personas_ASP.Controllers
         {
             gestoraPersonas = new PersonasBL();
             clsPersona personaSeleccionada = gestoraPersonas.LeerPpersonaPorId(id);
-            clsPersonaConListadoDepartamentos personaConDptos = new clsPersonaConListadoDepartamentos(personaSeleccionada.Id, personaSeleccionada.Nombre, personaSeleccionada.Apellido, personaSeleccionada.FechaNacimiento, personaSeleccionada.Telefono, personaSeleccionada.Direccion, personaSeleccionada.Foto, personaSeleccionada.IdDepartamento);
+            clsPersonaConListadoDepartamentos personaConDptos = new clsPersonaConListadoDepartamentos(personaSeleccionada.Id, personaSeleccionada.Nombre, personaSeleccionada.Apellido, 
+                personaSeleccionada.FechaNacimiento, personaSeleccionada.Telefono, personaSeleccionada.Direccion, personaSeleccionada.Foto, personaSeleccionada.IdDepartamento);
 
             return View("EditPersona", personaConDptos);
         }
