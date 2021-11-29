@@ -4,4 +4,5 @@ ASP
 -Sobre imagenes sin Azure, subir en local
 
 UWP
--Sobre por que me falla Departamentos.xaml
+-Sobre lo que me falla en CRUD Departamentos
+-Por que no scrollea dentro del Frame
