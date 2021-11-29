@@ -13,7 +13,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.NombreDepartamento)
+                @Html.DisplayNameFor(model => model.Foto)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Nombre)
@@ -34,17 +34,20 @@
                 @Html.DisplayNameFor(model => model.Direccion)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.NombreDepartamento)
+            </th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.IdDepartamento)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Foto)
-            </th>
+            </th>*@
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>
+                <img src="@Html.DisplayFor(modelItem => item.Foto)" style="height: 100px; width: 100px;"/>
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Nombre)
             </td>
@@ -63,14 +66,11 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Direccion)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.IdDepartamento)
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.NombreDepartamento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Foto)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
