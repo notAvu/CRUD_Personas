@@ -9,7 +9,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-    <!--<VisualStateManager.VisualStateGroups >
+        <!--<VisualStateManager.VisualStateGroups >
             <VisualStateGroup>
                 <VisualState x:Name="Beeg">
                     <VisualState.StateTriggers>
@@ -31,20 +31,21 @@
             </VisualStateGroup>
     </VisualStateManager.VisualStateGroups>-->
         <!--<Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="auto"/>
-        </Grid.ColumnDefinitions>-->
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <NavigationView x:Name="NavView" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignTopWithPanel="True" PaneDisplayMode="Top">
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>-->
+        <NavigationView x:Name="NavView" PaneDisplayMode="LeftCompact" >
             <NavigationView.MenuItems>
                 <NavigationViewItem x:Name="PersonasNvi" Icon="AddFriend" Content="Personas" Tapped="PersonasNvi_Tapped"/>
                 <NavigationViewItem x:Name="DepartamentosNvi" Icon="Bookmarks" Content="Departamentos" Tapped="DepartamentosNvi_Tapped"/>
             </NavigationView.MenuItems>
+            <ScrollViewer>
+                <Frame x:Name="contentFme" />
+            </ScrollViewer>
         </NavigationView>
-        <Frame x:Name="contentFme" Grid.Row="1">
-        </Frame>
     </Grid>
 </Page>
