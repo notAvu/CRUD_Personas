@@ -48,19 +48,20 @@ namespace CRUD_Personas_ASP.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
         {
+            IActionResult actionResult;
             try
             {
                 clsPersona p = new clsPersona(collection["Nombre"], collection["Apellido"], DateTimeOffset.Parse(collection["FechaNacimiento"]), collection["Telefono"], collection["Direccion"],
                     collection["Foto"], int.Parse(collection["IdDepartamento"]));
                 gestoraPersonas = new PersonasBL();
                 gestoraPersonas.AgregarPersona(p);
-
-                return RedirectToAction(nameof(Index));
+                actionResult = RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View("CreatePersona");
+                actionResult=View("CreatePersona");
             }
+            return (ActionResult)actionResult;
         }
 
         // GET: PersonasController/Edit/5
