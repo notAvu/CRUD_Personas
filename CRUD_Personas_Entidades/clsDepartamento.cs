@@ -7,8 +7,9 @@ namespace CRUD_Personas_Entidades
     public class clsDepartamento
     {
         string nombre;
-        public int Id { get; set; }
+        int id;
         public string Nombre { get => nombre; set => nombre = value; }
+        public int Id { get => id; set => id = value; }
 
         public clsDepartamento(int id, string nombre)
         {

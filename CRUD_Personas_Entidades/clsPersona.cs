@@ -14,7 +14,6 @@ namespace CRUD_Personas_Entidades
         private string direccion;
         private string telefono;
         private DateTimeOffset fechaNacimiento;
-        //foto -> opciones: array de bytes o url (Array de bytes conlleva conversion de tipo de datos)
         private string foto;
         #endregion
         #region constructor
@@ -22,7 +21,7 @@ namespace CRUD_Personas_Entidades
         {
             this.nombre = "";
             this.apellido = "";
-            this.fechaNacimiento = new DateTime(1950, 01, 01);
+            this.fechaNacimiento = new DateTime(1920, 01, 01);
             this.telefono = "";
             this.direccion = "";
             this.foto = "https://www.tenforums.com/geek/gars/images/2/types/thumb_15951118880user.png";

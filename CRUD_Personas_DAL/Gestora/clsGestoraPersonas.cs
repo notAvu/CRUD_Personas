@@ -21,7 +21,6 @@ namespace CRUD_Personas_DAL.Gestora
             this.connector = new clsMyConnection();
         }
         #endregion
-
         #region leerPersona
         public clsPersona leerPersonaPorID(int id)
         {
@@ -98,6 +97,11 @@ namespace CRUD_Personas_DAL.Gestora
         }
         #endregion
         #region editarPersona
+        /// <summary>
+        /// Recibe por parametro un objeto de la clase persona y actualiza los datos del registro correspondiente 
+        /// en la bdd (el que tiene el mismo ID) con los datos de dicho objeto
+        /// </summary>
+        /// <param name="persona"></param>
         public void EditarPersona(clsPersona persona)
         {
             SqlConnection sqlConnection = connector.getConnection();

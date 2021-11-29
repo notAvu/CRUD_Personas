@@ -92,6 +92,11 @@ namespace CRUD_Personas_DAL.Gestora
         }
         #endregion
         #region editar Departamento
+        /// <summary>
+        /// Recibe un objeto departamento del cual, a partir del id, busca en la base de datos el departamento correspondiente a ese id 
+        /// y actualiza los datos con los del objeto recibido por parametro
+        /// </summary>
+        /// <param name="departamento"></param>
         public void EditarDepartamento(clsDepartamento departamento)
         {
             SqlConnection sqlConnection = connector.getConnection();

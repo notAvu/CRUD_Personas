@@ -39,8 +39,15 @@ namespace CRUD_Personas_UWP.Views
         private void ListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             viewModel.PersonaSeleccionada = sender as clsPersona;
+            agregarBtn.Visibility = Visibility.Collapsed;
+            alterBtn.Visibility = Visibility.Visible;
         }
-
+        /// <summary>
+        /// Evento asociado al boton de agregar persona
+        /// Cambia el boton de "Confirmar por el de agregar"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AppBarButton_Click(object sender, RoutedEventArgs e)
         {
             viewModel.PersonaSeleccionada = new clsPersona();
@@ -49,14 +56,19 @@ namespace CRUD_Personas_UWP.Views
             alterBtn.IsEnabled = false;
             agregarBtn.IsEnabled = true;
         }
-
+        /// <summary>
+        /// Evento asociado al click del boton agregar
+        /// Comprueba que los capos indicados del formulario tengan un valor correcto, en caso afirmativo vuelve a aparecer la vista 
+        /// de editar y en caso contrario muestra un mensaje de error resaltando los campos del formulario en los que los valores no son correctos
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void agregarBtn_Click(object sender, RoutedEventArgs e)
         {
             if (!string.IsNullOrEmpty(NombreTbx.Text) && !string.IsNullOrEmpty(ApellidoTbx.Text) && !string.IsNullOrEmpty(ImgUrlTbx.Text) && FechaNacimientoDp.Date < DateTime.Now)
             {
                 agregarBtn.Visibility = Visibility.Collapsed;
                 alterBtn.Visibility = Visibility.Visible;
-                fotoImg.Visibility = Visibility.Visible;
                 alterBtn.IsEnabled = true;
                 agregarBtn.IsEnabled = false;
                 errorMsg.Visibility = Visibility.Collapsed;
@@ -65,7 +77,10 @@ namespace CRUD_Personas_UWP.Views
             CheckEmpty(ApellidoTbx);
             CheckEmpty(ImgUrlTbx);
         }
-
+        /// <summary>
+        /// Metodo auxiliar para comprobar si un campo esta vacio y en caso afirmativo, resalta dicho campo y muestra el mensaje de error
+        /// </summary>
+        /// <param name="textBox"></param>
         private void CheckEmpty(TextBox textBox)
         {
             if (string.IsNullOrEmpty(textBox.Text))

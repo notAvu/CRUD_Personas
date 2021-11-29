@@ -11,13 +11,12 @@ namespace CRUD_Personas_DAL.Listado
     {
         #region atributos privados
         List<clsDepartamento> listadoCompleto;
-        List<clsDepartamento> listadoFiltrado;
         clsMyConnection connector = new clsMyConnection();
         #endregion
         #region propiedades publicas
         public List<clsDepartamento> ListadoCompleto { get => listadoCompleto; set => listadoCompleto = value; }
         #endregion
-        #region costructor
+        #region constructor
         public clsListadoDepartamentos()
         {
 

@@ -39,8 +39,8 @@ namespace CRUD_Personas_ASP.Controllers
         // GET: PersonasController/Create
         public ActionResult Create()
         {
-            clsPersonaConListadoDepartamentos p = new clsPersonaConListadoDepartamentos();
-            return View("CreatePersona",p);
+            clsPersonaConListadoDepartamentos nuevaPersonaConDptos = new clsPersonaConListadoDepartamentos();
+            return View("CreatePersona",nuevaPersonaConDptos);
         }
 
         // POST: PersonasController/Create
