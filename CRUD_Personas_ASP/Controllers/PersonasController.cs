@@ -83,12 +83,12 @@ namespace CRUD_Personas_ASP.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(clsPersona collection)
+        public ActionResult Create(clsPersona persona)
         {
             ActionResult actionResult;
             try
             {
-                clsPersona p = collection;
+                clsPersona p = persona;
                 gestoraPersonas = new PersonasBL();
                 gestoraPersonas.AgregarPersona(p);
                 actionResult = RedirectToAction(nameof(Index));
@@ -114,13 +114,13 @@ namespace CRUD_Personas_ASP.Controllers
         // POST: PersonasController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, clsPersona collection)
+        public ActionResult Edit(int id, clsPersona persona)
         {
             ActionResult result;
             gestoraPersonas = new PersonasBL();
             try
             {
-                clsPersona personaEditada = collection;
+                clsPersona personaEditada = persona;
                 gestoraPersonas.EditarPersona(personaEditada);
                 result= RedirectToAction(nameof(Index));
             }
@@ -145,13 +145,13 @@ namespace CRUD_Personas_ASP.Controllers
         // POST: PersonasController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, clsPersona collection)
+        public ActionResult Delete(int id, clsPersona persona)
         {
             ActionResult result;
             gestoraPersonas = new PersonasBL();
             try
             {
-                clsPersona personaEditada = collection;
+                clsPersona personaEditada = persona;
                 gestoraPersonas.EliminarPersona(personaEditada);
                 result= RedirectToAction(nameof(Index));
             }
