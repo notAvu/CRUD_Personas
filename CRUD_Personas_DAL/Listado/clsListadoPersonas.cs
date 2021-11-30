@@ -12,6 +12,7 @@ namespace CRUD_Personas_DAL.Listado
         #region atributos privados
         List<clsPersona> listadoCompleto;
         List<clsPersona> listadoFiltrado;
+        //NO HACE FALTA COMO PROPIEDAD
         clsMyConnection connector= new clsMyConnection();
         #endregion
         #region propiedades publicas

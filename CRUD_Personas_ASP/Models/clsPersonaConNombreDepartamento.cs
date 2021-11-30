@@ -22,6 +22,12 @@ namespace CRUD_Personas_ASP.Models
             gestoraDepartamentos = new DepartamentosBL();
             nombreDepartamento = gestoraDepartamentos.DepartamentoPorId(this.IdDepartamento).Nombre;
         }
+        public clsPersonaConNombreDepartamento(int id, string nombre, string apellido, DateTimeOffset fecha, string telefono, string direccion, string foto, int idDepar, string nombreDpto) : base(id, nombre, apellido, fecha, telefono, direccion, foto, idDepar)
+        {
+            DepartamentosBL gestoraDepartamentos;
+            gestoraDepartamentos = new DepartamentosBL();
+            nombreDepartamento = nombreDpto;
+        }
         public clsPersonaConNombreDepartamento(clsPersona persona)
         {
             Id = persona.Id;
