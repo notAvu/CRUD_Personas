@@ -1,5 +1,7 @@
 # Preguntas
 ASP
+-Control de excepciones, que tipo de excepciones debo controlar
+
 -Sobre DataAnnotations (Van realmente en entidades?)
 
 -Sobre imagenes sin Azure, subir en local
