@@ -18,6 +18,7 @@ namespace CRUD_Personas_ASP.Controllers
         public ActionResult Index()
         {
             gestoraPersonas = new PersonasBL();
+            ActionResult result;
             try
             {
                 listadoBase = gestoraPersonas.ListadoCompleto();
@@ -25,15 +26,16 @@ namespace CRUD_Personas_ASP.Controllers
                 List<clsPersonaConNombreDepartamento> personasDepartamentos = new();
                 foreach (clsPersona personaAux in listadoBase)
                 {
-                    personasDepartamentos.Add(new clsPersonaConNombreDepartamento(personaAux.Id, personaAux.Nombre, personaAux.Apellido, personaAux.FechaNacimiento, 
+                    personasDepartamentos.Add(new clsPersonaConNombreDepartamento(personaAux.Id, personaAux.Nombre, personaAux.Apellido, personaAux.FechaNacimiento,
                         personaAux.Telefono, personaAux.Direccion, personaAux.Foto, personaAux.IdDepartamento, listadoDptos[personaAux.IdDepartamento].Nombre));
                 }
-                return View("ListadoPersonas", personasDepartamentos);
+                result= View("ListadoPersonas", personasDepartamentos);
             }
-            catch 
+            catch
             {
-                return View("ErrorView");
+                result=View("ErrorView");
             }
+            return result;
         }
 
         // GET: PersonasController/Details/5
@@ -44,7 +46,8 @@ namespace CRUD_Personas_ASP.Controllers
             List<clsDepartamento> listadoDptos = new DepartamentosBL().ListadoCompleto();
             clsPersona personaSeleccionada = gestoraPersonas.LeerPpersonaPorId(id);
             clsPersonaConNombreDepartamento personaConDptos = new clsPersonaConNombreDepartamento(personaSeleccionada.Id, personaSeleccionada.Nombre, personaSeleccionada.Apellido, 
-                personaSeleccionada.FechaNacimiento, personaSeleccionada.Telefono, personaSeleccionada.Direccion, personaSeleccionada.Foto, personaSeleccionada.IdDepartamento, listadoDptos[personaSeleccionada.IdDepartamento].Nombre);
+                personaSeleccionada.FechaNacimiento, personaSeleccionada.Telefono, personaSeleccionada.Direccion, personaSeleccionada.Foto, personaSeleccionada.IdDepartamento, 
+                listadoDptos[personaSeleccionada.IdDepartamento].Nombre);
 
             return View("DetallesPersona",personaConDptos);
         }
@@ -61,7 +64,7 @@ namespace CRUD_Personas_ASP.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
         {
-            IActionResult actionResult;
+            ActionResult actionResult;
             try
             {
                 clsPersona p = new clsPersona(collection["Nombre"], collection["Apellido"], DateTimeOffset.Parse(collection["FechaNacimiento"]), collection["Telefono"], collection["Direccion"],
@@ -74,7 +77,7 @@ namespace CRUD_Personas_ASP.Controllers
             {
                 actionResult=View("CreatePersona");
             }
-            return (ActionResult)actionResult;
+            return actionResult;
         }
 
         // GET: PersonasController/Edit/5
@@ -93,18 +96,20 @@ namespace CRUD_Personas_ASP.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
         {
+            ActionResult result;
             gestoraPersonas = new PersonasBL();
             try
             {
                 clsPersona personaEditada = new clsPersona(int.Parse(collection["Id"]),collection["Nombre"], collection["Apellido"], DateTimeOffset.Parse(collection["FechaNacimiento"]), 
                     collection["Telefono"], collection["Direccion"], collection["Foto"], int.Parse(collection["IdDepartamento"]));
                 gestoraPersonas.EditarPersona(personaEditada);
-                return RedirectToAction(nameof(Index));
+                result= RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View("EditPersona");
+                result= View("EditPersona");
             }
+            return result;
         }
 
         // GET: PersonasController/Delete/5
@@ -123,17 +128,19 @@ namespace CRUD_Personas_ASP.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
         {
+            ActionResult result;
             gestoraPersonas = new PersonasBL();
             try
             {
                 clsPersona personaEditada = gestoraPersonas.LeerPpersonaPorId(id);
                 gestoraPersonas.EliminarPersona(personaEditada);
-                return RedirectToAction(nameof(Index));
+                result= RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View();
+                result = View();
             }
+            return result;
         }
     }
 }
