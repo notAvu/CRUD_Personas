@@ -9,10 +9,6 @@ namespace CRUD_Personas_DAL.Gestora
 {
     public class clsGestoraPersonas
     {
-        #region constantes (sentencias genericas)
-        private const string UpdatePersonaCompleta = "UPDATE Personas SET nombrePersona = @Nombre, apellidosPersona = @Apellido, fechaNacimiento = @fechaNacimiento, telefono = @telefono, direccion = @direccion, foto = @foto, IDDepartamento = @idDepartamento WHERE IDPersona=@id";
-        private const string InsertPersonaCompleta = "INSERT INTO Personas VALUES (@Nombre, @Apellido, @fechaNacimiento, @telefono, @direccion, @foto, @idDepartamento)";
-        #endregion
         #region propiedades privadas
         clsMyConnection connector;
 
@@ -27,7 +23,7 @@ namespace CRUD_Personas_DAL.Gestora
             clsPersona persona = null;
             SqlConnection sqlConnection = connector.getConnection();
             SqlCommand comando = new SqlCommand();
-            comando.Parameters.AddWithValue("@id",id);
+            comando.Parameters.AddWithValue("@id", id);
             comando.CommandText = "SELECT * FROM Personas WHERE IDPersona=@id";
             comando.Connection = sqlConnection;
             SqlDataReader reader = comando.ExecuteReader();
@@ -50,12 +46,52 @@ namespace CRUD_Personas_DAL.Gestora
         private static clsPersona leerPersona(SqlDataReader reader)
         {
             int id = (int)reader["IDPersona"];
-            string nombre = (string)reader["nombrePersona"];
-            string apellido = (string)reader["apellidosPersona"];
+            string nombre;
+            if (reader["nombrePersona"] != DBNull.Value)
+            {
+                nombre = (string)reader["nombrePersona"]; ;
+            }
+            else
+            {
+                nombre = "";
+            }
+            string apellido;
+            if (reader["apellidosPersona"] != DBNull.Value)
+            {
+                apellido = (string)reader["apellidosPersona"];
+            }
+            else
+            {
+                apellido = "";
+            }
             DateTime dateTime = (DateTime)reader["fechaNacimiento"];
-            string telefono = (string)reader["telefono"];
-            string direccion = (string)reader["direccion"];
-            string fotoUrl = (string)reader["foto"];
+            string telefono;
+            if (reader["telefono"] != DBNull.Value)
+            {
+                telefono = (string)reader["telefono"];
+            }
+            else
+            {
+                telefono = "";
+            }
+            string direccion;
+            if (reader["direccion"] != DBNull.Value)
+            {
+                direccion = (string)reader["direccion"];
+            }
+            else
+            {
+                direccion = "";
+            }
+            string fotoUrl;
+            if (reader["direccion"] != DBNull.Value)
+            {
+                fotoUrl = (string)reader["foto"];
+            }
+            else
+            {
+                fotoUrl = "";
+            }
             int idDepartamento = (int)reader["IDDepartamento"];
             return new clsPersona(id, nombre, apellido, dateTime, telefono, direccion, fotoUrl, idDepartamento);
 
@@ -69,7 +105,7 @@ namespace CRUD_Personas_DAL.Gestora
         public void AgergarPersonaDAL(clsPersona persona)
         {
             SqlConnection sqlConnection = connector.getConnection();
-            SqlCommand comando = generarComandoPersona(persona, InsertPersonaCompleta);
+            SqlCommand comando = generarComandoPersona(persona, "INSERT INTO Personas VALUES (@Nombre, @Apellido, @fechaNacimiento, @telefono, @direccion, @foto, @idDepartamento)");
             comando.Connection = sqlConnection;
             comando.ExecuteNonQuery();
             connector.closeConnection(ref sqlConnection);
@@ -84,13 +120,52 @@ namespace CRUD_Personas_DAL.Gestora
         {
             SqlCommand comando = new SqlCommand();
             string sentenciaSql = comandoTipo;
+
             comando.Parameters.AddWithValue("@id", persona.Id);
-            comando.Parameters.AddWithValue("@Nombre", persona.Nombre);
-            comando.Parameters.AddWithValue("@Apellido", persona.Apellido);
+            if (!string.IsNullOrEmpty(persona.Nombre))
+            {
+                comando.Parameters.AddWithValue("@Nombre", persona.Nombre);
+            }
+            else
+            {
+                comando.Parameters.AddWithValue("@Nombre", DBNull.Value);
+            }
+
+            if (!string.IsNullOrEmpty(persona.Apellido))
+            {
+                comando.Parameters.AddWithValue("@Apellido", persona.Apellido);
+            }
+            else
+            {
+                comando.Parameters.AddWithValue("@Apellido", DBNull.Value);
+            }
             comando.Parameters.AddWithValue("@fechaNacimiento", persona.FechaNacimiento);
-            comando.Parameters.AddWithValue("@telefono", persona.Telefono);
-            comando.Parameters.AddWithValue("@direccion", persona.Direccion);
-            comando.Parameters.AddWithValue("@foto", persona.Foto);
+            if (!string.IsNullOrEmpty(persona.Telefono))
+            {
+                comando.Parameters.AddWithValue("@telefono", persona.Telefono);
+            }
+            else
+            {
+                comando.Parameters.AddWithValue("@telefono", DBNull.Value);
+            }
+
+            if (!string.IsNullOrEmpty(persona.Direccion))
+            {
+                comando.Parameters.AddWithValue("@direccion", persona.Direccion);
+            }
+            else
+            {
+                comando.Parameters.AddWithValue("@direccion", DBNull.Value);
+            }
+            if (!string.IsNullOrEmpty(persona.Foto))
+            {
+                comando.Parameters.AddWithValue("@foto", persona.Foto);
+            }
+            else
+            {
+                comando.Parameters.AddWithValue("@foto", DBNull.Value);
+            }
+
             comando.Parameters.AddWithValue("@idDepartamento", persona.IdDepartamento);
             comando.CommandText = sentenciaSql;
             return comando;
@@ -105,7 +180,7 @@ namespace CRUD_Personas_DAL.Gestora
         public void EditarPersona(clsPersona persona)
         {
             SqlConnection sqlConnection = connector.getConnection();
-            SqlCommand comando = generarComandoPersona(persona, UpdatePersonaCompleta);
+            SqlCommand comando = generarComandoPersona(persona, "UPDATE Personas SET nombrePersona = @Nombre, apellidosPersona = @Apellido, fechaNacimiento = @fechaNacimiento, telefono = @telefono, direccion = @direccion, foto = @foto, IDDepartamento = @idDepartamento WHERE IDPersona=@id");
             comando.Connection = sqlConnection;
             comando.ExecuteNonQuery();
             connector.closeConnection(ref sqlConnection);

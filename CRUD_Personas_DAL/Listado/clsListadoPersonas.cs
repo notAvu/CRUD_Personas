@@ -13,7 +13,7 @@ namespace CRUD_Personas_DAL.Listado
         List<clsPersona> listadoCompleto;
         List<clsPersona> listadoFiltrado;
         //NO HACE FALTA COMO PROPIEDAD
-        clsMyConnection connector= new clsMyConnection();
+        clsMyConnection connector = new clsMyConnection();
         #endregion
         #region propiedades publicas
         public List<clsPersona> ListadoCompleto { get => listadoCompleto; set => listadoCompleto = value; }
@@ -49,7 +49,8 @@ namespace CRUD_Personas_DAL.Listado
         /// </summary>
         /// <param name="listadoElegido"></param>
         /// <param name="consultaSql"></param>
-        private void LlenarListaElegida(List<clsPersona> listadoElegido, string consultaSql) {
+        private void LlenarListaElegida(List<clsPersona> listadoElegido, string consultaSql)
+        {
             SqlConnection sqlConnection = connector.getConnection();
             SqlCommand comando = new SqlCommand();
             comando.CommandText = consultaSql;
@@ -73,12 +74,51 @@ namespace CRUD_Personas_DAL.Listado
         private static clsPersona leerPersona(SqlDataReader reader)
         {
             int id = (int)reader["IDPersona"];
-            string nombre = (string)reader["nombrePersona"];
-            string apellido = (string)reader["apellidosPersona"];
+            string nombre;
+            if (reader["nombrePersona"] != DBNull.Value)
+            {
+                nombre = (string)reader["nombrePersona"]; ;
+            }
+            else 
+            {
+                nombre = "";
+            }
+            string apellido ;
+            if (reader["apellidosPersona"] != DBNull.Value)
+            {
+                apellido = (string)reader["apellidosPersona"];
+            }
+            else 
+            {
+                apellido = "";
+            }
             DateTime dateTime = (DateTime)reader["fechaNacimiento"];
-            string telefono = (string)reader["telefono"];
-            string direccion = (string)reader["direccion"];
-            string fotoUrl = (string)reader["foto"];
+            string telefono;
+            if (reader["telefono"] != DBNull.Value)
+            {
+                telefono = (string)reader["telefono"];
+            }
+            else { 
+                telefono = "";
+            }
+            string direccion;
+            if (reader["direccion"] != DBNull.Value)
+            {
+                direccion = (string)reader["direccion"];
+            }
+            else 
+            {
+                direccion = "";
+            }
+            string fotoUrl ;
+            if (reader["direccion"] != DBNull.Value)
+            {
+                fotoUrl = (string)reader["foto"];
+            }
+            else 
+            {
+                fotoUrl = "";
+            }
             int idDepartamento = (int)reader["IDDepartamento"];
             return new clsPersona(id, nombre, apellido, dateTime, telefono, direccion, fotoUrl, idDepartamento);
         }

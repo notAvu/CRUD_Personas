@@ -14,7 +14,7 @@
     </Page.DataContext>
 
     <Grid>
-        <VisualStateManager.VisualStateGroups>
+        <!--<VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState x:Name="bigState">
                     <VisualState.StateTriggers>
@@ -34,7 +34,7 @@
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
+        </VisualStateManager.VisualStateGroups>-->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition/>
@@ -64,8 +64,11 @@
                 </ListView>
             </StackPanel>
         </ScrollViewer>
+        
+        <AppBarButton x:Name="alterBtn" Icon="Save" Label="Guardar Cambios" Grid.Column="1" Command="{Binding ComandoAlterar}" Visibility="Visible" IsEnabled="True"/>
+        <AppBarButton x:Name="agregarBtn" Icon="Add" Label="Agregar" Grid.Column="1" Command="{Binding ComandoAgregar}" Click="agregarBtn_Click" Visibility="Collapsed" IsEnabled="False"/>
 
-        <ScrollViewer Grid.Column="1" Grid.RowSpan="2">
+        <ScrollViewer Grid.Column="1" Grid.Row="1" Grid.RowSpan="2">
             <RelativePanel>
                 <TextBox x:Name="NombreTbx" Header="Nombre" MinWidth="200" PlaceholderText="Nombre" Margin="20" Text="{Binding PersonaSeleccionada.Nombre, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 <TextBox x:Name="ApellidoTbx" Header="Apellido" MinWidth="200" PlaceholderText="Apellido" RelativePanel.Below="NombreTbx"  Margin="20" Text="{Binding PersonaSeleccionada.Apellido, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
@@ -79,11 +82,9 @@
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
-                <Image x:Name="fotoImg" Source="{Binding PersonaSeleccionada.Foto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" RelativePanel.Below="" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" MaxWidth="200" Margin="60" MinWidth="60" MinHeight="60"/>
+                <Image x:Name="fotoImg" Source="{Binding PersonaSeleccionada.Foto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" MaxWidth="200" Margin="60" MinWidth="60" MinHeight="60"/>
                 <TextBox x:Name="ImgUrlTbx" RelativePanel.AlignVerticalCenterWith="departamentosCbx" RelativePanel.AlignRightWithPanel="True" MinWidth="100" MaxWidth="200" Text="{Binding PersonaSeleccionada.Foto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="60"/>
                 <DatePicker x:Name="FechaNacimientoDp" Header="Fecha de nacimiento" RelativePanel.Below="departamentosCbx" DayFormat="{}{day.integer}"  MonthFormat="{}{month.full}" YearFormat="{}{year.full}"  Margin="20" SelectedDate="{Binding PersonaSeleccionada.FechaNacimiento, Mode=TwoWay}"/>
-                <Button x:Name="alterBtn" Content="Confirmar" RelativePanel.Below="FechaNacimientoDp" RelativePanel.AlignRightWith="FechaNacimientoDp" Command="{Binding ComandoAlterar}" Visibility="Visible" IsEnabled="True"/>
-                <Button x:Name="agregarBtn" Content="Agregar" RelativePanel.Below="FechaNacimientoDp" RelativePanel.AlignRightWith="FechaNacimientoDp" Command="{Binding ComandoAgregar}" Click="agregarBtn_Click" Visibility="Collapsed" IsEnabled="False"/>
                 <TextBlock x:Name="errorMsg" Text="*Rellene los campos en rojo" RelativePanel.Below="FechaNacimientoDp" Margin="20" Foreground="Red" Visibility="Collapsed"/>
             </RelativePanel>
         </ScrollViewer>

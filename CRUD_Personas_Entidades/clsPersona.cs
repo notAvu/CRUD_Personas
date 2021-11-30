@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace CRUD_Personas_Entidades
@@ -12,6 +13,7 @@ namespace CRUD_Personas_Entidades
         private string apellido;
         private int idDepartamento;
         private string direccion;
+        //[MaxLength(9)]
         private string telefono;
         private DateTimeOffset fechaNacimiento;
         private string foto;

@@ -29,7 +29,6 @@ namespace CRUD_Personas_UWP.Views
         {
             this.InitializeComponent();
             viewModel = (PersonasVM)DataContext;
-            //viewModel.PersonaSeleccionada = viewModel.ListadoPersonas[0];
         }
         /// <summary>
         /// Metodo asociado al click de un elemento de la lista de personas en la vista

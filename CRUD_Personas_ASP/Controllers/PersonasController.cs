@@ -22,12 +22,13 @@ namespace CRUD_Personas_ASP.Controllers
             try
             {
                 listadoBase = gestoraPersonas.ListadoCompleto();
-                List<clsDepartamento> listadoDptos=new DepartamentosBL().ListadoCompleto();
+                DepartamentosBL gestoraDpto = new DepartamentosBL();
+                List<clsDepartamento> listadoDptos=gestoraDpto.ListadoCompleto();
                 List<clsPersonaConNombreDepartamento> personasDepartamentos = new();
                 foreach (clsPersona personaAux in listadoBase)
                 {
                     personasDepartamentos.Add(new clsPersonaConNombreDepartamento(personaAux.Id, personaAux.Nombre, personaAux.Apellido, personaAux.FechaNacimiento,
-                        personaAux.Telefono, personaAux.Direccion, personaAux.Foto, personaAux.IdDepartamento, listadoDptos[personaAux.IdDepartamento].Nombre));
+                        personaAux.Telefono, personaAux.Direccion, personaAux.Foto, personaAux.IdDepartamento /*,listadoDptos[personaAux.IdDepartamento].Nombre*/));
                 }
                 result= View("ListadoPersonas", personasDepartamentos);
             }
@@ -60,26 +61,45 @@ namespace CRUD_Personas_ASP.Controllers
         }
 
         // POST: PersonasController/Create
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create(IFormCollection collection)
+        //{
+        //    ActionResult actionResult;
+        //        try
+        //        {
+        //            clsPersona p = new clsPersona(collection["Nombre"], collection["Apellido"], DateTimeOffset.Parse(collection["FechaNacimiento"]), collection["Telefono"], collection["Direccion"],
+        //                collection["Foto"], int.Parse(collection["IdDepartamento"]));
+        //            gestoraPersonas = new PersonasBL();
+        //            gestoraPersonas.AgregarPersona(p);
+        //            actionResult = RedirectToAction(nameof(Index));
+        //        }
+        //        catch
+        //        {
+        //            actionResult = View("CreatePersona");
+        //        }
+        //    return actionResult;
+        //}
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(clsPersona collection)
         {
             ActionResult actionResult;
             try
             {
-                clsPersona p = new clsPersona(collection["Nombre"], collection["Apellido"], DateTimeOffset.Parse(collection["FechaNacimiento"]), collection["Telefono"], collection["Direccion"],
-                    collection["Foto"], int.Parse(collection["IdDepartamento"]));
+                clsPersona p = collection;
                 gestoraPersonas = new PersonasBL();
                 gestoraPersonas.AgregarPersona(p);
                 actionResult = RedirectToAction(nameof(Index));
             }
             catch
             {
-                actionResult=View("CreatePersona");
+                actionResult = View("CreatePersona");
             }
+
             return actionResult;
         }
-
         // GET: PersonasController/Edit/5
         public ActionResult Edit(int id)
         {
@@ -94,14 +114,13 @@ namespace CRUD_Personas_ASP.Controllers
         // POST: PersonasController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, clsPersona collection)
         {
             ActionResult result;
             gestoraPersonas = new PersonasBL();
             try
             {
-                clsPersona personaEditada = new clsPersona(int.Parse(collection["Id"]),collection["Nombre"], collection["Apellido"], DateTimeOffset.Parse(collection["FechaNacimiento"]), 
-                    collection["Telefono"], collection["Direccion"], collection["Foto"], int.Parse(collection["IdDepartamento"]));
+                clsPersona personaEditada = collection;
                 gestoraPersonas.EditarPersona(personaEditada);
                 result= RedirectToAction(nameof(Index));
             }
@@ -126,13 +145,13 @@ namespace CRUD_Personas_ASP.Controllers
         // POST: PersonasController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, clsPersona collection)
         {
             ActionResult result;
             gestoraPersonas = new PersonasBL();
             try
             {
-                clsPersona personaEditada = gestoraPersonas.LeerPpersonaPorId(id);
+                clsPersona personaEditada = collection;
                 gestoraPersonas.EliminarPersona(personaEditada);
                 result= RedirectToAction(nameof(Index));
             }
