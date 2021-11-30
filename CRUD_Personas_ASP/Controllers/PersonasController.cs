@@ -16,11 +16,11 @@ namespace CRUD_Personas_ASP.Controllers
         // GET: PersonasController
         public ActionResult Index()
         {
-            gestoraPersonas = /*new PersonasBL();*/ null;
+            gestoraPersonas = new PersonasBL(); 
             try
             {
                 List<clsPersona> listadoBase = gestoraPersonas.ListadoCompleto();
-                List<clsPersonaConNombreDepartamento> personasDepartamentos = new(); 
+                List<clsPersonaConNombreDepartamento> personasDepartamentos = new();
                 foreach (clsPersona personaAux in listadoBase)
                 {
                     personasDepartamentos.Add(new clsPersonaConNombreDepartamento(personaAux.Id, personaAux.Nombre, personaAux.Apellido, personaAux.FechaNacimiento, personaAux.Telefono, personaAux.Direccion, personaAux.Foto, personaAux.IdDepartamento));
