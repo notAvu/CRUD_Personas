@@ -39,9 +39,7 @@
                 <NavigationViewItem x:Name="PersonasNvi" Icon="AddFriend" Content="Personas" Tapped="PersonasNvi_Tapped"/>
                 <NavigationViewItem x:Name="DepartamentosNvi" Icon="Bookmarks" Content="Departamentos" Tapped="DepartamentosNvi_Tapped"/>
             </NavigationView.MenuItems>
-            <ScrollViewer>
-                <Frame x:Name="contentFme" />
-            </ScrollViewer>
+            <Frame x:Name="contentFme"  />
         </NavigationView>
     </Grid>
 </Page>
