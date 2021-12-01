@@ -49,8 +49,8 @@ namespace CRUD_Personas_ASP.Controllers
             List<clsDepartamento> listadoDptos = new DepartamentosBL().ListadoCompleto();
             clsPersona personaSeleccionada = gestoraPersonasBL.LeerPpersonaPorId(id);
             clsPersonaConNombreDepartamento personaConDptos = new clsPersonaConNombreDepartamento(personaSeleccionada.Id, personaSeleccionada.Nombre, personaSeleccionada.Apellido, 
-                personaSeleccionada.FechaNacimiento, personaSeleccionada.Telefono, personaSeleccionada.Direccion, personaSeleccionada.Foto, personaSeleccionada.IdDepartamento, 
-                listadoDptos[personaSeleccionada.IdDepartamento].Nombre);
+                personaSeleccionada.FechaNacimiento, personaSeleccionada.Telefono, personaSeleccionada.Direccion, personaSeleccionada.Foto, personaSeleccionada.IdDepartamento
+                /*,listadoDptos[personaSeleccionada.IdDepartamento].Nombre*/);
 
             return View("DetallesPersona",personaConDptos);
         }
@@ -116,19 +116,20 @@ namespace CRUD_Personas_ASP.Controllers
         // POST: PersonasController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, clsPersona persona)
+        public ActionResult Edit(int id, clsPersonaConListadoDepartamentos persona)
         {
             ActionResult result;
             gestoraPersonasBL = new clsGestoraPersonasBL();
             try
             {
-                clsPersona personaEditada = persona;
-                gestoraPersonasBL.EditarPersona(personaEditada);
-                result= RedirectToAction(nameof(Index));
+                gestoraPersonasBL.EditarPersona(persona);
+                ViewBag.Error = "Error";
+                //result = RedirectToAction(nameof(Index));
+                result = View("EditPersona", persona);
             }
             catch
             {
-                result= View("EditPersona");
+                result= View(persona);
             }
             return result;
         }
