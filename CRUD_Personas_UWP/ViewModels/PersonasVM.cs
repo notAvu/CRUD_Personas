@@ -17,7 +17,8 @@ namespace CRUD_Personas_UWP.ViewModels
         #region propiedades privadas
         List<clsPersona> listadoPersonas;
         clsPersona personaSeleccionada;
-        PersonasBL gestoraPersonas = new PersonasBL();
+        clsGestoraPersonasBL gestoraBL;
+        clsListadoPersonasBL listadoBL;
         DepartamentosBL gestoraDepartamentos = new DepartamentosBL();
         List<clsDepartamento> listadoDepartamentos;
         DelegateCommand comandoAgregar;
@@ -29,7 +30,7 @@ namespace CRUD_Personas_UWP.ViewModels
         {
             try
             {
-                listadoPersonas = gestoraPersonas.ListadoCompleto();
+                listadoPersonas = listadoBL.ListadoCompleto();
                 this.listadoDepartamentos = new clsListadoDepartamentos().ListadoCompleto;
                 personaSeleccionada = listadoPersonas[0];
             }
@@ -75,7 +76,7 @@ namespace CRUD_Personas_UWP.ViewModels
         {
             try
             {
-                gestoraPersonas.AgregarPersona(personaSeleccionada);
+                gestoraBL.AgregarPersona(personaSeleccionada);
                 ListadoPersonas = new clsListadoPersonas().ListadoCompleto;
                 PersonaSeleccionada = ListadoPersonas[0];
                 NotifyPropertyChanged("ListadoPersonas");
@@ -92,7 +93,7 @@ namespace CRUD_Personas_UWP.ViewModels
         {
             try
             {
-                gestoraPersonas.EditarPersona(personaSeleccionada);
+                gestoraBL.EditarPersona(personaSeleccionada);
                 ListadoPersonas = new clsListadoPersonas().ListadoCompleto;
                 PersonaSeleccionada = ListadoPersonas[0];
                 NotifyPropertyChanged("ListadoPersonas");
@@ -116,7 +117,7 @@ namespace CRUD_Personas_UWP.ViewModels
         {
             try
             {
-                gestoraPersonas.EliminarPersona(personaSeleccionada);
+                gestoraBL.EliminarPersona(personaSeleccionada);
                 ListadoPersonas = new clsListadoPersonas().ListadoCompleto;
                 PersonaSeleccionada = ListadoPersonas[0];
                 NotifyPropertyChanged("ListadoPersonas");
