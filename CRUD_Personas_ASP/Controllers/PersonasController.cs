@@ -16,12 +16,13 @@ namespace CRUD_Personas_ASP.Controllers
         clsGestoraPersonasBL gestoraPersonasBL;
         List<clsPersona> listadoBase;
         // GET: PersonasController
-        public ActionResult Index()
+        public ActionResult Index(string funciono)
         {
             listadoPersonasBL = new clsListadoPersonasBL();
             ActionResult result;
             try
             {
+                ViewData["PersonaCreadaBorrada"] = funciono;
                 listadoBase = listadoPersonasBL.ListadoCompleto();
                 DepartamentosBL gestoraDpto = new DepartamentosBL();
                 List<clsDepartamento> listadoDptos=gestoraDpto.ListadoCompleto();
@@ -91,9 +92,10 @@ namespace CRUD_Personas_ASP.Controllers
             try
             {
                 clsPersona p = persona;
+                string re;
                 gestoraPersonasBL = new clsGestoraPersonasBL();
                 gestoraPersonasBL.AgregarPersona(p);
-                actionResult = RedirectToAction(nameof(Index));
+                actionResult = RedirectToAction(nameof(Index), new { funciono = "Los cambios han sido realizados correctamente" });
             }
             catch
             {
@@ -123,12 +125,15 @@ namespace CRUD_Personas_ASP.Controllers
             try
             {
                 gestoraPersonasBL.EditarPersona(persona);
-                ViewBag.Error = "Error";
                 //result = RedirectToAction(nameof(Index));
+                ViewBag.Error = "";
+                ViewBag.Exito = "Se han actualizado los datos correctamente";
                 result = View("EditPersona", persona);
             }
             catch
             {
+                ViewBag.Exito = "";
+                ViewBag.Error = "Ha ocurrido un error, por favor intentelo de nuevo mas tarde";
                 result= View(persona);
             }
             return result;
@@ -156,7 +161,7 @@ namespace CRUD_Personas_ASP.Controllers
             {
                 clsPersona personaEditada = persona;
                 gestoraPersonasBL.EliminarPersona(personaEditada);
-                result= RedirectToAction(nameof(Index));
+                result= RedirectToAction(nameof(Index), new { funciono = "Los cambios han sido realizados correctamente" });
             }
             catch
             {

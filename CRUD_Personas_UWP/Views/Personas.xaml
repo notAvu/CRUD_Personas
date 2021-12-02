@@ -31,8 +31,8 @@
                 <ListView x:Name="listadoPersonas" ItemsSource="{Binding ListadoPersonas}" SelectedItem="{Binding PersonaSeleccionada, Mode=TwoWay}" IsItemClickEnabled="True" ItemClick="ListView_ItemClick">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <!--<UserControl>-->
-                                <!--<VisualStateManager.VisualStateGroups>
+                            <!--<UserControl>
+                                <VisualStateManager.VisualStateGroups>
                                     <VisualStateGroup>
                                         <VisualState x:Name="bigState">
                                             <VisualState.StateTriggers>
@@ -51,7 +51,6 @@
                                         </VisualState>
                                     </VisualStateGroup>
                                 </VisualStateManager.VisualStateGroups>-->
-                            
                             <StackPanel x:Name="listItemPanel" Orientation="Horizontal" Margin="20,10">
                                 <Image x:Name="listItemFoto" MinHeight="40" MaxHeight="70" MinWidth="40" MaxWidth="70" Source="{Binding Foto}"/>
                                 <TextBlock VerticalAlignment="Center" Margin="10" FontSize="15">
@@ -71,25 +70,25 @@
 
         <ScrollViewer Grid.Column="1" Grid.Row="1" Grid.RowSpan="2">
             <RelativePanel>
-                <VisualStateManager.VisualStateGroups>
+                <!--<VisualStateManager.VisualStateGroups>
                     <VisualStateGroup>
                         <VisualState x:Name="bigState">
                             <VisualState.StateTriggers>
-                                <AdaptiveTrigger MinWindowWidth="1000"/>
+                                <AdaptiveTrigger MinWindowWidth="700"/>
                             </VisualState.StateTriggers>
                             <VisualState.Setters>
-                                <Setter />
-                                <Setter />
+                                <Setter Target="fotoImg.(RelativePanel.AlignRightWithPanel)" Value="True"/>
+                                <Setter Target="fotoImg.(RelativePanel.AlignTopWithPanel)" Value="True"/>
                             </VisualState.Setters>
                         </VisualState>
                         <VisualState x:Name="chikito">
                             <VisualState.Setters>
-                                <Setter />
-                                <Setter />
+                                <Setter Target="fotoImg.(RelativePanel.AlignRightWithPanel)" Value="False"/>
+                                <Setter Target="fotoImg.(RelativePanel.AlignTopWithPanel)" Value="False"/>
                             </VisualState.Setters>
                         </VisualState>
                     </VisualStateGroup>
-                </VisualStateManager.VisualStateGroups>
+                </VisualStateManager.VisualStateGroups>-->
                 <TextBox x:Name="NombreTbx" Header="Nombre" MinWidth="200" PlaceholderText="Nombre" Margin="20" Text="{Binding PersonaSeleccionada.Nombre, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 <TextBox x:Name="ApellidoTbx" Header="Apellido" MinWidth="200" PlaceholderText="Apellido" RelativePanel.Below="NombreTbx"  Margin="20" Text="{Binding PersonaSeleccionada.Apellido, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 <TextBox x:Name="TlfnTbx" Header="Numero de telefono" MinWidth="200" PlaceholderText="Teléfono" RelativePanel.Below="ApellidoTbx"  Margin="20" Text="{Binding PersonaSeleccionada.Telefono, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
