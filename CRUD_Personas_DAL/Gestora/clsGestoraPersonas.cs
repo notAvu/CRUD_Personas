@@ -35,11 +35,13 @@ namespace CRUD_Personas_DAL.Gestora
                 }
             }
             reader.Close();
+            comando.CommandText = "DBCC CHECKIDENT ('[Personas]', RESEED, 0);";
+            comando.ExecuteNonQuery();
             connector.closeConnection(ref sqlConnection);
             return persona;
         }
         /// <summary>
-        /// Metodo auxiliar para leer un registro de entidad persona en la base de datos
+        /// Metodo auxiliar para leer un registro de entidad persona en la base de datos cubriendo los casos en los que los datos sean null
         /// </summary>
         /// <param name="reader"></param>
         /// <returns></returns>
@@ -195,7 +197,7 @@ namespace CRUD_Personas_DAL.Gestora
             SqlConnection sqlConnection = connector.getConnection();
             SqlCommand comando = new SqlCommand();
             comando.Parameters.AddWithValue("@id", id);
-            comando.CommandText = "DELETE FROM Personas WHERE IDPersona=@id";
+            comando.CommandText = " DELETE FROM Personas WHERE IDPersona=@id";
             comando.Connection = sqlConnection;
             comando.ExecuteNonQuery();
             connector.closeConnection(ref sqlConnection);

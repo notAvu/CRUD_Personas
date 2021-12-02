@@ -58,6 +58,7 @@ namespace CRUD_Personas_Entidades
         public int Id { get => id; set => id = value; }
         [Display (Name ="Fecha de Nacimiento")]
         public DateTimeOffset FechaNacimiento { get => fechaNacimiento; set => fechaNacimiento = value; }
+        [RegularExpression("(6|7)[ -]*([0-9][ -]*){8}", ErrorMessage = "Numero de telefono no valido")]
         public string Telefono { get => telefono; set => telefono = value; }
         public string Direccion { get => direccion; set => direccion = value; }
         public int IdDepartamento { get => idDepartamento; set => idDepartamento = value; }
