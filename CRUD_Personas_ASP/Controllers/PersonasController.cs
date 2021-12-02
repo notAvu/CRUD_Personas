@@ -17,7 +17,7 @@ namespace CRUD_Personas_ASP.Controllers
         // GET: PersonasController
         public ActionResult Index(string funciono)
         {
-            listadoPersonasBL = new clsListadoPersonasBL();
+            clsListadoPersonasBL listadoPersonasBL = new clsListadoPersonasBL();
             ActionResult result;
             List<clsPersona> listadoBase;
             List<clsDepartamento> listadoDptos;
@@ -98,7 +98,7 @@ namespace CRUD_Personas_ASP.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(clsPersona persona)
+        public ActionResult Create(clsPersonaConListadoDepartamentos persona)
         {
             ActionResult actionResult;
             try
@@ -125,7 +125,7 @@ namespace CRUD_Personas_ASP.Controllers
         // GET: PersonasController/Edit/5
         public ActionResult Edit(int id)
         {
-            gestoraPersonasBL = new clsGestoraPersonasBL();
+            clsGestoraPersonasBL gestoraPersonasBL = new clsGestoraPersonasBL();
             clsPersona personaSeleccionada = gestoraPersonasBL.LeerPpersonaPorId(id);
             clsPersonaConListadoDepartamentos personaConDptos = new clsPersonaConListadoDepartamentos(personaSeleccionada.Id, personaSeleccionada.Nombre, personaSeleccionada.Apellido,
                 personaSeleccionada.FechaNacimiento, personaSeleccionada.Telefono, personaSeleccionada.Direccion, personaSeleccionada.Foto, personaSeleccionada.IdDepartamento);
@@ -139,7 +139,7 @@ namespace CRUD_Personas_ASP.Controllers
         public ActionResult Edit(int id, clsPersonaConListadoDepartamentos persona)
         {
             ActionResult result;
-            gestoraPersonasBL = new clsGestoraPersonasBL();
+            clsGestoraPersonasBL gestoraPersonasBL = new clsGestoraPersonasBL();
             try
             {
                 if (ModelState.IsValid)
@@ -167,11 +167,11 @@ namespace CRUD_Personas_ASP.Controllers
         // GET: PersonasController/Delete/5
         public ActionResult Delete(int id)
         {
-            gestoraPersonasBL = new clsGestoraPersonasBL();
+            clsGestoraPersonasBL gestoraPersonasBL = new clsGestoraPersonasBL();
             clsPersona personaSeleccionada = gestoraPersonasBL.LeerPpersonaPorId(id);
             clsPersonaConNombreDepartamento personaConDptos = new clsPersonaConNombreDepartamento(personaSeleccionada.Id, personaSeleccionada.Nombre, personaSeleccionada.Apellido,
                 personaSeleccionada.FechaNacimiento, personaSeleccionada.Telefono, personaSeleccionada.Direccion, personaSeleccionada.Foto, personaSeleccionada.IdDepartamento);
-
+            
             return View("Delete", personaConDptos);
         }
 
@@ -181,7 +181,7 @@ namespace CRUD_Personas_ASP.Controllers
         public ActionResult Delete(int id, clsPersona persona)
         {
             ActionResult result;
-            gestoraPersonasBL = new clsGestoraPersonasBL();
+            clsGestoraPersonasBL gestoraPersonasBL = new clsGestoraPersonasBL();
             try
             {
                 clsPersona personaEditada = persona;
@@ -190,6 +190,7 @@ namespace CRUD_Personas_ASP.Controllers
             }
             catch
             {
+                ViewBag.Error = "ha ocurrido un error, por favor intentelo de nuevo";
                 result = View();
             }
             return result;
