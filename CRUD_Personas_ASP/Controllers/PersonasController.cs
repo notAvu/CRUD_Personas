@@ -37,7 +37,7 @@ namespace CRUD_Personas_ASP.Controllers
             ActionResult result;
             try
             {
-                result = View("Delete", PersonaConDptoPorId(id));
+                result = View("DetallesPersona", PersonaConDptoPorId(id));
             }
             catch
             {
@@ -112,7 +112,7 @@ namespace CRUD_Personas_ASP.Controllers
 
                 result = View("EditPersona", personaConDptos);
             }
-            catch
+            catch(Exception e)
             {
                 result = View("ErrorView");
             }

@@ -197,7 +197,7 @@ namespace CRUD_Personas_DAL.Gestora
             SqlConnection sqlConnection = connector.getConnection();
             SqlCommand comando = new SqlCommand();
             comando.Parameters.AddWithValue("@id", id);
-            comando.CommandText = " DELETE FROM Personas WHERE IDPersona=@id";
+            comando.CommandText = "DELETE FROM Personas WHERE IDPersona=@id";
             comando.Connection = sqlConnection;
             comando.ExecuteNonQuery();
             connector.closeConnection(ref sqlConnection);
