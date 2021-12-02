@@ -87,7 +87,7 @@ namespace CRUD_Personas_ASP.Controllers
                     gestoraPersonasBL.AgregarPersona(persona);
                     actionResult = RedirectToAction(nameof(Index), new { funciono = "Los cambios han sido realizados correctamente" });
                 }
-                catch(Exception e)
+                catch
                 {
                     actionResult = View("ErrorView");
                 }
