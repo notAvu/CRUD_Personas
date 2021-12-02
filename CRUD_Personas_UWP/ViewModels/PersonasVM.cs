@@ -125,7 +125,7 @@ namespace CRUD_Personas_UWP.ViewModels
             }
             catch
             {
-                var messageDialog = new MessageDialog("No ha sido posible conectar a la BBDD por favor intententelo de nuevo mas tarde");//Revisar, que tipo de excepciones he de controlar
+                var messageDialog = new MessageDialog("No ha sido posible conectar a la BBDD por favor intententelo de nuevo mas tarde");
                 _ = messageDialog.ShowAsync();
             }
         }

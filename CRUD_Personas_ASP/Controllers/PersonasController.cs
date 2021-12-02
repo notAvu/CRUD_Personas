@@ -14,53 +14,65 @@ namespace CRUD_Personas_ASP.Controllers
     {
         clsListadoPersonasBL listadoPersonasBL;
         clsGestoraPersonasBL gestoraPersonasBL;
-        List<clsPersona> listadoBase;
         // GET: PersonasController
         public ActionResult Index(string funciono)
         {
             listadoPersonasBL = new clsListadoPersonasBL();
             ActionResult result;
+            List<clsPersona> listadoBase;
+            List<clsDepartamento> listadoDptos;
+            DepartamentosBL gestoraDpto;
+            List<clsPersonaConNombreDepartamento> personasDepartamentos;
             try
             {
                 ViewData["PersonaCreadaBorrada"] = funciono;
                 listadoBase = listadoPersonasBL.ListadoCompleto();
-                DepartamentosBL gestoraDpto = new DepartamentosBL();
-                List<clsDepartamento> listadoDptos=gestoraDpto.ListadoCompleto();
-                List<clsPersonaConNombreDepartamento> personasDepartamentos = new();
-                foreach (clsPersona personaAux in listadoBase)
-                {
-                    personasDepartamentos.Add(new clsPersonaConNombreDepartamento(personaAux.Id, personaAux.Nombre, personaAux.Apellido, personaAux.FechaNacimiento,
-                        personaAux.Telefono, personaAux.Direccion, personaAux.Foto, personaAux.IdDepartamento /*,listadoDptos[personaAux.IdDepartamento].Nombre*/));
-                }
-                result= View("ListadoPersonas", personasDepartamentos);
+                gestoraDpto = new DepartamentosBL();
+                listadoDptos = gestoraDpto.ListadoCompleto();
+                personasDepartamentos = (from oPersonaAux in listadoBase
+                                         join oDptoAux in listadoDptos on oPersonaAux.IdDepartamento equals oDptoAux.Id
+                                         select new clsPersonaConNombreDepartamento()
+                                         {
+                                             Id = oPersonaAux.Id,
+                                             Nombre = oPersonaAux.Nombre,
+                                             Apellido = oPersonaAux.Apellido,
+                                             FechaNacimiento = oPersonaAux.FechaNacimiento,
+                                             Telefono = oPersonaAux.Telefono,
+                                             Direccion = oPersonaAux.Direccion,
+                                             Foto = oPersonaAux.Foto,
+                                             IdDepartamento = oPersonaAux.IdDepartamento,
+                                             NombreDepartamento = oDptoAux.Nombre
+                                         }).ToList();
+
+                result = View("ListadoPersonas", personasDepartamentos);
             }
             catch
             {
-                result=View("ErrorView");
+                result = View("ErrorView");
             }
             return result;
         }
 
+        private void findBucle(int idDpto)
+        {
+
+        }
         // GET: PersonasController/Details/5
         public ActionResult Details(int id)
         {
             gestoraPersonasBL = new clsGestoraPersonasBL();
-            listadoPersonasBL = new clsListadoPersonasBL();
-            listadoBase = listadoPersonasBL.ListadoCompleto();
-            List<clsDepartamento> listadoDptos = new DepartamentosBL().ListadoCompleto();
             clsPersona personaSeleccionada = gestoraPersonasBL.LeerPpersonaPorId(id);
-            clsPersonaConNombreDepartamento personaConDptos = new clsPersonaConNombreDepartamento(personaSeleccionada.Id, personaSeleccionada.Nombre, personaSeleccionada.Apellido, 
-                personaSeleccionada.FechaNacimiento, personaSeleccionada.Telefono, personaSeleccionada.Direccion, personaSeleccionada.Foto, personaSeleccionada.IdDepartamento
-                /*,listadoDptos[personaSeleccionada.IdDepartamento].Nombre*/);
+            clsPersonaConNombreDepartamento personaConDptos = new clsPersonaConNombreDepartamento(personaSeleccionada.Id, personaSeleccionada.Nombre, personaSeleccionada.Apellido,
+                personaSeleccionada.FechaNacimiento, personaSeleccionada.Telefono, personaSeleccionada.Direccion, personaSeleccionada.Foto, personaSeleccionada.IdDepartamento);
 
-            return View("DetallesPersona",personaConDptos);
+            return View("DetallesPersona", personaConDptos);
         }
 
         // GET: PersonasController/Create
         public ActionResult Create()
         {
             clsPersonaConListadoDepartamentos nuevaPersonaConDptos = new clsPersonaConListadoDepartamentos();
-            return View("CreatePersona",nuevaPersonaConDptos);
+            return View("CreatePersona", nuevaPersonaConDptos);
         }
 
         // POST: PersonasController/Create
@@ -91,15 +103,21 @@ namespace CRUD_Personas_ASP.Controllers
             ActionResult actionResult;
             try
             {
+                //if (ModelState.IsValid)
+                //{
                 clsPersona p = persona;
-                string re;
                 gestoraPersonasBL = new clsGestoraPersonasBL();
                 gestoraPersonasBL.AgregarPersona(p);
                 actionResult = RedirectToAction(nameof(Index), new { funciono = "Los cambios han sido realizados correctamente" });
+                //}
+                //else
+                //{
+                //    actionResult = View("CreatePersona");
+                //}
             }
             catch
             {
-                actionResult = View("CreatePersona");
+                actionResult = View("ErrorView");
             }
 
             return actionResult;
@@ -109,7 +127,7 @@ namespace CRUD_Personas_ASP.Controllers
         {
             gestoraPersonasBL = new clsGestoraPersonasBL();
             clsPersona personaSeleccionada = gestoraPersonasBL.LeerPpersonaPorId(id);
-            clsPersonaConListadoDepartamentos personaConDptos = new clsPersonaConListadoDepartamentos(personaSeleccionada.Id, personaSeleccionada.Nombre, personaSeleccionada.Apellido, 
+            clsPersonaConListadoDepartamentos personaConDptos = new clsPersonaConListadoDepartamentos(personaSeleccionada.Id, personaSeleccionada.Nombre, personaSeleccionada.Apellido,
                 personaSeleccionada.FechaNacimiento, personaSeleccionada.Telefono, personaSeleccionada.Direccion, personaSeleccionada.Foto, personaSeleccionada.IdDepartamento);
 
             return View("EditPersona", personaConDptos);
@@ -124,17 +142,24 @@ namespace CRUD_Personas_ASP.Controllers
             gestoraPersonasBL = new clsGestoraPersonasBL();
             try
             {
-                gestoraPersonasBL.EditarPersona(persona);
-                //result = RedirectToAction(nameof(Index));
-                ViewBag.Error = "";
-                ViewBag.Exito = "Se han actualizado los datos correctamente";
-                result = View("EditPersona", persona);
+                if (ModelState.IsValid)
+                {
+                    gestoraPersonasBL.EditarPersona(persona);
+                    //result = RedirectToAction(nameof(Index));
+                    ViewBag.Error = "";
+                    ViewBag.Exito = "Se han actualizado los datos correctamente";
+                    result = View("EditPersona", persona);
+                }
+                else
+                {
+                    ViewBag.Exito = "";
+                    ViewBag.Error = "Ha ocurrido un error, por favor intentelo de nuevo mas tarde";
+                    result = View(persona);
+                }
             }
             catch
             {
-                ViewBag.Exito = "";
-                ViewBag.Error = "Ha ocurrido un error, por favor intentelo de nuevo mas tarde";
-                result= View(persona);
+                result = View("ErrorView");
             }
             return result;
         }
@@ -161,7 +186,7 @@ namespace CRUD_Personas_ASP.Controllers
             {
                 clsPersona personaEditada = persona;
                 gestoraPersonasBL.EliminarPersona(personaEditada);
-                result= RedirectToAction(nameof(Index), new { funciono = "Los cambios han sido realizados correctamente" });
+                result = RedirectToAction(nameof(Index), new { funciono = "Los cambios han sido realizados correctamente" });
             }
             catch
             {

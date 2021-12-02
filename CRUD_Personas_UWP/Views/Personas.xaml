@@ -22,6 +22,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+        
         <StackPanel Orientation="Horizontal">
             <AppBarButton Label="Agregar empleado" Icon="AddFriend" Click="AppBarButton_Click"/>
             <AppBarButton Label="Despedir" Icon="Delete" Command="{Binding ComandoBorrar}"/>
@@ -70,7 +71,7 @@
 
         <ScrollViewer Grid.Column="1" Grid.Row="1" Grid.RowSpan="2">
             <RelativePanel>
-                <!--<VisualStateManager.VisualStateGroups>
+                <VisualStateManager.VisualStateGroups>
                     <VisualStateGroup>
                         <VisualState x:Name="bigState">
                             <VisualState.StateTriggers>
@@ -79,16 +80,18 @@
                             <VisualState.Setters>
                                 <Setter Target="fotoImg.(RelativePanel.AlignRightWithPanel)" Value="True"/>
                                 <Setter Target="fotoImg.(RelativePanel.AlignTopWithPanel)" Value="True"/>
+                                <Setter Target="fotoImg.(RelativePanel.Below)" Value=""/>
                             </VisualState.Setters>
                         </VisualState>
                         <VisualState x:Name="chikito">
                             <VisualState.Setters>
                                 <Setter Target="fotoImg.(RelativePanel.AlignRightWithPanel)" Value="False"/>
                                 <Setter Target="fotoImg.(RelativePanel.AlignTopWithPanel)" Value="False"/>
+                                <Setter Target="fotoImg.(RelativePanel.Below)" Value="FechaNacimientoDp"/>
                             </VisualState.Setters>
                         </VisualState>
                     </VisualStateGroup>
-                </VisualStateManager.VisualStateGroups>-->
+                </VisualStateManager.VisualStateGroups>
                 <TextBox x:Name="NombreTbx" Header="Nombre" MinWidth="200" PlaceholderText="Nombre" Margin="20" Text="{Binding PersonaSeleccionada.Nombre, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 <TextBox x:Name="ApellidoTbx" Header="Apellido" MinWidth="200" PlaceholderText="Apellido" RelativePanel.Below="NombreTbx"  Margin="20" Text="{Binding PersonaSeleccionada.Apellido, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 <TextBox x:Name="TlfnTbx" Header="Numero de telefono" MinWidth="200" PlaceholderText="Teléfono" RelativePanel.Below="ApellidoTbx"  Margin="20" Text="{Binding PersonaSeleccionada.Telefono, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
@@ -107,6 +110,5 @@
                 <TextBlock x:Name="errorMsg" Text="*Rellene los campos en rojo" RelativePanel.Below="FechaNacimientoDp" Margin="20" Foreground="Red" Visibility="Collapsed"/>
             </RelativePanel>
         </ScrollViewer>
-
     </Grid>
 </Page>
