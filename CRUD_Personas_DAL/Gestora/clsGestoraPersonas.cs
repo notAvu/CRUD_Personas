@@ -165,7 +165,6 @@ namespace CRUD_Personas_DAL.Gestora
             {
                 comando.Parameters.AddWithValue("@foto", DBNull.Value);
             }
-
             comando.Parameters.AddWithValue("@idDepartamento", persona.IdDepartamento);
             comando.CommandText = sentenciaSql;
             return comando;

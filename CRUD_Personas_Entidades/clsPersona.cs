@@ -13,7 +13,6 @@ namespace CRUD_Personas_Entidades
         private string apellido;
         private int idDepartamento;
         private string direccion;
-        //[MaxLength(9)]
         private string telefono;
         private DateTimeOffset fechaNacimiento;
         private string foto;
@@ -52,9 +51,12 @@ namespace CRUD_Personas_Entidades
         }
         #endregion
         #region atributos publicos
+        [Required (ErrorMessage ="Este campo es obligatorio")]
         public string Nombre { get => nombre; set => nombre = value; }
+        [Required(ErrorMessage = "Este campo es obligatorio")]
         public string Apellido { get => apellido; set => apellido = value; }
         public int Id { get => id; set => id = value; }
+        [Display (Name ="Fecha de Nacimiento")]
         public DateTimeOffset FechaNacimiento { get => fechaNacimiento; set => fechaNacimiento = value; }
         public string Telefono { get => telefono; set => telefono = value; }
         public string Direccion { get => direccion; set => direccion = value; }

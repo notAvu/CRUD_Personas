@@ -22,6 +22,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+        
         <StackPanel Orientation="Horizontal">
             <AppBarButton Label="Agregar empleado" Icon="AddFriend" Click="AppBarButton_Click"/>
             <AppBarButton Label="Despedir" Icon="Delete" Command="{Binding ComandoBorrar}"/>
@@ -31,8 +32,8 @@
                 <ListView x:Name="listadoPersonas" ItemsSource="{Binding ListadoPersonas}" SelectedItem="{Binding PersonaSeleccionada, Mode=TwoWay}" IsItemClickEnabled="True" ItemClick="ListView_ItemClick">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <!--<UserControl>-->
-                                <!--<VisualStateManager.VisualStateGroups>
+                            <!--<UserControl>
+                                <VisualStateManager.VisualStateGroups>
                                     <VisualStateGroup>
                                         <VisualState x:Name="bigState">
                                             <VisualState.StateTriggers>
@@ -51,7 +52,6 @@
                                         </VisualState>
                                     </VisualStateGroup>
                                 </VisualStateManager.VisualStateGroups>-->
-                            
                             <StackPanel x:Name="listItemPanel" Orientation="Horizontal" Margin="20,10">
                                 <Image x:Name="listItemFoto" MinHeight="40" MaxHeight="70" MinWidth="40" MaxWidth="70" Source="{Binding Foto}"/>
                                 <TextBlock VerticalAlignment="Center" Margin="10" FontSize="15">
@@ -75,17 +75,19 @@
                     <VisualStateGroup>
                         <VisualState x:Name="bigState">
                             <VisualState.StateTriggers>
-                                <AdaptiveTrigger MinWindowWidth="1000"/>
+                                <AdaptiveTrigger MinWindowWidth="700"/>
                             </VisualState.StateTriggers>
                             <VisualState.Setters>
-                                <Setter />
-                                <Setter />
+                                <Setter Target="fotoImg.(RelativePanel.AlignRightWithPanel)" Value="True"/>
+                                <Setter Target="fotoImg.(RelativePanel.AlignTopWithPanel)" Value="True"/>
+                                <Setter Target="fotoImg.(RelativePanel.Below)" Value=""/>
                             </VisualState.Setters>
                         </VisualState>
                         <VisualState x:Name="chikito">
                             <VisualState.Setters>
-                                <Setter />
-                                <Setter />
+                                <Setter Target="fotoImg.(RelativePanel.AlignRightWithPanel)" Value="False"/>
+                                <Setter Target="fotoImg.(RelativePanel.AlignTopWithPanel)" Value="False"/>
+                                <Setter Target="fotoImg.(RelativePanel.Below)" Value="FechaNacimientoDp"/>
                             </VisualState.Setters>
                         </VisualState>
                     </VisualStateGroup>
@@ -108,6 +110,5 @@
                 <TextBlock x:Name="errorMsg" Text="*Rellene los campos en rojo" RelativePanel.Below="FechaNacimientoDp" Margin="20" Foreground="Red" Visibility="Collapsed"/>
             </RelativePanel>
         </ScrollViewer>
-
     </Grid>
 </Page>
