@@ -84,7 +84,7 @@ namespace CRUD_Personas_DAL.Gestora
                 direccion = "";
             }
             string fotoUrl;
-            if (reader["direccion"] != DBNull.Value)
+            if (reader["foto"] != DBNull.Value)
             {
                 fotoUrl = (string)reader["foto"];
             }

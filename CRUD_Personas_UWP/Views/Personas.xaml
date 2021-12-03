@@ -29,7 +29,7 @@
         </StackPanel>
         <ScrollViewer Grid.Row="1">
             <StackPanel>
-                <ListView x:Name="listadoPersonas" ItemsSource="{Binding ListadoPersonas}" SelectedItem="{Binding PersonaSeleccionada, Mode=TwoWay}" IsItemClickEnabled="True" ItemClick="ListView_ItemClick">
+                <ListView x:Name="listadoPersonas" ItemsSource="{Binding ListadoPersonas}" SelectedItem="{Binding PersonaSeleccionada, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsItemClickEnabled="True" ItemClick="ListView_ItemClick">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <!--<UserControl>
@@ -53,7 +53,7 @@
                                     </VisualStateGroup>
                                 </VisualStateManager.VisualStateGroups>-->
                             <StackPanel x:Name="listItemPanel" Orientation="Horizontal" Margin="20,10">
-                                <PersonPicture x:Name="listItemFoto" MinHeight="40" MaxHeight="70" MinWidth="40" MaxWidth="70" ProfilePicture="{Binding Foto}"/>
+                                <PersonPicture x:Name="listItemFoto" MinHeight="40" MaxHeight="50" MinWidth="40" MaxWidth="50" ProfilePicture="{Binding Foto}"/>
                                 <TextBlock VerticalAlignment="Center" Margin="10" FontSize="15">
                             <Run x:Name="listItemNombre" Text="{Binding Nombre}"/>
                             <Run x:Name="listItemApellido" Text="{Binding Apellido}"/>
