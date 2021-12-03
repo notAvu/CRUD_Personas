@@ -19,7 +19,6 @@ namespace CRUD_Personas_UWP.ViewModels
         clsPersona personaSeleccionada;
         clsGestoraPersonasBL gestoraBL;
         clsListadoPersonasBL listadoBL;
-        DepartamentosBL gestoraDepartamentos = new DepartamentosBL();
         List<clsDepartamento> listadoDepartamentos;
         DelegateCommand comandoAgregar;
         DelegateCommand comandoAlterar;
@@ -33,7 +32,7 @@ namespace CRUD_Personas_UWP.ViewModels
                 listadoBL = new clsListadoPersonasBL();
                 gestoraBL = new clsGestoraPersonasBL();
                 listadoPersonas = listadoBL.ListadoCompleto();
-                this.listadoDepartamentos = new clsListadoDepartamentos().ListadoCompleto;
+                this.listadoDepartamentos = new clsListadoDptosBL().ListadoCompleto();
                 personaSeleccionada = listadoPersonas[0];
             }
             catch
@@ -54,7 +53,6 @@ namespace CRUD_Personas_UWP.ViewModels
                 comandoAgregar.RaiseCanExecuteChanged();
                 comandoAlterar.RaiseCanExecuteChanged();
                 comandoBorrar.RaiseCanExecuteChanged();
-                //esto es culpa tuya fernando me peta si pongo risecanexecutechanged
                 NotifyPropertyChanged("PersonaSeleccionada");
 
             }

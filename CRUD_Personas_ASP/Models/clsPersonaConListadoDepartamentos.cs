@@ -17,22 +17,22 @@ namespace CRUD_Personas_ASP.Models
         #endregion
         #region constructores
         public clsPersonaConListadoDepartamentos():base() {
-            DepartamentosBL gestoraDepartamentos;
-            gestoraDepartamentos = new DepartamentosBL();
-            Departamentos = gestoraDepartamentos.ListadoCompleto();
+            clsListadoDptosBL listadoDptos;
+            listadoDptos = new clsListadoDptosBL();
+            Departamentos = listadoDptos.ListadoCompleto();
         }
 
         public clsPersonaConListadoDepartamentos(int idPersona, string nombre, string apellido, DateTimeOffset fecha, string telefono, string direccion, string foto, int idDepar) : base(idPersona, nombre, apellido, fecha, telefono, direccion, foto, idDepar)
         {
-            DepartamentosBL gestoraDepartamentos;
-            gestoraDepartamentos = new DepartamentosBL();
-            Departamentos = gestoraDepartamentos.ListadoCompleto();
+            clsListadoDptosBL listadoDptos;
+            listadoDptos = new clsListadoDptosBL();
+            Departamentos = listadoDptos.ListadoCompleto();
         }
         public clsPersonaConListadoDepartamentos(string nombre, string apellido, DateTimeOffset fecha, string telefono, string direccion, string foto, int idDepar) : base(nombre, apellido, fecha, telefono, direccion, foto, idDepar)
         {
-            DepartamentosBL gestoraDepartamentos;
-            gestoraDepartamentos = new DepartamentosBL();
-            Departamentos = gestoraDepartamentos.ListadoCompleto();
+            clsListadoDptosBL listadoDptos;
+            listadoDptos = new clsListadoDptosBL();
+            Departamentos = listadoDptos.ListadoCompleto();
         }
         #endregion
     }

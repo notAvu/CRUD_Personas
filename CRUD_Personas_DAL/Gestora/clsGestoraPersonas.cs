@@ -35,8 +35,6 @@ namespace CRUD_Personas_DAL.Gestora
                 }
             }
             reader.Close();
-            comando.CommandText = "DBCC CHECKIDENT ('[Personas]', RESEED, 0);";
-            comando.ExecuteNonQuery();
             connector.closeConnection(ref sqlConnection);
             return persona;
         }

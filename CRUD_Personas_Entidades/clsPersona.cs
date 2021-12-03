@@ -20,7 +20,6 @@ namespace CRUD_Personas_Entidades
         #region constructor
         public clsPersona()
         {
-            this.id = 0;
             this.nombre = "";
             this.apellido = "";
             this.fechaNacimiento = new DateTime(1920, 01, 01);
@@ -57,10 +56,11 @@ namespace CRUD_Personas_Entidades
         [Required(ErrorMessage = "Este campo es obligatorio")]
         public string Apellido { get => apellido; set => apellido = value; }
         public int Id { get => id; set => id = value; }
-        //[Display (Name ="Fecha de Nacimiento")]
-        //[DataType (DataType.Date)]
-        //[DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
+        [Display(Name = "Fecha de Nacimiento")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
         public DateTimeOffset FechaNacimiento { get => fechaNacimiento; set => fechaNacimiento = value; }
+        [RegularExpression("(6|7)[ -]*([0-9][ -]*){8}", ErrorMessage = "Numero de telefono no valido")]
         public string Telefono { get => telefono; set => telefono = value; }
         public string Direccion { get => direccion; set => direccion = value; }
         public int IdDepartamento { get => idDepartamento; set => idDepartamento = value; }
