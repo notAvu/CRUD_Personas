@@ -51,7 +51,12 @@ namespace CRUD_Personas_UWP.ViewModels
             set
             {
                 personaSeleccionada = value;
+                comandoAgregar.RaiseCanExecuteChanged();
+                comandoAlterar.RaiseCanExecuteChanged();
+                comandoBorrar.RaiseCanExecuteChanged();
+                //esto es culpa tuya fernando me peta si pongo risecanexecutechanged
                 NotifyPropertyChanged("PersonaSeleccionada");
+
             }
         }
         /// <summary>
@@ -72,7 +77,8 @@ namespace CRUD_Personas_UWP.ViewModels
         #region comandoAgregar
         private bool ComandoAgregar_CanExecute()
         {
-            return !string.IsNullOrEmpty(personaSeleccionada.Nombre) && !string.IsNullOrEmpty(personaSeleccionada.Apellido) && !string.IsNullOrEmpty(personaSeleccionada.Foto) && personaSeleccionada.FechaNacimiento < DateTime.Today; ;
+            return personaSeleccionada != null;
+                //!string.IsNullOrEmpty(personaSeleccionada.Nombre) && !string.IsNullOrEmpty(personaSeleccionada.Apellido) && !string.IsNullOrEmpty(personaSeleccionada.Foto) && personaSeleccionada.FechaNacimiento < DateTime.Today; ;
         }
         private void ComandoAgregar_Execute()
         {
@@ -102,7 +108,7 @@ namespace CRUD_Personas_UWP.ViewModels
             }
             catch
             {
-                var messageDialog = new MessageDialog("No ha sido posible conectar a la BBDD por favor intententelo de nuevo mas tarde");//Revisar, que tipo de excepciones he de controlar
+                var messageDialog = new MessageDialog("No ha sido posible conectar a la BBDD por favor intententelo de nuevo mas tarde");
                 _ = messageDialog.ShowAsync();
             }
             NotifyPropertyChanged("PersonaSeleccionada");
@@ -110,7 +116,8 @@ namespace CRUD_Personas_UWP.ViewModels
 
         public bool ComandoAlterar_CanExecute()
         {
-            return !string.IsNullOrEmpty(personaSeleccionada.Nombre) && !string.IsNullOrEmpty(personaSeleccionada.Apellido) && !string.IsNullOrEmpty(personaSeleccionada.Foto) &&  personaSeleccionada.FechaNacimiento < DateTime.Today;
+            return personaSeleccionada != null;
+            //return !string.IsNullOrEmpty(personaSeleccionada.Nombre) && !string.IsNullOrEmpty(personaSeleccionada.Apellido) && !string.IsNullOrEmpty(personaSeleccionada.Foto) &&  personaSeleccionada.FechaNacimiento < DateTime.Today;
         }
         #endregion
         #region comandoBorrar

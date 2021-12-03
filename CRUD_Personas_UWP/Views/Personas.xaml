@@ -71,7 +71,7 @@
 
         <ScrollViewer Grid.Column="1" Grid.Row="1" Grid.RowSpan="2">
             <RelativePanel>
-                <VisualStateManager.VisualStateGroups>
+                <!--<VisualStateManager.VisualStateGroups>
                     <VisualStateGroup>
                         <VisualState x:Name="bigState">
                             <VisualState.StateTriggers>
@@ -91,7 +91,7 @@
                             </VisualState.Setters>
                         </VisualState>
                     </VisualStateGroup>
-                </VisualStateManager.VisualStateGroups>
+                </VisualStateManager.VisualStateGroups>-->
                 <TextBox x:Name="NombreTbx" Header="Nombre" MinWidth="200" PlaceholderText="Nombre" Margin="20" Text="{Binding PersonaSeleccionada.Nombre, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 <TextBox x:Name="ApellidoTbx" Header="Apellido" MinWidth="200" PlaceholderText="Apellido" RelativePanel.Below="NombreTbx"  Margin="20" Text="{Binding PersonaSeleccionada.Apellido, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 <TextBox x:Name="TlfnTbx" Header="Numero de telefono" MinWidth="200" PlaceholderText="Teléfono" RelativePanel.Below="ApellidoTbx"  Margin="20" Text="{Binding PersonaSeleccionada.Telefono, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
