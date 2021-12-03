@@ -53,7 +53,7 @@
                                     </VisualStateGroup>
                                 </VisualStateManager.VisualStateGroups>-->
                             <StackPanel x:Name="listItemPanel" Orientation="Horizontal" Margin="20,10">
-                                <Image x:Name="listItemFoto" MinHeight="40" MaxHeight="70" MinWidth="40" MaxWidth="70" Source="{Binding Foto}"/>
+                                <PersonPicture x:Name="listItemFoto" MinHeight="40" MaxHeight="70" MinWidth="40" MaxWidth="70" ProfilePicture="{Binding Foto}"/>
                                 <TextBlock VerticalAlignment="Center" Margin="10" FontSize="15">
                             <Run x:Name="listItemNombre" Text="{Binding Nombre}"/>
                             <Run x:Name="listItemApellido" Text="{Binding Apellido}"/>
@@ -104,6 +104,7 @@
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
+                <!--<PersonPicture x:Name="fotoImg" ProfilePicture="{Binding PersonaSeleccionada.Foto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" Margin="60" />-->
                 <Image x:Name="fotoImg" Source="{Binding PersonaSeleccionada.Foto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" MaxWidth="200" Margin="60" MinWidth="60" MinHeight="60"/>
                 <TextBox x:Name="ImgUrlTbx" RelativePanel.AlignVerticalCenterWith="departamentosCbx" RelativePanel.AlignRightWithPanel="True" MinWidth="100" MaxWidth="200" Text="{Binding PersonaSeleccionada.Foto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="60"/>
                 <DatePicker x:Name="FechaNacimientoDp" Header="Fecha de nacimiento" RelativePanel.Below="departamentosCbx" DayFormat="{}{day.integer}"  MonthFormat="{}{month.full}" YearFormat="{}{year.full}"  Margin="20" SelectedDate="{Binding PersonaSeleccionada.FechaNacimiento, Mode=TwoWay}"/>
