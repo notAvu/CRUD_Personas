@@ -111,7 +111,7 @@ namespace CRUD_Personas_DAL.Listado
                 direccion = "";
             }
             string fotoUrl ;
-            if (reader["direccion"] != DBNull.Value)
+            if (reader["foto"] != DBNull.Value)
             {
                 fotoUrl = (string)reader["foto"];
             }

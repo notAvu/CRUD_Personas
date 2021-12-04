@@ -19,7 +19,6 @@ namespace CRUD_Personas_UWP.ViewModels
         clsPersona personaSeleccionada;
         clsGestoraPersonasBL gestoraBL;
         clsListadoPersonasBL listadoBL;
-        DepartamentosBL gestoraDepartamentos = new DepartamentosBL();
         List<clsDepartamento> listadoDepartamentos;
         DelegateCommand comandoAgregar;
         DelegateCommand comandoAlterar;
@@ -33,7 +32,7 @@ namespace CRUD_Personas_UWP.ViewModels
                 listadoBL = new clsListadoPersonasBL();
                 gestoraBL = new clsGestoraPersonasBL();
                 listadoPersonas = listadoBL.ListadoCompleto();
-                this.listadoDepartamentos = new clsListadoDepartamentos().ListadoCompleto;
+                this.listadoDepartamentos = new clsListadoDptosBL().ListadoCompleto();
                 personaSeleccionada = listadoPersonas[0];
             }
             catch
@@ -51,7 +50,11 @@ namespace CRUD_Personas_UWP.ViewModels
             set
             {
                 personaSeleccionada = value;
+                //comandoAgregar.RaiseCanExecuteChanged();
+                //comandoAlterar.RaiseCanExecuteChanged();
+                //comandoBorrar.RaiseCanExecuteChanged();
                 NotifyPropertyChanged("PersonaSeleccionada");
+
             }
         }
         /// <summary>
@@ -72,7 +75,9 @@ namespace CRUD_Personas_UWP.ViewModels
         #region comandoAgregar
         private bool ComandoAgregar_CanExecute()
         {
-            return !string.IsNullOrEmpty(personaSeleccionada.Nombre) && !string.IsNullOrEmpty(personaSeleccionada.Apellido) && !string.IsNullOrEmpty(personaSeleccionada.Foto) && personaSeleccionada.FechaNacimiento < DateTime.Today; ;
+            return
+                //personaSeleccionada != null;
+                !string.IsNullOrEmpty(personaSeleccionada.Nombre) && !string.IsNullOrEmpty(personaSeleccionada.Apellido) && !string.IsNullOrEmpty(personaSeleccionada.Foto) && personaSeleccionada.FechaNacimiento < DateTime.Today; ;
         }
         private void ComandoAgregar_Execute()
         {
@@ -102,7 +107,7 @@ namespace CRUD_Personas_UWP.ViewModels
             }
             catch
             {
-                var messageDialog = new MessageDialog("No ha sido posible conectar a la BBDD por favor intententelo de nuevo mas tarde");//Revisar, que tipo de excepciones he de controlar
+                var messageDialog = new MessageDialog("No ha sido posible conectar a la BBDD por favor intententelo de nuevo mas tarde");
                 _ = messageDialog.ShowAsync();
             }
             NotifyPropertyChanged("PersonaSeleccionada");
@@ -110,7 +115,9 @@ namespace CRUD_Personas_UWP.ViewModels
 
         public bool ComandoAlterar_CanExecute()
         {
-            return !string.IsNullOrEmpty(personaSeleccionada.Nombre) && !string.IsNullOrEmpty(personaSeleccionada.Apellido) && !string.IsNullOrEmpty(personaSeleccionada.Foto) &&  personaSeleccionada.FechaNacimiento < DateTime.Today;
+            return 
+                //personaSeleccionada != null;
+            !string.IsNullOrEmpty(personaSeleccionada.Nombre) && !string.IsNullOrEmpty(personaSeleccionada.Apellido) && !string.IsNullOrEmpty(personaSeleccionada.Foto) &&  personaSeleccionada.FechaNacimiento < DateTime.Today;
         }
         #endregion
         #region comandoBorrar

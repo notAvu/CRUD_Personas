@@ -35,8 +35,6 @@ namespace CRUD_Personas_DAL.Gestora
                 }
             }
             reader.Close();
-            comando.CommandText = "DBCC CHECKIDENT ('[Personas]', RESEED, 0);";
-            comando.ExecuteNonQuery();
             connector.closeConnection(ref sqlConnection);
             return persona;
         }
@@ -86,7 +84,7 @@ namespace CRUD_Personas_DAL.Gestora
                 direccion = "";
             }
             string fotoUrl;
-            if (reader["direccion"] != DBNull.Value)
+            if (reader["foto"] != DBNull.Value)
             {
                 fotoUrl = (string)reader["foto"];
             }

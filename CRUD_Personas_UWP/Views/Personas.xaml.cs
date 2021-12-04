@@ -40,6 +40,9 @@ namespace CRUD_Personas_UWP.Views
             viewModel.PersonaSeleccionada = sender as clsPersona;
             agregarBtn.Visibility = Visibility.Collapsed;
             alterBtn.Visibility = Visibility.Visible;
+            alterBtn.IsEnabled = true;
+            agregarBtn.IsEnabled = false;
+
         }
         /// <summary>
         /// Evento asociado al boton de agregar persona

@@ -13,13 +13,13 @@ namespace CRUD_Personas_ASP.ViewModels
         clsListadoPersonasBL listadoPersonasBL;
         List<clsPersona> listadoBase;
         List<clsDepartamento> listadoDptos;
-        DepartamentosBL gestoraDpto;
+        clsListadoDptosBL dptosBL;
         public ListadoVM()
         {
             this.listadoPersonasBL = new clsListadoPersonasBL();
             this.listadoBase = listadoPersonasBL.ListadoCompleto();
-            this.gestoraDpto = new DepartamentosBL();
-            this.listadoDptos = gestoraDpto.ListadoCompleto();
+            this.dptosBL = new clsListadoDptosBL();
+            this.listadoDptos = dptosBL.ListadoCompleto();
         }
 
         public List<clsPersonaSimple> ListadoPersonasConNombreDepartamento() 

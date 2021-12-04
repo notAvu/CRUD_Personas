@@ -14,7 +14,8 @@ namespace CRUD_Personas_UWP.ViewModels
     public class DepartamentosVM : clsVMBase
     {
         #region propiedades privadas
-        DepartamentosBL gestoraDepartamentos;
+        clsGestoraDptosBL gestoraDptos;
+        clsListadoDptosBL dptosBL;
         List<clsDepartamento> listadoDepartamentos;
         clsDepartamento dptoSeleccionado;
         DelegateCommand comandoAgregarDpto;
@@ -26,8 +27,9 @@ namespace CRUD_Personas_UWP.ViewModels
         {
             try
             {
-                this.gestoraDepartamentos = new DepartamentosBL();
-                this.listadoDepartamentos = gestoraDepartamentos.ListadoCompleto();
+                dptosBL = new clsListadoDptosBL();
+                listadoDepartamentos = dptosBL.ListadoCompleto();
+                gestoraDptos = new clsGestoraDptosBL();
                 dptoSeleccionado = listadoDepartamentos[0];
             }
             catch
@@ -70,8 +72,8 @@ namespace CRUD_Personas_UWP.ViewModels
         {
             try
             {
-                gestoraDepartamentos.AgregarDepartamento(DptoSeleccionado);
-                ListadoDepartamentos = gestoraDepartamentos.ListadoCompleto();
+                gestoraDptos.AgregarDepartamento(DptoSeleccionado);
+                ListadoDepartamentos = dptosBL.ListadoCompleto();
                 DptoSeleccionado = ListadoDepartamentos[0];
                 NotifyPropertyChanged("ListadoDepartamentos");
             }
@@ -92,8 +94,8 @@ namespace CRUD_Personas_UWP.ViewModels
         {
             try
             {
-                gestoraDepartamentos.EliminarDepartamento(DptoSeleccionado);
-                ListadoDepartamentos = gestoraDepartamentos.ListadoCompleto();
+                gestoraDptos.EliminarDepartamento(DptoSeleccionado);
+                ListadoDepartamentos = dptosBL.ListadoCompleto();
                 DptoSeleccionado = ListadoDepartamentos[0];
                 NotifyPropertyChanged("ListadoDepartamentos");
             }
@@ -114,8 +116,8 @@ namespace CRUD_Personas_UWP.ViewModels
         {
             try
             {
-                gestoraDepartamentos.EditarDepartamento(DptoSeleccionado);
-                ListadoDepartamentos = gestoraDepartamentos.ListadoCompleto();
+                gestoraDptos.EditarDepartamento(DptoSeleccionado);
+                ListadoDepartamentos = dptosBL.ListadoCompleto();
                 DptoSeleccionado = ListadoDepartamentos[0];
                 NotifyPropertyChanged("ListadoDepartamentos");
             }
