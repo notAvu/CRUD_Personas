@@ -24,7 +24,7 @@ namespace CRUD_Personas_UWP.Views.UserControls
         public ListadoPersonas()
         {
             this.InitializeComponent();
-            this.DataContextChanged += (s,e) => Bindings.Update();
+            //this.DataContextChanged += (s,e) => Bindings.Update();
         }
     }
 }

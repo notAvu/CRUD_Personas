@@ -112,7 +112,7 @@ namespace CRUD_Personas_ASP.Controllers
 
                 result = View("EditPersona", personaConDptos);
             }
-            catch(Exception e)
+            catch/*(Exception e)*/
             {
                 result = View("ErrorView");
             }
