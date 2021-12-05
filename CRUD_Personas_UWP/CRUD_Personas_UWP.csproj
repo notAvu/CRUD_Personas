@@ -133,6 +133,9 @@
     <Compile Include="Views\Personas.xaml.cs">
       <DependentUpon>Personas.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\ListadoPersonas.xaml.cs">
+      <DependentUpon>ListadoPersonas.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -163,6 +166,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Personas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\ListadoPersonas.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

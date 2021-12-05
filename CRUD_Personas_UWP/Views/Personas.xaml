@@ -32,7 +32,8 @@
                 <ListView x:Name="listadoPersonas" ItemsSource="{Binding ListadoPersonas}" SelectedItem="{Binding PersonaSeleccionada, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsItemClickEnabled="True" ItemClick="ListView_ItemClick">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <!--<UserControl>
+                            <StackPanel x:Name="listItemPanel" Orientation="Horizontal" Margin="20,10">
+                            <UserControl>
                                 <VisualStateManager.VisualStateGroups>
                                     <VisualStateGroup>
                                         <VisualState x:Name="bigState">
@@ -51,15 +52,14 @@
                                             </VisualState.Setters>
                                         </VisualState>
                                     </VisualStateGroup>
-                                </VisualStateManager.VisualStateGroups>-->
-                            <StackPanel x:Name="listItemPanel" Orientation="Horizontal" Margin="20,10">
+                                </VisualStateManager.VisualStateGroups>
                                 <PersonPicture x:Name="listItemFoto" MinHeight="40" MaxHeight="50" MinWidth="40" MaxWidth="50" ProfilePicture="{Binding Foto}"/>
                                 <TextBlock VerticalAlignment="Center" Margin="10" FontSize="15">
                             <Run x:Name="listItemNombre" Text="{Binding Nombre}"/>
                             <Run x:Name="listItemApellido" Text="{Binding Apellido}"/>
                                 </TextBlock>
+                            </UserControl>
                             </StackPanel>
-                            <!--</UserControl>-->
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
