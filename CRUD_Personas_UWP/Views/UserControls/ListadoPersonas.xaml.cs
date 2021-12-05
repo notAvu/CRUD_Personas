@@ -1,4 +1,5 @@
-﻿using CRUD_Personas_UWP.ViewModels;
+﻿using CRUD_Personas_Entidades;
+using CRUD_Personas_UWP.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -20,11 +21,22 @@ namespace CRUD_Personas_UWP.Views.UserControls
 {
     public sealed partial class ListadoPersonas : UserControl
     {
-        PersonasVM VM { get { return this.DataContext as PersonasVM; } }
+        public clsPersona MyProperty
+        {
+            get { return (clsPersona)GetValue(MyPropertyProperty); }
+            set { SetValue(MyPropertyProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty MyPropertyProperty =
+            DependencyProperty.Register("MyProperty", typeof(clsPersona), typeof(PersonasVM),null);
+
+
         public ListadoPersonas()
         {
             this.InitializeComponent();
-            //this.DataContextChanged += (s,e) => Bindings.Update();
+            //DataContextChanged += (s, e) => Bindings.Update();
+
         }
     }
 }

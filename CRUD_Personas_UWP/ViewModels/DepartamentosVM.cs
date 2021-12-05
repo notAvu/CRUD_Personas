@@ -77,7 +77,7 @@ namespace CRUD_Personas_UWP.ViewModels
                 DptoSeleccionado = ListadoDepartamentos[0];
                 NotifyPropertyChanged("ListadoDepartamentos");
             }
-            catch
+            catch 
             {
                 var messageDialog = new MessageDialog("No ha sido posible conectar a la BBDD por favor intententelo de nuevo mas tarde");
                 _ = messageDialog.ShowAsync();
@@ -99,7 +99,7 @@ namespace CRUD_Personas_UWP.ViewModels
                 DptoSeleccionado = ListadoDepartamentos[0];
                 NotifyPropertyChanged("ListadoDepartamentos");
             }
-            catch
+            catch 
             {
                 var messageDialog = new MessageDialog("No ha sido posible conectar a la BBDD por favor intententelo de nuevo mas tarde");
                 _ = messageDialog.ShowAsync();
@@ -121,7 +121,7 @@ namespace CRUD_Personas_UWP.ViewModels
                 DptoSeleccionado = ListadoDepartamentos[0];
                 NotifyPropertyChanged("ListadoDepartamentos");
             }
-            catch
+            catch (Exception e)
             {
                 var messageDialog = new MessageDialog("No ha sido posible conectar a la BBDD por favor intententelo de nuevo mas tarde");
                 _ = messageDialog.ShowAsync();

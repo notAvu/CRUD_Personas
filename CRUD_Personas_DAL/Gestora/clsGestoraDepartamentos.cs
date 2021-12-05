@@ -13,8 +13,9 @@ namespace CRUD_Personas_DAL.Gestora
         #region propiedades privadas
         clsMyConnection connector;
         #region constantes (sentencias genericas)
-        private const string UpdateDepartamentoSentencia = "UPDATE Departamentos SET nombreDepartamento = @Nombre WHERE IDDeparramento=@id";
-        private const string InsertDepartamentoSentencia = "INSERT INTO Departamento VALUES (@Nombre)";
+        private const string UpdateDepartamentoSentencia = "UPDATE Departamentos SET nombreDepartamento = @Nombre WHERE IDDepartamento=@id";
+        private const string InsertDepartamentoSentencia = "INSERT INTO Departamentos VALUES (@Nombre)";
+        private const string ExeUp = "EXEC up @IDDpto=@id";
         private const string DeleteDepartamentoSentencia = "DELETE FROM Departamentos WHERE IDDepartamento=@id";
         private const string SelectDepartamentpoSentencia = "SELECT * FROM Departamentos WHERE IDDepartamento=@id";
         #endregion
@@ -117,8 +118,10 @@ namespace CRUD_Personas_DAL.Gestora
             SqlConnection sqlConnection = connector.getConnection();
             SqlCommand comando = new SqlCommand();
             comando.Parameters.AddWithValue("@id", id);
-            comando.CommandText = DeleteDepartamentoSentencia;
+            comando.CommandText = ExeUp;
             comando.Connection = sqlConnection;
+            comando.ExecuteNonQuery();
+            comando.CommandText = DeleteDepartamentoSentencia;
             comando.ExecuteNonQuery();
             connector.closeConnection(ref sqlConnection);
         }
