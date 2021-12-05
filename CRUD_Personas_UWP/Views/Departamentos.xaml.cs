@@ -33,6 +33,10 @@ namespace CRUD_Personas_UWP.Views
         private void listadoDptos_ItemClick(object sender, ItemClickEventArgs e)
         {
             viewModel.DptoSeleccionado = sender as clsDepartamento;
+            agregarBtn.Visibility = Visibility.Collapsed;
+            alterBtn.Visibility = Visibility.Visible;
+            alterBtn.IsEnabled = true;
+            agregarBtn.IsEnabled = false;
         }
 
         private void AppBarButton_Click(object sender, RoutedEventArgs e)

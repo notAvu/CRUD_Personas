@@ -73,7 +73,7 @@ namespace CRUD_Personas_UWP.ViewModels
             try
             {
                 gestoraDptos.AgregarDepartamento(DptoSeleccionado);
-                ListadoDepartamentos = dptosBL.ListadoCompleto();
+                ListadoDepartamentos = new clsListadoDptosBL().ListadoCompleto();
                 DptoSeleccionado = ListadoDepartamentos[0];
                 NotifyPropertyChanged("ListadoDepartamentos");
             }
@@ -95,7 +95,7 @@ namespace CRUD_Personas_UWP.ViewModels
             try
             {
                 gestoraDptos.EliminarDepartamento(DptoSeleccionado);
-                ListadoDepartamentos = dptosBL.ListadoCompleto();
+                ListadoDepartamentos = new clsListadoDptosBL().ListadoCompleto();
                 DptoSeleccionado = ListadoDepartamentos[0];
                 NotifyPropertyChanged("ListadoDepartamentos");
             }
@@ -117,11 +117,11 @@ namespace CRUD_Personas_UWP.ViewModels
             try
             {
                 gestoraDptos.EditarDepartamento(DptoSeleccionado);
-                ListadoDepartamentos = dptosBL.ListadoCompleto();
+                ListadoDepartamentos = new clsListadoDptosBL().ListadoCompleto();
                 DptoSeleccionado = ListadoDepartamentos[0];
                 NotifyPropertyChanged("ListadoDepartamentos");
             }
-            catch (Exception e)
+            catch 
             {
                 var messageDialog = new MessageDialog("No ha sido posible conectar a la BBDD por favor intententelo de nuevo mas tarde");
                 _ = messageDialog.ShowAsync();

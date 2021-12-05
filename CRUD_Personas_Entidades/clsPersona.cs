@@ -22,7 +22,7 @@ namespace CRUD_Personas_Entidades
         {
             this.nombre = "";
             this.apellido = "";
-            this.fechaNacimiento = new DateTime(1920, 01, 01);
+            this.fechaNacimiento = new DateTime(1800, 01, 01);
             this.telefono = "";
             this.direccion = "";
             this.foto = "https://www.tenforums.com/geek/gars/images/2/types/thumb_15951118880user.png";
