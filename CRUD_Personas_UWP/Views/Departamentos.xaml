@@ -38,9 +38,9 @@
         </ScrollViewer>
 
         <RelativePanel Grid.Column="1">
-            <TextBox x:Name="NombreTbx" MinWidth="200" PlaceholderText="Nombre" RelativePanel.AlignVerticalCenterWithPanel="True" Margin="20" Text="{Binding DptoSeleccionado.Nombre, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <Button x:Name="alterBtn" Content="Confirmar" RelativePanel.Below="NombreTbx" RelativePanel.AlignRightWith="NombreTbx" Command="{Binding ComandoAlterarDpto}" Visibility="Visible" IsEnabled="True"/>
-            <Button x:Name="agregarBtn" Content="Agregar" RelativePanel.Below="NombreTbx" RelativePanel.AlignRightWith="NombreTbx" Command="{Binding ComandoAgregarDpto}" Click="agregarBtn_Click"  Visibility="Collapsed" IsEnabled="False"/>
+            <TextBox x:Name="NombreTbx" MinWidth="200" PlaceholderText="Nombre" RelativePanel.AlignVerticalCenterWithPanel="True" Header="Nombre" Margin="50,20" Text="{Binding DptoSeleccionado.Nombre, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <AppBarButton x:Name="alterBtn" Label="Confirmar" Icon="Save" RelativePanel.Below="NombreTbx" RelativePanel.AlignTopWithPanel="True" Command="{Binding ComandoAlterarDpto}" Visibility="Visible" IsEnabled="True"/>
+            <AppBarButton x:Name="agregarBtn" Label="Agregar" Icon="Add"  RelativePanel.Below="NombreTbx" RelativePanel.AlignTopWithPanel="True" Command="{Binding ComandoAgregarDpto}" Click="agregarBtn_Click"  Visibility="Collapsed" IsEnabled="False"/>
         </RelativePanel>
     </Grid>
 </Page>
