@@ -18,7 +18,6 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-
         <ScrollViewer>
             <StackPanel>
                 <StackPanel Orientation="Horizontal">
