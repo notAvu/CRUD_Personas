@@ -37,12 +37,27 @@ namespace CRUD_Personas_DAL.Listado
             LlenarListaElegida(listadoCompleto, "SELECT * FROM Personas");
         }
         /// <summary>
-        /// Rellena el listadoFiltrado en funcion del departamento 
+        /// Rellena el listadoFiltrado con las personas que ocupen el departamento con el id indicado
         /// </summary>
         /// <param name="idDep"></param>
         public void FiltrarPorDepartamento(int idDep)
         {
-            LlenarListaElegida(listadoFiltrado, $"SELECT * FROM Personas WHERE IDDepartamento={idDep}");
+            SqlConnection sqlConnection = connector.getConnection();
+            SqlCommand comando = new SqlCommand();
+            comando.CommandText = "SELECT * FROM Personas WHERE IDDepartamento=@id";
+            comando.Parameters.AddWithValue("@id", idDep);
+            comando.Connection = sqlConnection; 
+            SqlDataReader reader = comando.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    listadoFiltrado.Add(leerPersona(reader));
+                }
+            }
+            reader.Close();
+            connector.closeConnection(ref sqlConnection);
+            //LlenarListaElegida(listadoFiltrado, $"SELECT * FROM Personas WHERE IDDepartamento={idDep}");
         }
         /// <summary>
         /// Metodo auxiliar para rellenar la lista que recibe por parametro con los datos de la bbdd segun la consulta indicada

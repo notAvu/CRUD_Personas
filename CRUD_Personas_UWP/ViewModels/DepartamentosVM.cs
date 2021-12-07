@@ -17,6 +17,9 @@ namespace CRUD_Personas_UWP.ViewModels
         clsGestoraDptosBL gestoraDptos;
         clsListadoDptosBL dptosBL;
         List<clsDepartamento> listadoDepartamentos;
+        clsListadoPersonasBL personasBl;
+        clsPersona personaSeleccionada;
+        List<clsPersona> listadoPersonas;
         clsDepartamento dptoSeleccionado;
         DelegateCommand comandoAgregarDpto;
         DelegateCommand comandoAlterarDpto;
@@ -30,9 +33,11 @@ namespace CRUD_Personas_UWP.ViewModels
                 dptosBL = new clsListadoDptosBL();
                 listadoDepartamentos = dptosBL.ListadoCompleto();
                 gestoraDptos = new clsGestoraDptosBL();
-                dptoSeleccionado = listadoDepartamentos[0];
+                personasBl = new clsListadoPersonasBL();
+                DptoSeleccionado = listadoDepartamentos[0];
+
             }
-            catch
+            catch (Exception e)
             {
                 var messageDialog = new MessageDialog("No ha sido posible conectar a la BBDD por favor intententelo de nuevo mas tarde");
                 _ = messageDialog.ShowAsync();
@@ -42,13 +47,36 @@ namespace CRUD_Personas_UWP.ViewModels
         #region propiedades publicas
         public clsDepartamento DptoSeleccionado
         {
-            get => dptoSeleccionado; set
+            get => dptoSeleccionado;
+            set
             {
                 dptoSeleccionado = value;
                 NotifyPropertyChanged("DptoSeleccionado");
+                if(dptoSeleccionado!=null)
+                ListadoPersonas = personasBl.ListadoFiltradoPorDepartamento(dptoSeleccionado.Id);
             }
         }
         public List<clsDepartamento> ListadoDepartamentos { get => listadoDepartamentos; set => listadoDepartamentos = value; }
+        public List<clsPersona> ListadoPersonas
+        {
+            get => listadoPersonas; set
+            {
+                listadoPersonas = value;
+                if (ListadoPersonas.Count > 0)
+                {
+                    PersonaSeleccionada = ListadoPersonas[0];
+                }
+                NotifyPropertyChanged("ListadoPersonas");
+            }
+        }
+        public clsPersona PersonaSeleccionada
+        {
+            get => personaSeleccionada; set
+            {
+                personaSeleccionada = value;
+                NotifyPropertyChanged("PersonaSeleccionada");
+            }
+        }
 
         /// <summary>
         /// Comando para agregar un departamento a la base de datos
@@ -62,6 +90,8 @@ namespace CRUD_Personas_UWP.ViewModels
         /// Comando para borrar un departamento de la base de datos
         /// </summary>
         public DelegateCommand ComandoBorrarDpto { get { return comandoBorrarDpto = new DelegateCommand(ComandoBorrarDpto_Execute, ComandoBorrarDpto_CanExecute); } }
+
+
         #endregion
         #region parametros comandoAgregarDpto
         private bool ComandoAgregarDpto_CanExecute()
@@ -77,7 +107,7 @@ namespace CRUD_Personas_UWP.ViewModels
                 DptoSeleccionado = ListadoDepartamentos[0];
                 NotifyPropertyChanged("ListadoDepartamentos");
             }
-            catch 
+            catch
             {
                 var messageDialog = new MessageDialog("No ha sido posible conectar a la BBDD por favor intententelo de nuevo mas tarde");
                 _ = messageDialog.ShowAsync();
@@ -99,7 +129,7 @@ namespace CRUD_Personas_UWP.ViewModels
                 DptoSeleccionado = ListadoDepartamentos[0];
                 NotifyPropertyChanged("ListadoDepartamentos");
             }
-            catch 
+            catch
             {
                 var messageDialog = new MessageDialog("No ha sido posible conectar a la BBDD por favor intententelo de nuevo mas tarde");
                 _ = messageDialog.ShowAsync();
@@ -121,7 +151,7 @@ namespace CRUD_Personas_UWP.ViewModels
                 DptoSeleccionado = ListadoDepartamentos[0];
                 NotifyPropertyChanged("ListadoDepartamentos");
             }
-            catch 
+            catch
             {
                 var messageDialog = new MessageDialog("No ha sido posible conectar a la BBDD por favor intententelo de nuevo mas tarde");
                 _ = messageDialog.ShowAsync();

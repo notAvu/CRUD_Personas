@@ -38,7 +38,21 @@
         </ScrollViewer>
 
         <RelativePanel Grid.Column="1">
-            <TextBox x:Name="NombreTbx" MinWidth="200" PlaceholderText="Nombre" RelativePanel.AlignVerticalCenterWithPanel="True" Header="Nombre" Margin="50,20" Text="{Binding DptoSeleccionado.Nombre, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox x:Name="NombreTbx" MinWidth="200" PlaceholderText="Nombre" Header="Nombre" Margin="100,100" Text="{Binding DptoSeleccionado.Nombre, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <ComboBox x:Name="departamentosCbx" Header="Departamento" RelativePanel.Below="NombreTbx" Margin="100,0"
+                ItemsSource="{Binding ListadoPersonas}" SelectedValue="{Binding PersonaSeleccionada.Id, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Id">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel x:Name="listItemPanel" Orientation="Horizontal" Margin="20,10">
+                            <PersonPicture x:Name="listItemFoto" MaxHeight="50" ProfilePicture="{Binding Foto}" />
+                            <TextBlock VerticalAlignment="Center" Margin="10" FontSize="15">
+                            <Run x:Name="listItemNombre" Text="{Binding Nombre}"/>
+                            <Run x:Name="listItemApellido" Text="{Binding Apellido}"/>
+                            </TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
             <AppBarButton x:Name="alterBtn" Label="Confirmar" Icon="Save" RelativePanel.Below="NombreTbx" RelativePanel.AlignTopWithPanel="True" Command="{Binding ComandoAlterarDpto}" Visibility="Visible" IsEnabled="True"/>
             <AppBarButton x:Name="agregarBtn" Label="Agregar" Icon="Add"  RelativePanel.Below="NombreTbx" RelativePanel.AlignTopWithPanel="True" Command="{Binding ComandoAgregarDpto}" Click="agregarBtn_Click"  Visibility="Collapsed" IsEnabled="False"/>
         </RelativePanel>
