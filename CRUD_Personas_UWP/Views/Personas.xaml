@@ -113,7 +113,7 @@
                     <TextBox x:Name="TlfnTbx" Header="Numero de telefono" MinWidth="200" PlaceholderText="Teléfono" RelativePanel.Below="ApellidoTbx"  Margin="10" Text="{Binding PersonaSeleccionada.Telefono, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     <TextBox x:Name="DireccionTbx" Header="Direccion" MinWidth="200" PlaceholderText="Dirección" RelativePanel.Below="TlfnTbx" Margin="10" Text="{Binding PersonaSeleccionada.Direccion, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     <ComboBox x:Name="departamentosCbx" Header="Departamento" RelativePanel.Below="DireccionTbx" Margin="10"
-                ItemsSource="{Binding ListadoDepartamentos}" SelectedValue="{Binding PersonaSeleccionada.IdDepartamento, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Id" >
+                ItemsSource="{Binding ListadoDepartamentos}" SelectedValue="{Binding PersonaSeleccionada.IdDepartamento, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Id">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Nombre}"/>
@@ -123,7 +123,7 @@
                     <!--<PersonPicture x:Name="fotoImg" ProfilePicture="{Binding PersonaSeleccionada.Foto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" Margin="60" />-->
                     <Image x:Name="fotoImg"  Source="{Binding PersonaSeleccionada.Foto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" RelativePanel.AlignTopWithPanel="True" MaxWidth="200" Margin="10" MinWidth="40" MinHeight="40"/>
                     <TextBox x:Name="ImgUrlTbx" Header="Url de la imagen" RelativePanel.Below="fotoImg" MinWidth="100" MaxWidth="200" Margin="10" Text="{Binding PersonaSeleccionada.Foto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                    <DatePicker x:Name="FechaNacimientoDp" Header="Fecha de nacimiento" RelativePanel.Below="departamentosCbx" DayFormat="{}{day.integer}"  MonthFormat="{}{month.full}" YearFormat="{}{year.full}"  Margin="10" SelectedDate="{Binding PersonaSeleccionada.FechaNacimiento, Mode=TwoWay}"/>
+                    <DatePicker x:Name="FechaNacimientoDp" Header="Fecha de nacimiento" RelativePanel.Below="departamentosCbx" Margin="10" SelectedDate="{Binding PersonaSeleccionada.FechaNacimiento, Mode=TwoWay}"/>
                     <TextBlock x:Name="errorMsg" Text="*Rellene los campos en rojo" RelativePanel.Below="FechaNacimientoDp" Margin="10" Foreground="Red" Visibility="Collapsed"/>
                 </RelativePanel>
             </UserControl>

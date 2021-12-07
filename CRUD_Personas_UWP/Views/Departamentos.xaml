@@ -25,7 +25,7 @@
                     <AppBarButton Label="Agregar departamento" Icon="AddFriend" Click="AppBarButton_Click"/>
                     <AppBarButton Label="Borrar departamento" Icon="Delete" Command="{Binding ComandoBorrarDpto}"/>
                 </StackPanel>
-                <ListView x:Name="listadoDptos" ItemsSource="{Binding ListadoDepartamentos}" SelectedItem="{Binding DptoSeleccionado, Mode=TwoWay}" IsItemClickEnabled="True" ItemClick="listadoDptos_ItemClick">
+                <ListView x:Name="listadoDptos" ItemsSource="{Binding ListadoDepartamentos}" SelectedItem="{Binding DptoSeleccionado, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsItemClickEnabled="True" ItemClick="listadoDptos_ItemClick">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" Margin="20,10">
@@ -40,7 +40,7 @@
         <RelativePanel Grid.Column="1">
             <TextBox x:Name="NombreTbx" MinWidth="200" PlaceholderText="Nombre" Header="Nombre" Margin="100,100" Text="{Binding DptoSeleccionado.Nombre, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <ComboBox x:Name="departamentosCbx" Header="Departamento" RelativePanel.Below="NombreTbx" Margin="100,0"
-                ItemsSource="{Binding ListadoPersonas}" SelectedValue="{Binding PersonaSeleccionada.Id, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Id">
+                ItemsSource="{Binding ListadoPersonas, Mode=TwoWay}" SelectedValue="{Binding PersonaSeleccionada.Id, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Id">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel x:Name="listItemPanel" Orientation="Horizontal" Margin="20,10">

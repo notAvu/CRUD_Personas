@@ -42,7 +42,10 @@ namespace CRUD_Personas_UWP.Views
             alterBtn.Visibility = Visibility.Visible;
             alterBtn.IsEnabled = true;
             agregarBtn.IsEnabled = false;
-
+            NombreTbx.BorderBrush = new SolidColorBrush(Windows.UI.Colors.Gray);
+            ApellidoTbx.BorderBrush = new SolidColorBrush(Windows.UI.Colors.Gray);
+            ImgUrlTbx.BorderBrush = new SolidColorBrush(Windows.UI.Colors.Gray);
+            errorMsg.Visibility = Visibility.Collapsed;
         }
         /// <summary>
         /// Evento asociado al boton de agregar persona
