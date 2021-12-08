@@ -73,7 +73,10 @@ CAPA UI
 		-string NombreDepartamentos
 	clsPersonaConNombreDePartamentos:clsPersona
 		-List<clsDepartamento>ListaDepartamentos
-
+CAPA UI (UWP)
+	PersonasVM: contiene las funciones, comandos y datos necesarios para la vista
+		-List<clsPersona> ListadoPersonas
+		-
 
 
 
