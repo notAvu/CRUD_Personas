@@ -52,8 +52,10 @@ namespace CRUD_Personas_UWP.ViewModels
             {
                 dptoSeleccionado = value;
                 NotifyPropertyChanged("DptoSeleccionado");
-                if(dptoSeleccionado!=null)
-                ListadoPersonas = personasBl.ListadoFiltradoPorDepartamento(dptoSeleccionado.Id);
+                if (dptoSeleccionado != null)
+                {
+                    ListadoPersonas = personasBl.ListadoFiltradoPorDepartamento(dptoSeleccionado.Id);
+                }
             }
         }
         public List<clsDepartamento> ListadoDepartamentos { get => listadoDepartamentos; set => listadoDepartamentos = value; }
