@@ -75,9 +75,13 @@ namespace CRUD_Personas_UWP.ViewModels
         #region comandoAgregar
         private bool ComandoAgregar_CanExecute()
         {
+            //returnpersonaSeleccionada != null ||(
+            //!string.IsNullOrEmpty(personaSeleccionada.Nombre) && !string.IsNullOrEmpty(personaSeleccionada.Apellido) 
+            //&& !string.IsNullOrEmpty(personaSeleccionada.Foto) && personaSeleccionada.FechaNacimiento < DateTime.Today);
+
             return
-                //personaSeleccionada != null;
-                !string.IsNullOrEmpty(personaSeleccionada.Nombre) && !string.IsNullOrEmpty(personaSeleccionada.Apellido) && !string.IsNullOrEmpty(personaSeleccionada.Foto) && personaSeleccionada.FechaNacimiento < DateTime.Today; ;
+                personaSeleccionada != null;
+            //!string.IsNullOrEmpty(personaSeleccionada.Nombre) && !string.IsNullOrEmpty(personaSeleccionada.Apellido) && !string.IsNullOrEmpty(personaSeleccionada.Foto) && personaSeleccionada.FechaNacimiento < DateTime.Today; ;
         }
         private void ComandoAgregar_Execute()
         {
@@ -115,9 +119,8 @@ namespace CRUD_Personas_UWP.ViewModels
 
         public bool ComandoAlterar_CanExecute()
         {
-            return 
-                //personaSeleccionada != null;
-            !string.IsNullOrEmpty(personaSeleccionada.Nombre) && !string.IsNullOrEmpty(personaSeleccionada.Apellido) && !string.IsNullOrEmpty(personaSeleccionada.Foto) &&  personaSeleccionada.FechaNacimiento < DateTime.Today;
+            return
+                personaSeleccionada != null;
         }
         #endregion
         #region comandoBorrar

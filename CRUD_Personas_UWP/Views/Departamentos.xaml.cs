@@ -58,5 +58,11 @@ namespace CRUD_Personas_UWP.Views
                 agregarBtn.IsEnabled = false;
             }
         }
+
+        private void departamentosCbx_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            clsPersona persona = sender as clsPersona;
+            this.Frame.Navigate(typeof(Personas));
+        }
     }
 }

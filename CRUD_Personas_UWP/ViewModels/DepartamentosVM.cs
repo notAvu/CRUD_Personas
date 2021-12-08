@@ -20,6 +20,7 @@ namespace CRUD_Personas_UWP.ViewModels
         clsListadoPersonasBL personasBl;
         clsPersona personaSeleccionada;
         List<clsPersona> listadoPersonas;
+        List<clsPersona> listadoFiltrado;
         clsDepartamento dptoSeleccionado;
         DelegateCommand comandoAgregarDpto;
         DelegateCommand comandoAlterarDpto;
@@ -34,6 +35,7 @@ namespace CRUD_Personas_UWP.ViewModels
                 listadoDepartamentos = dptosBL.ListadoCompleto();
                 gestoraDptos = new clsGestoraDptosBL();
                 personasBl = new clsListadoPersonasBL();
+                listadoPersonas = personasBl.ListadoCompleto();
                 DptoSeleccionado = listadoDepartamentos[0];
 
             }
@@ -54,31 +56,11 @@ namespace CRUD_Personas_UWP.ViewModels
                 NotifyPropertyChanged("DptoSeleccionado");
                 if (dptoSeleccionado != null)
                 {
-                    ListadoPersonas = personasBl.ListadoFiltradoPorDepartamento(dptoSeleccionado.Id);
+                    ListadoFiltrado = new List<clsPersona>(listadoPersonas.Where(persona => persona.IdDepartamento == dptoSeleccionado.Id));
                 }
             }
         }
         public List<clsDepartamento> ListadoDepartamentos { get => listadoDepartamentos; set => listadoDepartamentos = value; }
-        public List<clsPersona> ListadoPersonas
-        {
-            get => listadoPersonas; set
-            {
-                listadoPersonas = value;
-                if (listadoPersonas.Count > 0)
-                {
-                    PersonaSeleccionada = listadoPersonas[0];
-                }
-                NotifyPropertyChanged("ListadoPersonas");
-            }
-        }
-        public clsPersona PersonaSeleccionada
-        {
-            get => personaSeleccionada; set
-            {
-                personaSeleccionada = value;
-                NotifyPropertyChanged("PersonaSeleccionada");
-            }
-        }
 
         /// <summary>
         /// Comando para agregar un departamento a la base de datos
@@ -92,6 +74,16 @@ namespace CRUD_Personas_UWP.ViewModels
         /// Comando para borrar un departamento de la base de datos
         /// </summary>
         public DelegateCommand ComandoBorrarDpto { get { return comandoBorrarDpto = new DelegateCommand(ComandoBorrarDpto_Execute, ComandoBorrarDpto_CanExecute); } }
+
+        public List<clsPersona> ListadoFiltrado
+        {
+            get => listadoFiltrado; set
+            {
+                listadoFiltrado = value;
+                personaSeleccionada = listadoFiltrado[0];
+                NotifyPropertyChanged("ListadoFiltrado");
+            }
+        }
 
 
         #endregion
