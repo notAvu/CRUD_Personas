@@ -39,7 +39,7 @@
                 <NavigationViewItem x:Name="PersonasNvi" Icon="AddFriend" Content="Personas" />
                 <NavigationViewItem x:Name="DepartamentosNvi" Icon="Bookmarks" Content="Departamentos"/>
             </NavigationView.MenuItems>
-            <Frame x:Name="contentFme"  />
+            <Frame x:Name="contentFme"/>
         </NavigationView>
     </Grid>
 </Page>
