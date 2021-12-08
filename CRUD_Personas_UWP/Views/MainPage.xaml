@@ -34,10 +34,10 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>-->
-        <NavigationView x:Name="NavView" PaneDisplayMode="LeftCompact" IsSettingsVisible="False" IsBackButtonVisible="Collapsed">
+        <NavigationView x:Name="NavView" PaneDisplayMode="LeftCompact" IsSettingsVisible="False" IsBackButtonVisible="Collapsed" ItemInvoked="NavView_ItemInvoked">
             <NavigationView.MenuItems>
-                <NavigationViewItem x:Name="PersonasNvi" Icon="AddFriend" Content="Personas" Tapped="PersonasNvi_Tapped"/>
-                <NavigationViewItem x:Name="DepartamentosNvi" Icon="Bookmarks" Content="Departamentos" Tapped="DepartamentosNvi_Tapped"/>
+                <NavigationViewItem x:Name="PersonasNvi" Icon="AddFriend" Content="Personas" />
+                <NavigationViewItem x:Name="DepartamentosNvi" Icon="Bookmarks" Content="Departamentos"/>
             </NavigationView.MenuItems>
             <Frame x:Name="contentFme"  />
         </NavigationView>
