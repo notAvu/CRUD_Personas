@@ -44,8 +44,8 @@ namespace CRUD_Personas_DAL.Listado
         {
             SqlConnection sqlConnection = connector.getConnection();
             SqlCommand comando = new SqlCommand();
-            comando.CommandText = "SELECT * FROM Personas WHERE IDDepartamento=@id";
             comando.Parameters.AddWithValue("@id", idDep);
+            comando.CommandText = "SELECT * FROM Personas WHERE IDDepartamento=@id";
             comando.Connection = sqlConnection; 
             SqlDataReader reader = comando.ExecuteReader();
             if (reader.HasRows)

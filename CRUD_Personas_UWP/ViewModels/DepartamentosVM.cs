@@ -62,9 +62,9 @@ namespace CRUD_Personas_UWP.ViewModels
             get => listadoPersonas; set
             {
                 listadoPersonas = value;
-                if (ListadoPersonas.Count > 0)
+                if (listadoPersonas.Count > 0)
                 {
-                    PersonaSeleccionada = ListadoPersonas[0];
+                    PersonaSeleccionada = listadoPersonas[0];
                 }
                 NotifyPropertyChanged("ListadoPersonas");
             }
