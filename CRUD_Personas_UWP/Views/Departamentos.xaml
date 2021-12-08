@@ -39,7 +39,7 @@
         <RelativePanel Grid.Column="1">
             <TextBox x:Name="NombreTbx" MinWidth="200" PlaceholderText="Nombre" Header="Nombre" Margin="100,100" Text="{Binding DptoSeleccionado.Nombre, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <ComboBox x:Name="departamentosCbx" Header="Departamento" RelativePanel.Below="NombreTbx" Margin="100,0"
-                ItemsSource="{Binding ListadoPersonas, Mode=TwoWay}" SelectedItem="{Binding PersonaSeleccionada, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
+                ItemsSource="{Binding ListadoFiltrado, Mode=TwoWay}" SelectedItem="{Binding PersonaSeleccionada, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel x:Name="listItemPanel" Orientation="Horizontal" Margin="20,10">
