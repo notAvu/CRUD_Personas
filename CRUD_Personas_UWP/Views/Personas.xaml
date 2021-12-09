@@ -8,7 +8,6 @@
     xmlns:vm="using:CRUD_Personas_UWP.ViewModels"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    <!--RequestedTheme="Light"-->
 
     <Page.DataContext>
         <vm:PersonasVM/>
