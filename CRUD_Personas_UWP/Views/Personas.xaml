@@ -139,7 +139,6 @@
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
-                    <!--<PersonPicture x:Name="fotoImg" ProfilePicture="{Binding PersonaSeleccionada.Foto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" Margin="60" />-->
                     <Image x:Name="fotoImg" Source="{Binding PersonaSeleccionada.Foto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" RelativePanel.AlignTopWithPanel="True" MaxWidth="200" Margin="10" MinWidth="40" MinHeight="40"/>
                     <TextBox x:Name="ImgUrlTbx" Header="Url de la imagen" RelativePanel.Below="fotoImg" MinWidth="100" MaxWidth="200" Margin="10" Text="{Binding PersonaSeleccionada.Foto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     <DatePicker x:Name="FechaNacimientoDp" Header="Fecha de nacimiento" RelativePanel.Below="departamentosCbx" Margin="10" SelectedDate="{Binding PersonaSeleccionada.FechaNacimiento, Mode=TwoWay}"/>
