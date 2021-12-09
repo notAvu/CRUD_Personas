@@ -50,8 +50,8 @@
                             </TextBlock>
                         </StackPanel>
                     </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
+                </ListView.ItemTemplate>
+            </ListView>
             <AppBarButton x:Name="alterBtn" Label="Confirmar" Icon="Save" RelativePanel.Below="NombreTbx" RelativePanel.AlignTopWithPanel="True" Command="{Binding ComandoAlterarDpto}" Visibility="Visible" IsEnabled="True"/>
             <AppBarButton x:Name="agregarBtn" Label="Agregar" Icon="Add"  RelativePanel.Below="NombreTbx" RelativePanel.AlignTopWithPanel="True" Command="{Binding ComandoAgregarDpto}" Click="agregarBtn_Click"  Visibility="Collapsed" IsEnabled="False"/>
         </RelativePanel>
