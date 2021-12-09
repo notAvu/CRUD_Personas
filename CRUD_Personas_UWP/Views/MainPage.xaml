@@ -16,12 +16,12 @@
                         <AdaptiveTrigger MinWindowWidth="700"/>
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="NavView.(PaneDisplayMode)" Value="Top"/>
+                        <Setter Target="NavView.(PaneDisplayMode)" Value="LeftCompact"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="chikito">
                     <VisualState.Setters>
-                        <Setter Target="NavView.(PaneDisplayMode)" Value="LeftCompact"/>
+                        <Setter Target="NavView.(PaneDisplayMode)" Value="Top"/>
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -34,7 +34,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>-->
-        <NavigationView x:Name="NavView" PaneDisplayMode="LeftCompact" IsSettingsVisible="False" IsBackButtonVisible="Collapsed" ItemInvoked="NavView_ItemInvoked">
+        <NavigationView x:Name="NavView" PaneDisplayMode="Top" IsSettingsVisible="False" IsBackButtonVisible="Collapsed" ItemInvoked="NavView_ItemInvoked">
             <NavigationView.MenuItems>
                 <NavigationViewItem x:Name="PersonasNvi" Icon="AddFriend" Content="Personas" />
                 <NavigationViewItem x:Name="DepartamentosNvi" Icon="Bookmarks" Content="Departamentos"/>

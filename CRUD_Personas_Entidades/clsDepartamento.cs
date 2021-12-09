@@ -19,7 +19,8 @@ namespace CRUD_Personas_Entidades
         }
         public clsDepartamento() 
         {
-            this.Nombre = "";
+            Nombre = "";
+            Id = 0;
         }
     }
 }
