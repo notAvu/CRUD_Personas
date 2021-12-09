@@ -28,14 +28,6 @@ namespace CRUD_Personas_UWP
             contentFme.Navigate(typeof(Views.Personas));
         }
 
-        //private void PersonasNvi_Tapped(object sender, TappedRoutedEventArgs e)
-        //{
-        //}
-
-        //private void DepartamentosNvi_Tapped(object sender, TappedRoutedEventArgs e)
-        //{
-        //}
-
         private void NavView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
         {
             NavigationViewItem item = (NavigationViewItem)sender.SelectedItem;

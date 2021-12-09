@@ -30,23 +30,6 @@ namespace CRUD_Personas_UWP.Views
             this.InitializeComponent();
             viewModel = (PersonasVM)DataContext;
         }
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            if (e == null)
-            {
-                viewModel.PersonaSeleccionada = viewModel.ListadoPersonas[0];
-            }
-            else
-            {
-                viewModel.PersonaSeleccionada = e.Parameter as clsPersona;
-            }
-        }
-        //public Personas(int idSeleccionada)
-        //{
-        //    this.InitializeComponent();
-        //    viewModel = (PersonasVM)DataContext;
-        //    viewModel.PersonaSeleccionada = viewModel.ListadoPersonas.Where(persona=>persona.Id==idSeleccionada).FirstOrDefault();
-        //}
         /// <summary>
         /// Metodo asociado al click de un elemento de la lista de personas en la vista
         /// </summary>
