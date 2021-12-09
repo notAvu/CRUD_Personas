@@ -39,7 +39,7 @@ namespace CRUD_Personas_UWP.ViewModels
                 DptoSeleccionado = listadoDepartamentos[0];
 
             }
-            catch (Exception e)
+            catch
             {
                 var messageDialog = new MessageDialog("No ha sido posible conectar a la BBDD por favor intententelo de nuevo mas tarde");
                 _ = messageDialog.ShowAsync();

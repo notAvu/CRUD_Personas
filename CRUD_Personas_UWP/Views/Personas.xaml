@@ -8,7 +8,6 @@
     xmlns:vm="using:CRUD_Personas_UWP.ViewModels"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    <!--RequestedTheme="Light"-->
 
     <Page.DataContext>
         <vm:PersonasVM/>
@@ -32,13 +31,38 @@
             <ListView x:Name="listadoPersonas" ItemsSource="{Binding ListadoPersonas}" SelectedItem="{Binding PersonaSeleccionada, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsItemClickEnabled="True" ItemClick="ListView_ItemClick">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel x:Name="listItemPanel" Orientation="Horizontal" Margin="20,10">
-                            <PersonPicture x:Name="listItemFoto" MaxHeight="50" ProfilePicture="{Binding Foto}" />
-                            <TextBlock VerticalAlignment="Center" Margin="10" FontSize="15">
+                        <UserControl>
+                            <StackPanel x:Name="listItemPanel" Orientation="Horizontal" Margin="20,10">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup>
+                                    <VisualState x:Name="bigState">
+                                        <VisualState.StateTriggers>
+                                            <AdaptiveTrigger MinWindowWidth="700"/>
+                                        </VisualState.StateTriggers>
+                                        <VisualState.Setters>
+                                            <Setter Target="listItemFoto.Visibility" Value="Visible"/>
+                                                <Setter Target="listEmpleadoTbx.FontSize" Value="15"/>
+                                            </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="chikito">
+                                        <VisualState.StateTriggers>
+                                            <AdaptiveTrigger MinWindowWidth="0"/>
+                                        </VisualState.StateTriggers>
+                                        <VisualState.Setters>
+                                                <Setter Target="listEmpleadoTbx.FontSize" Value="12"/>
+                                                <Setter Target="listItemFoto.Visibility" Value="Collapsed"/>
+                                            </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                                <PersonPicture x:Name="listItemFoto" MaxHeight="50" ProfilePicture="{Binding Foto}" />
+                                <TextBlock x:Name="listEmpleadoTbx" VerticalAlignment="Center" Margin="10" FontSize="15">
                             <Run x:Name="listItemNombre" Text="{Binding Nombre}"/>
                             <Run x:Name="listItemApellido" Text="{Binding Apellido}"/>
-                            </TextBlock>
-                        </StackPanel>
+                                </TextBlock>
+                            </StackPanel>
+
+                        </UserControl>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
@@ -59,15 +83,23 @@
                                 <VisualState.Setters>
                                     <Setter Target="NombreTbx.(RelativePanel.Below)" Value=""/>
                                     <Setter Target="NombreTbx.(RelativePanel.RightOf)" Value="fotoImg"/>
-                                    
+
                                     <Setter Target="ApellidoTbx.(RelativePanel.Below)" Value="NombreTbx"/>
                                     <Setter Target="ApellidoTbx.(RelativePanel.RightOf)" Value="fotoImg"/>
-                                    
+
                                     <Setter Target="TlfnTbx.(RelativePanel.Below)" Value="ImgUrlTbx"/>
                                     <Setter Target="FechaNacimientoDp.(RelativePanel.Below)" Value="DireccionTbx"/>
 
                                     <Setter Target="departamentosCbx.(RelativePanel.Below)" Value="ApellidoTbx"/>
                                     <Setter Target="departamentosCbx.(RelativePanel.RightOf)" Value="fotoImg"/>
+
+                                    <!--<Setter Target="NombreTbx.FontSize" Value="15"/>
+                                    <Setter Target="TlfnTbx.FontSize" Value="15"/>
+                                    <Setter Target="ApellidoTbx.FontSize" Value="15"/>
+                                    <Setter Target="departamentosCbx.FontSize" Value="15"/>
+                                    <Setter Target="FechaNacimientoDp.FontSize" Value="15"/>
+                                    <Setter Target="DireccionTxb.FontSize" Value="15"/>
+                                    <Setter Target="ImgUrlTbx.FontSize" Value="15"/>-->
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState x:Name="chikito">
@@ -82,12 +114,21 @@
                                     <Setter Target="ApellidoTbx.(RelativePanel.Below)" Value="NombreTbx"/>
 
                                     <Setter Target="TlfnTbx.(RelativePanel.Below)" Value="ApellidoTbx"/>
+                                    
+                                    <!--<Setter Target="NombreTbx.FontSize" Value="12"/>
+                                    <Setter Target="TlfnTbx.FontSize" Value="12"/>
+                                    <Setter Target="ApellidoTbx.FontSize" Value="12"/>
+                                    <Setter Target="departamentosCbx.FontSize" Value="12"/>
+                                    <Setter Target="FechaNacimientoDp.FontSize" Value="12"/>
+                                    <Setter Target="DireccionTxb.FontSize" Value="12"/>
+                                    <Setter Target="ImgUrlTbx.FontSize" Value="12"/>-->
+
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>
                     </VisualStateManager.VisualStateGroups>
                     <TextBox x:Name="NombreTbx" Header="Nombre" MinWidth="200" RelativePanel.Below="fotoImg" PlaceholderText="Nombre" Margin="10" Text="{Binding PersonaSeleccionada.Nombre, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                    <TextBox x:Name="ApellidoTbx" Header="Apellido" MinWidth="200" PlaceholderText="Apellido" RelativePanel.Below="NombreTbx"  Margin="10" Text="{Binding PersonaSeleccionada.Apellido, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBox x:Name="ApellidoTbx" Header="Apellido" MinWidth="200" PlaceholderText="Apellido" RelativePanel.Below="NombreTbx" Margin="10" Text="{Binding PersonaSeleccionada.Apellido, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     <TextBox x:Name="TlfnTbx" Header="Numero de telefono" MinWidth="200" PlaceholderText="Teléfono" RelativePanel.Below="ApellidoTbx"  Margin="10" Text="{Binding PersonaSeleccionada.Telefono, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     <TextBox x:Name="DireccionTbx" Header="Direccion" MinWidth="200" PlaceholderText="Dirección" RelativePanel.Below="TlfnTbx" Margin="10" Text="{Binding PersonaSeleccionada.Direccion, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     <ComboBox x:Name="departamentosCbx" Header="Departamento" RelativePanel.Below="DireccionTbx" Margin="10"
@@ -98,8 +139,7 @@
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
-                    <!--<PersonPicture x:Name="fotoImg" ProfilePicture="{Binding PersonaSeleccionada.Foto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" Margin="60" />-->
-                    <Image x:Name="fotoImg"  Source="{Binding PersonaSeleccionada.Foto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" RelativePanel.AlignTopWithPanel="True" MaxWidth="200" Margin="10" MinWidth="40" MinHeight="40"/>
+                    <Image x:Name="fotoImg" Source="{Binding PersonaSeleccionada.Foto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" RelativePanel.AlignTopWithPanel="True" MaxWidth="200" Margin="10" MinWidth="40" MinHeight="40"/>
                     <TextBox x:Name="ImgUrlTbx" Header="Url de la imagen" RelativePanel.Below="fotoImg" MinWidth="100" MaxWidth="200" Margin="10" Text="{Binding PersonaSeleccionada.Foto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     <DatePicker x:Name="FechaNacimientoDp" Header="Fecha de nacimiento" RelativePanel.Below="departamentosCbx" Margin="10" SelectedDate="{Binding PersonaSeleccionada.FechaNacimiento, Mode=TwoWay}"/>
                     <TextBlock x:Name="errorMsg" Text="*Rellene los campos en rojo" RelativePanel.Below="FechaNacimientoDp" Margin="10" Foreground="Red" Visibility="Collapsed"/>
