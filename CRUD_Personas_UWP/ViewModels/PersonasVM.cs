@@ -50,9 +50,6 @@ namespace CRUD_Personas_UWP.ViewModels
             set
             {
                 personaSeleccionada = value;
-                //comandoAgregar.RaiseCanExecuteChanged();
-                //comandoAlterar.RaiseCanExecuteChanged();
-                //comandoBorrar.RaiseCanExecuteChanged();
                 NotifyPropertyChanged("PersonaSeleccionada");
 
             }

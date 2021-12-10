@@ -59,10 +59,13 @@ namespace CRUD_Personas_UWP.Views
             }
         }
 
-        private void departamentosCbx_ItemClick(object sender, ItemClickEventArgs e)
+        private void empleadosLv_ItemClick(object sender, ItemClickEventArgs e)
         {
-            clsPersona persona = sender as clsPersona;
-            this.Frame.Navigate(typeof(Personas));
+            
+            viewModel.PersonaSeleccionada =
+            e.ClickedItem as clsPersona;
+            this.Frame.Navigate(typeof(Personas), viewModel.PersonaSeleccionada);
+
         }
     }
 }

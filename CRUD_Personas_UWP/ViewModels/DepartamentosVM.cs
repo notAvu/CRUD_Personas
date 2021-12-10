@@ -80,10 +80,12 @@ namespace CRUD_Personas_UWP.ViewModels
             get => listadoFiltrado; set
             {
                 listadoFiltrado = value;
-                personaSeleccionada = listadoFiltrado[0];
+                PersonaSeleccionada = listadoFiltrado[0];
                 NotifyPropertyChanged("ListadoFiltrado");
             }
         }
+
+        public clsPersona PersonaSeleccionada { get => personaSeleccionada; set { personaSeleccionada = value;  NotifyPropertyChanged("PersonaSeleccionada"); } }
 
 
         #endregion
