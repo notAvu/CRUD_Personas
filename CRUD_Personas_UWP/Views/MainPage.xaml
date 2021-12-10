@@ -34,7 +34,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>-->
-        <NavigationView x:Name="NavView" PaneDisplayMode="Top" IsSettingsVisible="False" IsBackButtonVisible="Collapsed" ItemInvoked="NavView_ItemInvoked">
+        <NavigationView x:Name="NavView" IsPaneOpen="False"  PaneDisplayMode="Top" IsSettingsVisible="False" IsBackButtonVisible="Collapsed" ItemInvoked="NavView_ItemInvoked">
             <NavigationView.MenuItems>
                 <NavigationViewItem x:Name="PersonasNvi" Icon="AddFriend" Content="Personas" />
                 <NavigationViewItem x:Name="DepartamentosNvi" Icon="Bookmarks" Content="Departamentos"/>

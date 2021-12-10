@@ -37,8 +37,8 @@
         </ScrollViewer>
 
         <RelativePanel Grid.Column="1" BorderBrush="White" BorderThickness="0.5">
-            <TextBox x:Name="NombreTbx" MinWidth="200" PlaceholderText="Nombre" Header="Nombre" Margin="100,100" Text="{Binding DptoSeleccionado.Nombre, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <ListView x:Name="empleadosLv" Header="Lista de empleados" RelativePanel.Below="NombreTbx" Margin="100,0"
+            <TextBox x:Name="NombreTbx" MinWidth="200" PlaceholderText="Nombre" Header="Nombre" Margin="75,75,0,75" Text="{Binding DptoSeleccionado.Nombre, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <ListView x:Name="empleadosLv" Header="Lista de empleados" RelativePanel.Below="NombreTbx" Margin="50,0,0,0"
                 ItemsSource="{Binding ListadoFiltrado, Mode=TwoWay}" SelectedItem="{Binding PersonaSeleccionada, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ItemClick="empleadosLv_ItemClick"  IsItemClickEnabled="True" >
                 <ListView.ItemTemplate>
                     <DataTemplate>

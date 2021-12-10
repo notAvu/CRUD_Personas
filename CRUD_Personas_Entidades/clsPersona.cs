@@ -18,6 +18,9 @@ namespace CRUD_Personas_Entidades
         private string foto;
         #endregion
         #region constructor
+        /// <summary>
+        /// Establece los valores por defecto de un objeto persona. El departamento establecido por defecto es "Currito"
+        /// </summary>
         public clsPersona()
         {
             this.nombre = "";
