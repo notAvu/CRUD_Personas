@@ -73,7 +73,7 @@
 
         <ScrollViewer Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" >
             <UserControl>
-                <RelativePanel BorderBrush="White" BorderThickness="0.5" Margin="10">
+                <RelativePanel Margin="10">
                     <VisualStateManager.VisualStateGroups>
                         <VisualStateGroup>
                             <VisualState x:Name="bigState">
