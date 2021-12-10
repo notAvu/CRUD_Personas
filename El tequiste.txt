@@ -76,7 +76,17 @@ CAPA UI
 CAPA UI (UWP)
 	PersonasVM: contiene las funciones, comandos y datos necesarios para la vista
 		-List<clsPersona> ListadoPersonas
-		-
+		-cslPersona PersonaSeleccionada
+		-DelegateCommand Borrar
+		-DelegateCommand Agregar
+		-DelegateCommand Editar
+	DepartamentosVM: contiene los datos y funciones necesarios para la vista Departamentos
+		-List<clsDepartamento> ListadoDepartamentos
+		-clsDepartamento DepartamentoSeleccionado
+	Vistas:
+	-Personas: vista asociada al listado y operaciones CRUD de personas
+	-Departamentos vista asociada al listado y operaciones CRUD de departamentos
+	-MainPage: pagina inicial que contendra a las dos anteriores, seleccionando por defecto Personas
 
 
 
