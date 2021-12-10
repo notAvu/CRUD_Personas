@@ -61,9 +61,7 @@ namespace CRUD_Personas_UWP.Views
 
         private void empleadosLv_ItemClick(object sender, ItemClickEventArgs e)
         {
-            
-            viewModel.PersonaSeleccionada =
-            e.ClickedItem as clsPersona;
+            viewModel.PersonaSeleccionada = e.ClickedItem as clsPersona;
             this.Frame.Navigate(typeof(Personas), viewModel.PersonaSeleccionada);
 
         }
