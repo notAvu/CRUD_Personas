@@ -49,5 +49,9 @@ namespace CRUD_Personas_BL
         {
             gestoraPersonas.EliminarPersona(persona.Id);
         }
+        public void EliminarPersona(int Idpersona)
+        {
+            gestoraPersonas.EliminarPersona(Idpersona);
+        }
     }
 }
