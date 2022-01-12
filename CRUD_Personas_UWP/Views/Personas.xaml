@@ -61,7 +61,6 @@
                             <Run x:Name="listItemApellido" Text="{Binding Apellido}"/>
                                 </TextBlock>
                             </StackPanel>
-
                         </UserControl>
                     </DataTemplate>
                 </ListView.ItemTemplate>
