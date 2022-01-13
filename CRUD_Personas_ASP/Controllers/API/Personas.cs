@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HttpGetAttribute = Microsoft.AspNetCore.Mvc.HttpGetAttribute;
+using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -40,7 +42,17 @@ namespace CRUD_Personas_ASP.Controllers.API
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] clsPersona persona)
         {
+            try { 
             new clsGestoraPersonasBL().EditarPersona(persona);
+            }catch (Exception e) {
+                throw new HttpResponseException(HttpStatusCode.ServiceUnavailable);
+            }
+            
+            if (listadoProductos == null || listadoProductos.Count == 0){
+                throw new HttpResponseException(HttpStatusCode.NoContent);
+            }
+            return listadoProductos;
+        }
         }
 
         // DELETE api/<Personas>/5
