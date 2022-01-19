@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using HttpGetAttribute = Microsoft.AspNetCore.Mvc.HttpGetAttribute;
 using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
@@ -20,7 +21,7 @@ namespace CRUD_Personas_ASP.Controllers.API
         [HttpGet]
         public IEnumerable<clsPersona> Get()
         {
-            clsListadoPersonasBL listado= new clsListadoPersonasBL();
+            clsListadoPersonasBL listado = new clsListadoPersonasBL();
             return listado.ListadoCompleto();
         }
 
@@ -42,24 +43,26 @@ namespace CRUD_Personas_ASP.Controllers.API
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] clsPersona persona)
         {
-            try { 
+
             new clsGestoraPersonasBL().EditarPersona(persona);
-            }catch (Exception e) {
-                throw new HttpResponseException(HttpStatusCode.ServiceUnavailable);
-            }
-            
-            if (listadoProductos == null || listadoProductos.Count == 0){
-                throw new HttpResponseException(HttpStatusCode.NoContent);
-            }
-            return listadoProductos;
-        }
+
         }
 
         // DELETE api/<Personas>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public HttpStatusCode Delete(int id)
         {
-            new clsGestoraPersonasBL().EliminarPersona(id);
+            HttpStatusCode statuscode;
+            try
+            {
+                new clsGestoraPersonasBL().EliminarPersona(id);
+                statuscode = HttpStatusCode.OK;
+            }
+            catch (Exception e)
+            {
+                statuscode=HttpStatusCode.NotFound;
+            }
+            return statuscode;
         }
     }
 }
