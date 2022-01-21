@@ -50,17 +50,22 @@ namespace CRUD_Personas_ASP.Controllers.API
 
         // DELETE api/<Personas>/5
         [HttpDelete("{id}")]
-        public HttpStatusCode Delete(int id)
+        public IActionResult Delete(int id)
         {
-            HttpStatusCode statuscode;
+            IActionResult statuscode;
             try
             {
                 new clsGestoraPersonasBL().EliminarPersona(id);
-                statuscode = HttpStatusCode.OK;
+                statuscode =Ok();
+            }/*
+              if(filasAfectadas=0)
+            {
+            statuscode=X;
             }
+              */
             catch (Exception e)
             {
-                statuscode=HttpStatusCode.NotFound;
+                statuscode = BadRequest();
             }
             return statuscode;
         }
